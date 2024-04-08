@@ -26,17 +26,14 @@ import net.kdigital.portservice.dto.UserDTO;
 public class UserEntity {
 	
 	@Id
-	@Column(name="user_id", nullable=false)
-	private String userId;
+	@Column(name="user_email", nullable=false)
+	private String userEmail;
 	
 	@Column(name="user_pwd", nullable=false)
 	private String userPwd;
 	
 	@Column(name="user_name", nullable=false)
 	private String userName;
-	
-	@Column(name="user_email", nullable=false)
-	private String userEmail;
 	
 	@Column(name="user_phone", nullable=false)
 	private String userPhone;
@@ -56,10 +53,9 @@ public class UserEntity {
 	
 	public static UserEntity toEntity(UserDTO userDTO) {
 		return UserEntity.builder()
-				.userId(userDTO.getUserId())
+				.userEmail(userDTO.getUserEmail())
 				.userPwd(userDTO.getUserPwd())
 				.userName(userDTO.getUserName())
-				.userEmail(userDTO.getUserEmail())
 				.userPhone(userDTO.getUserPhone())
 				.company(userDTO.getCompany())
 				.joinDate(userDTO.getJoinDate())

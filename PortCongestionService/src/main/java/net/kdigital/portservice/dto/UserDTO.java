@@ -17,10 +17,9 @@ import net.kdigital.portservice.entity.UserEntity;
 @NoArgsConstructor
 @Builder
 public class UserDTO {
-	private String userId;
+	private String userEmail;
 	private String userPwd;
 	private String userName;
-	private String userEmail;
 	private String userPhone;
 	private String company;
 	private LocalDateTime joinDate;
@@ -30,10 +29,9 @@ public class UserDTO {
 	
 	public static UserDTO toDTO(UserEntity userEntity) {
 		return UserDTO.builder()
-				.userId(userEntity.getUserId())
+				.userEmail(userEntity.getUserEmail())
 				.userPwd(userEntity.getUserPwd())
 				.userName(userEntity.getUserName())
-				.userEmail(userEntity.getUserEmail())
 				.userPhone(userEntity.getUserPhone())
 				.company(userEntity.getCompany())
 				.joinDate(userEntity.getJoinDate())

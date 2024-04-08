@@ -22,7 +22,7 @@ public class UserService {
 	 * @return 회원가입 성공 여부 
 	 */
 	public boolean joinProc(UserDTO userDTO) {
-		boolean isExistUser = userRepository.existsById(userDTO.getUserId());
+		boolean isExistUser = userRepository.existsById(userDTO.getUserEmail());
 		if(isExistUser) return false;
 		
 		userDTO.setUserPwd(bCryptPasswordEncoder.encode(userDTO.getUserPwd()));

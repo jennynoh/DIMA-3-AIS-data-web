@@ -12,10 +12,9 @@ import lombok.ToString;
 @ToString
 public class LoginUserDetails implements UserDetails {
 	private static final long serialVersionUID = 1L;
-	private String userId;
+	private String userEmail;
 	private String userPwd;
 	private String userName;
-	private String userEmail;
 	private String userPhone;
 	private String company;
 	private LocalDateTime joinDate;
@@ -50,7 +49,7 @@ public class LoginUserDetails implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return this.userId;
+		return this.userEmail;
 	}
 	
 	// 사용자 이름 반환 
@@ -82,9 +81,8 @@ public class LoginUserDetails implements UserDetails {
 	public LoginUserDetails(String userId, String userPwd, String userEmail, String userPhone, String company,
 			LocalDateTime joinDate, String userRole, boolean notificationSetting, boolean enabled) {
 		super();
-		this.userId = userId;
-		this.userPwd = userPwd;
 		this.userEmail = userEmail;
+		this.userPwd = userPwd;
 		this.userPhone = userPhone;
 		this.company = company;
 		this.joinDate = joinDate;
@@ -95,9 +93,8 @@ public class LoginUserDetails implements UserDetails {
 	
 	public LoginUserDetails(UserDTO userDTO) {
 		super();
-		this.userId = userDTO.getUserId();
-		this.userPwd = userDTO.getUserPwd();
 		this.userEmail = userDTO.getUserEmail();
+		this.userPwd = userDTO.getUserPwd();
 		this.userPhone = userDTO.getUserPhone();
 		this.company = userDTO.getCompany();
 		this.joinDate = userDTO.getJoinDate();
