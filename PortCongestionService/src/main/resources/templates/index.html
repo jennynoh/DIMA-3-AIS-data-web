@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Port Congestion Service Home</title>
+</head>
+
+<body>
+    <h2>랜딩 페이지</h2>
+    <container class="global-navigation bar">
+        <ul>
+            <li>Home</li>
+            <li>
+                <a th:href="@{/portinfo}">Service</a>
+            </li>
+            <li sec:authorize="isAuthenticated()">
+                <a th:href="@{/ai}">AI Curation</a>
+            </li>
+            <!-- 로그인. 회원가입 -->
+            <li sec:authorize="isAnonymous()">
+                <a th:href="@{/user/login}">Log in</a>
+            </li>
+            <li sec:authorize="isAnonymous()">
+                <a th:href="@{/user/join}">Join</a>
+            </li>
+
+            <li sec:authorize="isAuthenticated()">
+                <a th:href="@{/user/logout}">Log out</a>
+            </li>
+            <li sec:authorize="isAuthenticated()">
+                <a th:href="@{/mypage}">My page</a>
+            </li>
+        </ul>
+    </container>
+
+    <container class="contents landing-page">
+
+    </container>
+</body>
+
+</html>
