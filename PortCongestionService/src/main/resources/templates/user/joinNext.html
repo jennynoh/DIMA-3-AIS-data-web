@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" th:href="@{/css/styleguide.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+    <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
+    <script>
+        $(function () {
+            let key = $("#key").val();
+
+            $("#inputKey").on('keyup', valKey);
+            $("#confirmPwd").on('keyup', valPwd);
+
+            function valKey() {
+                let inputKey = $("#inputKey").val();
+                let message = "";
+                if (inputKey.trim() == key) {
+                    message += `<span style="color: green; font - size: smaller;">*인증 성공</span>`;
+                    $("#val-msg-key").html(message);
+                    return true;
+                } else {
+                    message += `<span style="color: red; font - size: smaller;">*인증코드가 일치하지 않습니다.</span>`;
+                    $("#val-msg-key").html(message);
+                    return false;
+                }
+
+            }
+
+            function valPwd() {
+                let userPwd = $("#userPwd").val();
+                let inputPwd = $("#confirmPwd").val();
+                let message = "";
+                if (inputPwd == userPwd) {
+                    message += `<span style="color: greed; font - size: smaller;">*비밀번호 일치</span>`;
+                    $("#val-msg-pwd").html(message);
+                    return true;
+                } else {
+                    message += `<span style="color: red; font - size: smaller;">*비밀번호가 일치하지 않습니다.</span>`;
+                    $("#val-msg-pwd").html(message);
+                    return false;
+                }
+
+            }
+
+
+        });
+    </script>
+
+</head>
+
+<body>
+    <div class="register">
+        <div class="left-content">
+            <div class="overlap">
+                <div class="bg"></div>
+                <div class="group">
+                    <div class="overlap-group">
+                        <div class="ellipse"></div>
+                        <div class="ellipse-2"></div>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="frame">
+                        <div class="group-2">
+                            <div class="text-wrapper">ValueLinkU</div>
+                            <div class="text-wrapper-2">Intelligent Port Information Service</div>
+                        </div>
+                        <div class="div-wrapper">
+                            <div class="text-wrapper-3">Read More</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="right-content">
+            <div class="page">
+                <div class="page-icon">
+                    <div class="ellipse-3"></div>
+                    <div class="ellipse-4"></div>
+                </div>
+            </div>
+
+            <div class="title">
+                <div class="text-wrapper">You're almost there!</div>
+                <p class="div">Please check you email inbox for validation code</p>
+            </div>
+
+            <div class="form">
+                <form class="register-form" th:action="@{/user/joinNext}" method="post">
+                    <div id="val-msg-key"></div>
+                    <div class="input-area">
+                        <div class="placeholder">
+                            <input id="inputKey" placeholder="Validation Code" type="text" />
+                            <img class="input-img" th:src="@{/img/email.svg}" />
+                        </div>
+                    </div>
+
+                    <div class="input-area">
+                        <div class="placeholder">
+                            <input name="userPwd" id="userPwd" placeholder="Password" type="password" />
+                            <img class="input-img" th:src="@{/img/password.svg}" />
+                        </div>
+                    </div>
+
+                    <div id="val-msg-pwd"></div>
+                    <div class="input-area">
+                        <div class="placeholder">
+                            <input id="confirmPwd" placeholder="Confirm Password" type="password" />
+                            <img class="input-img" th:src="@{/img/password.svg}" />
+                        </div>
+                    </div>
+
+                    <!-- 전으로 돌아가는 링크 삽입 -->
+                    <button class="button">
+                        <div class="placeholder">
+                            <div class="back">&gt;&gt; Back</div>
+                        </div>
+                    </button>
+                    <button type="submit" class="button">
+                        <div class="placeholder">
+                            <div class="register">Register</div>
+                        </div>
+                    </button>
+                    <input type="hidden" name="userName" id="userName" th:value="${userName}">
+                    <input type="hidden" name="userEmail" id="userEmail" th:value="${userEmail}">
+                    <input type="hidden" name="company" id="company" th:value="${company}">
+                    <input type="hidden" name="userPhone" id="userPhone" th:value="${userPhone}">
+                    <input type="hidden" id="key" th:value="${key}">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

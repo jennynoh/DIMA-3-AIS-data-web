@@ -13,7 +13,7 @@
         <ul>
             <li>Home</li>
             <li>
-                <a th:href="@{/portinfo}">Service</a>
+                <a th:href="@{/portinfo}">Service</a>e
             </li>
             <li sec:authorize="isAuthenticated()">
                 <a th:href="@{/ai}">AI Curation</a>
@@ -31,6 +31,10 @@
             </li>
             <li sec:authorize="isAuthenticated()">
                 <a th:href="@{/mypage}">My page</a>
+            </li>
+
+            <li>
+                <a th:href="@{/weatherinfo}">Weather (Temp)</a>
             </li>
         </ul>
     </container>

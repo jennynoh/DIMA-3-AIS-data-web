@@ -15,39 +15,29 @@ import net.kdigital.portservice.handler.CustomFailureHandler;
 @RequiredArgsConstructor
 public class SecurityConfig {
 	private final CustomFailureHandler failureHandler;
-	
+
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests((auth) -> auth.requestMatchers("/"
-																, "/portinfo"
-																, "/portinfo/searchPort"
-																, "/user/login"
-																, "/user/join"
-																, "/user/joinProc"
-																, "/images/**"
-																, "/css/**"
-																, "/script/**").permitAll()
-				);
-		
+		http.authorizeHttpRequests((auth) -> auth.requestMatchers("/", "/portinfo", "/portinfo/searchPort",
+				"/user/login", "/user/join", "/user/joinNext", "/user/joinProc", "/img/**", "/css/**", "/script/**", "/weatherinfo").permitAll());
+
 		http.formLogin((auth) -> auth.loginPage("/user/login")
-									.usernameParameter("userId")
-									.passwordParameter("userPwd")
-									.loginProcessingUrl("/user/loginProc")
-									.defaultSuccessUrl("/").permitAll()
-									.failureHandler(failureHandler)
-				);
-		
+				.usernameParameter("userId")
+				.passwordParameter("userPwd")
+				.loginProcessingUrl("/user/loginProc")
+				.defaultSuccessUrl("/").permitAll()
+				.failureHandler(failureHandler));
+
 		http.logout((auth) -> auth.logoutUrl("/user/logout")
-								.logoutSuccessUrl("/")
-								.invalidateHttpSession(true)
-								.deleteCookies("JSESSIONID")
-				);
-		
+				.logoutSuccessUrl("/")
+				.invalidateHttpSession(true)
+				.deleteCookies("JSESSIONID"));
+
 		http.csrf((auth) -> auth.disable());
-		
+
 		return http.build();
 	}
-	
+
 	@Bean
 	BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();

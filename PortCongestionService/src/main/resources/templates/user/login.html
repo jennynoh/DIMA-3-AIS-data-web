@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" th:href="@{/css/styleguide.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+</head>
+
+<body>
+    <div class="login">
+        <div class="left-content">
+            <div class="overlap">
+                <div class="bg"></div>
+                <div class="group">
+                    <div class="overlap-group">
+                        <div class="ellipse"></div>
+                        <div class="ellipse-2"></div>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="frame">
+                        <div class="group-2">
+                            <div class="text-wrapper">ValueLinkU</div>
+                            <div class="text-wrapper-2">Intelligent Port Information Service</div>
+                        </div>
+                        <div class="div-wrapper">
+                            <div class="text-wrapper-3">Read More</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="right-content">
+            <div class="page">
+                <div class="page-icon">
+                    <div class="ellipse-3"></div>
+                    <div class="ellipse-4"></div>
+                </div>
+            </div>
+
+            <div class="title">
+                <div class="text-wrapper">Hello again!</div>
+                <p class="div">Login to get started</p>
+            </div>
+
+            <div class="form">
+                <form class="login-form" th:action="@{/user/loginProc}" method="post">
+                    <div class="input-area">
+                        <div class="placeholder">
+                            <input name="userEmail" placeholder="Email Address" type="email" />
+                            <img class="input-img" th:src="@{/img/email.svg}" />
+                        </div>
+                    </div>
+                    <div class="input-area">
+                        <div class="placeholder">
+                            <input name="userPwd" placeholder="Password" type="password">
+                            <img class="input-img" th:src="@{/img/password.svg}" />
+                        </div>
+                    </div>
+
+                    <button type="submit" class="button">
+                        <div class="placeholder">
+                            <div class="login-btn">Log in</div>
+                        </div>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

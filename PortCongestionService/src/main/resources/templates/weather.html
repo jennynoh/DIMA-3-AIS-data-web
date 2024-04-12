@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>날씨 api 테스트</title>
+    <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
+    <script>
+        $(function () {
+            getWeather();
+        });
+
+        async function getWeather() {
+            const API_KEY = '344247e109b01440aa280a21472fcf98';
+            // 부산항으로 test 
+            const lat = '35.1028';
+            const lon = '129.0403';
+
+            // async - await로 promise 응답 load 
+            // let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=kr`);
+            // weatherOutput(await response.json());
+
+            try {
+                let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=kr`);
+                let data = await response.json();
+                weatherOutput(data);
+            } catch (error) {
+                console.error("Weather API error:", error);
+                alert("날씨 정보를 불러오는데 실패했습니다.");
+            }
+        }
+
+        function weatherOutput(resp) {
+            console.log("getWeather 결과: ", resp);
+            let temperature = resp.main.temp;
+            let temp_min = resp.main.temp_min;
+            let temp_max = resp.main.temp_max;
+            let weather = resp.weather[0].main;
+            let icon = resp.weather[0].icon;
+
+            console.log(temperature, temp_min, temp_max); // 로그로 값 확인
+            console.log(typeof temperature); // 타입 확인
+
+            $(".temperature").text(temperature.toFixed(1));
+            $(".temp_min").text(temp_min.toFixed(1));
+            $(".temp_max").text(temp_max.toFixed(1));
+            $(".weather").text(weather);
+            $(".icon").html(`<img src="http://openweathermap.org/img/w/${icon}.png" alt="Weather icon">`);
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="box">
+        <ul>
+            <li>Temperature: <span class="temperature"></span>°C</li>
+            <li>Min Temp: <span class="temp_min"></span>°C</li>
+            <li>Max Temp: <span class="temp_max"></span>°C</li>
+            <li>Weather: <span class="weather"></span></li>
+            <li>Icon: <span class="icon"></span></li>
+        </ul>
+    </div>
+</body>
+
+</html>
