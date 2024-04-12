@@ -1,0 +1,99 @@
+/***********************
+        회원 테이블 
+**********************/
+
+CREATE TABLE user_info
+(
+    user_email VARCHAR2(225) PRIMARY KEY
+    , user_pwd VARCHAR2(255) NOT NULL
+    , user_name VARCHAR2(20) NOT NULL
+    , user_phone VARCHAR2(20) NOT NULL
+    , company VARCHAR2(100)
+    , join_date DATE default SYSDATE
+    , user_role VARCHAR2(20) default 'ROLE_USER'
+    , notification_setting CHAR(1) default '1'
+    , enabled CHAR(1) default '1'
+);
+
+DROP TABLE user_info;
+
+/***********************
+        구독 테이블 
+**********************/
+CREATE TABLE subscription_info
+(
+    subscription_id NUMBER PRIMARY KEY
+    , user_email VARCHAR2(20) REFERENCES user_info(user_email) ON DELETE CASCADE
+    , subs_type VARCHAR2(50) NOT NULL CHECK(subs_type in ('monthly', 'yearly'))
+    , payment_start DATE default SYSDATE
+    , payment_latest DATE
+    , subs_status VARCHAR2(20) NOT NULL CHECK(subs_status in ('inuse', 'terminated', 'refunded'))
+);
+
+DROP TABLE subscription_info;
+
+/***********************
+        즐겨찾기 정보
+**********************/
+CREATE TABLE bookmark_info
+(
+    bookmark_id NUMBER PRIMARY KEY
+    , user_email VARCHAR2(20) REFERENCES user_info(user_email) ON DELETE CASCADE
+    , port_cd VARCHAR2(10) NOT NULL
+    , enabled CHAR(1) DEFAULT '1'
+);
+
+CREATE SEQUENCE bookmark_seq;
+
+DROP TABLE bookmark_info;
+DROP SEQUENCE bookmark_seq;
+
+/***********************
+    알림설정 정보 
+**********************/
+CREATE TABLE notification_info (
+    notification_id NUMBER PRIMARY KEY
+    , user_email VARCHAR2(225) REFERENCES user_info(user_email) ON DELETE CASCADE
+    , port_cd VARCHAR2(10) NOT NULL
+    , enabled CHAR(1) DEFAULT '1'
+);
+
+CREATE SEQUENCE notification_seq;
+
+DROP TABLE notification_info;
+DROP SEQUENCE notification_seq;
+
+
+/***********************
+        항구정보
+**********************/
+CREATE TABLE port_info (
+    port_cd VARCHAR2(10) PRIMARY KEY
+    , port_name_ko VARCHAR2(100)
+    , port_name_eng VARCHAR2(100)
+    , lat NUMBER(6,4)
+    , lon NUMBER(6,4)
+    , avg_vsl_cnt NUMBER(5,2)
+);
+
+DROP TABLE port_info;
+
+/***********************
+        선박이동정보 
+**********************/
+CREATE TABLE vessel_movement (
+    movement_id NUMBER PRIMARY KEY
+    , port_cd VARCHAR2(10) NOT NULL
+    , vsl_id VARCHAR2(100) NOT NULL
+    , ata_dt DATE
+    , atb_dt DATE
+    , atd_df DATE
+    , SHIP_TYPE VARCHAR2(100)
+);
+
+CREATE SEQUENCE movement_seq;
+
+DROP TABLE vessel_movement;
+DROP SEQUENCE movement_seq;
+
+
