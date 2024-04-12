@@ -4,26 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
+        $(document).ready(function() {
+            // 서버로부터 데이터 가져오기
+            $.ajax({
+                url: '/receive_data',  // 데이터를 받을 엔드포인트 URL
+                method: 'GET',            // GET 요청
+                success: function(response) {
+                	console.log(response);
+                    // 받은 데이터를 리스트 형태로 보여주기
+                    var ul = $('<ul>');  // 리스트 생성
+                    var li = '';
+                    response.forEach(function(item, index) {
+                        li +=  item['title'];
+                        // 여기를 고쳐야함
+                        // 딕셔너리의 값을 리스트 아이템에 추가
+                        // li.text(item);
+                        console.log(li);// .append(li);       // 리스트에 아이템 추가
+                    });
+                    $('body').append(ul);
+                }//,
+                //error: function(xhr, status, error) {
+                //    console.error('Error fetching data:', error);
+                //}
+            });
+        });
     </script>
 </head>
 <body>
     <h1>Marine News</h1>
-    <div class="container">
-        <section class="section-list">
-            <ul>
-                <li>
-                    <a href="" class="thumb"><img src=""></a>
-                    <h4 class="title">
-                        <a href=""></a>
-                    </h4>
-                    <p class="content">
-                        <a href=""></a>
-                    </p>
-                    <em class="date"></em>
-                </li>
-            </ul>
-        </section>
-    </div>
 </body>
 </html>
