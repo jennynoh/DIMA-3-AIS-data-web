@@ -5,52 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-
-        // 웹 페이지의 URL
-        const url = 'http://www.maritimepress.co.kr/news/articleList.html?sc_section_code=S1N2&view_type=sm';
-
-        // fetch() 함수를 사용하여 웹 페이지에서 데이터 가져오기
-        fetch(url)
-        .then(response => response.text())
-        .then(html => {
-            // HTML을 파싱하여 DOM 구조로 변환
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-
-            // li 태그를 선택하고 각 li 태그의 내용을 처리
-            const liElements = doc.querySelectorAll('li');
-            liElements.forEach(li => {
-            // 이미지 URL 가져오기
-            //const imgUrl = li.querySelector('img').getAttribute('src');
-
-            // 링크 URL 가져오기
-            const linkUrl = li.querySelector('.thumb').getAttribute('href');
-
-            // 제목 가져오기
-            const title = li.querySelector('.titles').textContent.trim();
-
-            // 내용 가져오기
-            const content = li.querySelector('.lead').textContent.trim();
-
-            // 날짜 가져오기
-            const date = li.querySelector('.byline em:nth-child(3)').textContent.trim();
-
-            // 추출한 정보 출력
-            console.log('이미지 URL:', imgUrl);
-            console.log('링크 URL:', linkUrl);
-            console.log('제목:', title);
-            console.log('내용:', content);
-            console.log('날짜:', date);
-            console.log('----------------------------------------');
-            });
-        })
-        .catch(error => {
-            console.error('오류 발생:', error);
-        });
-
-
-
-
     </script>
 </head>
 <body>
