@@ -9,6 +9,29 @@
     <!-- <link rel="stylesheet" th:href="@{/css/globals.css}" /> -->
     <link rel="stylesheet" th:href="@{/css/styleguide.css}" />
     <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
+    <script>
+        // 이메일 중복확인 
+        $(function () {
+            $("#userEmail").on('keyup', valEmail);
+
+        });
+
+        function valEmail() {
+            let inputMail = $("#userEmail").val();
+
+            $.ajax({
+                url: '/user/valEmail'
+                , method: 'get'
+                , data: { "inputMail": inputMail }
+                , success: function (resp) {
+                    if (!resp) {
+                        // 중복 메일 작동 
+                    }
+                }
+            })
+        }
+    </script>
 
 </head>
 
@@ -29,9 +52,9 @@
                             <div class="text-wrapper">ValueLinkU</div>
                             <div class="text-wrapper-2">Intelligent Port Information Service</div>
                         </div>
-                        <div class="div-wrapper">
+                        <!-- <div class="div-wrapper">
                             <div class="text-wrapper-3">Read More</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -61,7 +84,7 @@
                     </div>
                     <div class="input-area">
                         <div class="placeholder">
-                            <input name="userEmail" placeholder="*Email Address" type="email" />
+                            <input id="userEmail" name="userEmail" placeholder="*Email Address" type="email" />
                             <img class="input-img" th:src="@{/img/email.svg}" />
                         </div>
                     </div>
@@ -80,7 +103,7 @@
 
                     <button type="submit" class="button">
                         <div class="placeholder">
-                            <div class="next">next &gt;&gt;</div>
+                            <div class="text">next &gt;&gt;</div>
                         </div>
                     </button>
                 </form>

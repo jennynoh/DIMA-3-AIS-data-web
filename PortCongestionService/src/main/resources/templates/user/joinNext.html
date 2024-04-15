@@ -71,9 +71,9 @@
                             <div class="text-wrapper">ValueLinkU</div>
                             <div class="text-wrapper-2">Intelligent Port Information Service</div>
                         </div>
-                        <div class="div-wrapper">
+                        <!-- <div class="div-wrapper">
                             <div class="text-wrapper-3">Read More</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -94,7 +94,7 @@
             </div>
 
             <div class="form">
-                <form class="register-form" th:action="@{/user/joinNext}" method="post">
+                <form class="register-form" th:action="@{/user/joinProc}" method="post">
                     <div id="val-msg-key"></div>
                     <div class="input-area">
                         <div class="placeholder">
@@ -119,14 +119,14 @@
                     </div>
 
                     <!-- 전으로 돌아가는 링크 삽입 -->
-                    <button class="button">
+                    <button class="button" th:onclick="|location.href='@{/user/join}'|">
                         <div class="placeholder">
-                            <div class="back">&gt;&gt; Back</div>
+                            <div class="text">&gt;&gt; Back</div>
                         </div>
                     </button>
                     <button type="submit" class="button">
                         <div class="placeholder">
-                            <div class="register">Register</div>
+                            <div class="text">Register</div>
                         </div>
                     </button>
                     <input type="hidden" name="userName" id="userName" th:value="${userName}">

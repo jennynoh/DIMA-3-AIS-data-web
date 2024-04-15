@@ -1,5 +1,7 @@
 package net.kdigital.portservice.service;
 
+import java.util.Optional;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +33,11 @@ public class UserService {
 		userRepository.save(entity);
 		
 		return true;
+	}
+
+	public boolean valEmail(String inputMail) {
+		Optional<UserEntity> entity = userRepository.findById(inputMail);
+		if(entity.isEmpty()) return true;
+		return false;
 	}
 }

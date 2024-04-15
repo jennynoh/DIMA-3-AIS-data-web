@@ -25,6 +25,13 @@ public class UserController {
 		return "/user/join";
 	}
 	
+	@GetMapping("/user/valEmail")
+	@ResponseBody 
+	public boolean valEmail(
+			@RequestParam(name="inputMail") String inputMail) {
+		return userService.valEmail(inputMail);
+	}
+	
 	// 회원가입 두번째 화면 요청 
 	@PostMapping("/user/joinNext")
 	public String joinNext(
