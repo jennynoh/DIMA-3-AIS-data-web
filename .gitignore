@@ -3,3 +3,5 @@
 /PortCongestionService/src/main/resources/application.properties
 /.vscode
 
+# application.properties ignore에 추가
+application.properties
