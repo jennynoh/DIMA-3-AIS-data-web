@@ -39,8 +39,12 @@ def extract_data(schedule):
     trans = schedule.find_element(By.CSS_SELECTOR, 'div.col6 span.trans-str').text.strip()
 
     # 해상 운임비 추출
-    of20 = schedule.find_elements(By.CSS_SELECTOR, 'div.currency-box span.price')[0].text.strip()
-    of40 = schedule.find_elements(By.CSS_SELECTOR, 'div.currency-box span.price')[1].text.strip()
+    price = schedule.find_elements(By.CSS_SELECTOR, 'div.currency-box span.price')
+    if len(price) > 1:
+        of20 = price[0].text.strip()
+        of40 = price[1].text.strip()
+    else:
+        of20, of40 = "", ""
 
     return {
         'company_name': company_name,
@@ -56,7 +60,7 @@ def extract_data(schedule):
 
 # 출발항, 도착항 정보 받아오기
 dep_port = '부산'
-arr_port = '오사카'
+arr_port = '싱가포르'
 
 # 크롤링하는 함수
 def my_crawling() : # 나중에 출발항, 도착항을 넣을것
