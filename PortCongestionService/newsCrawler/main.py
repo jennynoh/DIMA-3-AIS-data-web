@@ -1,10 +1,18 @@
+# package import
 import requests
 from bs4 import BeautifulSoup
 import json
-from flask import Flask
-from flask_cors import CORS
+from fastapi import FastAPI
+import uvicorn
+from pydantic import BaseModel
+from starlette.responses import JSONResponse
+import pickle
+import numpy as np
+import pandas as pd
 
-# 데이터를 추출하는 함수 정의
+
+
+# 원하는 데이터를 추출하는 함수
 def extract_data(article):
     # 이미지 URL 추출
     #thumb = article.find('a', class_='thumb').find('img')
@@ -18,6 +26,9 @@ def extract_data(article):
     # 기사 내용 추출
     content = article.find('p', class_='lead').text.strip()
 
+    # 기자 이름 추출
+    name = article.find('span', class_='byline').find_all('em')[1].text.strip()
+
     # 기사 날짜 추출
     date = article.find('span', class_='byline').find_all('em')[2].text.strip()
 
@@ -25,9 +36,11 @@ def extract_data(article):
         'link': link,
         'title': title,
         'content': content,
+        'name' : name,
         'date': date
     }
 
+# 크롤링하는 함수
 def my_crawling() :
 
     # 크롤링할 페이지 url
@@ -52,18 +65,9 @@ def my_crawling() :
         article_list.append(data)
 
     return article_list
-    #print(article_list)
 
 
-# package import
-from fastapi import FastAPI
-import uvicorn
-from pydantic import BaseModel
-from starlette.responses import JSONResponse
-
-import pickle
-import numpy as np
-import pandas as pd
+# ========================================== fast api로 데이터 전송 ==========================================
 
 # Model 생성
 class Item(BaseModel) :
