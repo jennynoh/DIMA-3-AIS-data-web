@@ -6,33 +6,73 @@
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
-        $(document).ready(function() {
-            // 서버로부터 데이터 가져오기
+        // 페이지 로드 완료시 실행
+        $(function() {
+        	$(".page").on('click', crawlingAll);
+        	crawlingAll();
+        })
+       function crawlingAll() {
+        	
+        	let curr = $(this).text();
+        	console.log(typeof curr);
+        	if(curr == "") curr = 1;
+        	
+            // 현재 날짜 표시
+            var currentDate = new Date();
+            var year = currentDate.getFullYear();
+            var month = currentDate.getMonth() + 1; // 월은 0부터 시작하므로 1 더하기
+            var day = currentDate.getDate();
+            var formattedDate = '최종편집 : ' + year + '-' + month + '-' + day; // 최종편집일 추가
+            document.getElementById('currentdate').innerText = formattedDate; // div태그에 뿌리기
+
+            // 서버로부터 데이터 받아서 처리
             $.ajax({
                 url: '/receive_data',  // 데이터를 받을 엔드포인트 URL
+                data: {"curr":curr},
                 method: 'GET',            // GET 요청
                 success: function(response) {
-                	console.log(response);
+                    console.log(response);
+
                     // 받은 데이터를 리스트 형태로 보여주기
                     var ul = $('<ul>');  // 리스트 생성
                     var li = '';
-                    response.forEach(function(item, index) {
-                        li +=  item['title'];
-                        // 여기를 고쳐야함
-                        // 딕셔너리의 값을 리스트 아이템에 추가
-                        // li.text(item);
-                        console.log(li);// .append(li);       // 리스트에 아이템 추가
-                    });
-                    $('body').append(ul);
-                }//,
-                //error: function(xhr, status, error) {
-                //    console.error('Error fetching data:', error);
-                //}
+
+                    // response 객체의 속성을 확인하여 데이터에 접근
+                    for (var key in response) {
+                        if (response.hasOwnProperty(key)) {
+                            var item = response[key];
+                            li += '<li>' + // li태그 생성
+                                // 제목, 본문 추가하고 링크 걸어놓기
+                                '<h4 class="titles"> <a href="http://www.maritimepress.co.kr/' + item['link'] + '">' + item['title'] + '</h4>' +
+                                '<p>' + item['content'] + '</p>' + '</a>' +
+                                // 기자 이름, 기사 올라온 날짜 추가
+                                '<span> <em>' + item['name'] + '</em> <em>' + item['date'] + '</em> </span>' + 
+                                '</li>'; // li태그 닫기
+                        }
+                    }
+
+                    // ul에 li 추가
+                    ul.append(li);
+
+                    $('#crawlingResult').html(ul); // currentdate 다음에 ul 추가
+
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching data:', error);
+                }
             });
-        });
+        };
     </script>
 </head>
 <body>
     <h1>Marine News</h1>
+    <div id="currentdate"></div>
+    <div id="crawlingResult"></div>
+    <div id="pagination">
+        <button id="page1" class="page">1</button>
+        <button id="page2" class="page">2</button>
+    </div>
+    
+    
 </body>
 </html>
