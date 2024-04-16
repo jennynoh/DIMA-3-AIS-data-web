@@ -13,10 +13,16 @@
         <ul>
             <li>Home</li>
             <li>
-                <a th:href="@{/portinfo}">Service</a>e
+                <a th:href="@{/portinfo}">Port Status</a>e
             </li>
-            <li sec:authorize="isAuthenticated()">
-                <a th:href="@{/ai}">AI Curation</a>
+            <li>
+                <a th:href="@{/vesselSchedule}">Vessel Schedule</a>
+            </li>
+            <li>
+                <a th:href="@{/marineNews}">Marine News</a>
+            </li>
+            <li>
+                <a th:href="@{/subscription}">Subscription</a>
             </li>
             <!-- 로그인. 회원가입 -->
             <li sec:authorize="isAnonymous()">

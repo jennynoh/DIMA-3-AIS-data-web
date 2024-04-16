@@ -19,7 +19,7 @@ public class SecurityConfig {
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests((auth) -> auth.requestMatchers("/", "/portinfo", "/portinfo/searchPort",
-				"/user/login", "/user/join", "/user/joinNext", "/user/joinProc", "/marineNews", "/receive_data", "/img/**", "/css/**", "/script/**", "/weatherinfo").permitAll());
+				"/user/login", "/user/join", "/user/joinNext", "/user/joinProc", "/marineNews", "/receive_data", "/subscription" ,"/img/**", "/css/**", "/script/**", "/weatherinfo").permitAll());
 
 		http.formLogin((auth) -> auth.loginPage("/user/login")
 				.usernameParameter("userId")
