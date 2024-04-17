@@ -58,15 +58,19 @@
                     // 받은 데이터를 리스트 형태로 보여주기
                     var ul = $('<ul class="articles">');  // 리스트 생성
                     var li = '';
+                    var imgSrc = 'https://i.pinimg.com/564x/14/db/87/14db871979cbf98a6ffec8d4c74bd46e.jpg';
 
                     // response 객체의 속성을 확인하여 데이터에 접근
                     for (var key in response) {
                         if (response.hasOwnProperty(key)) {
                             var item = response[key];
+                            if (item['thumb'] != '-') {
+                                imgSrc = item['thumb'];
+                            }
                             li += `<li>
                                 <div class="container">
                                     <div class="article">
-                                        <img class="news-img" src="https://cdn.maritimepress.co.kr/news/thumbnail/202404/320170_65609_1319_v150.jpg" alt="">
+                                        <img class="news-img" src="${imgSrc}" alt="">
                                         <div class="news-container">
                                             <div class="news-title"><a href="http://www.maritimepress.co.kr/${item['link']}">${item['title']}</a></div>
                                             <div class="news-info">${item['name']} | ${item['date']}</div>
