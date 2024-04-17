@@ -21,10 +21,15 @@ import time
 
 # 원하는 데이터를 추출하는 함수
 def extract_data(article):
-    # 이미지 URL 추출
-    #thumb = article.find('a', class_='thumb').find('img')
 
-    # url 추출
+    # 썸네일 이미지 URL 추출
+    find_thumb = article.find('a', class_='thumb')
+    if find_thumb:
+        thumb = find_thumb.find('img')['src']
+    else:
+        thumb = '-'
+
+    # 기사 url 추출
     link = article.find('h4', class_='titles').find('a')['href']
 
     # 기사 제목 추출
@@ -40,6 +45,7 @@ def extract_data(article):
     date = article.find('span', class_='byline').find_all('em')[2].text.strip()
 
     return {
+        'thumb' : thumb,
         'link': link,
         'title': title,
         'content': content,
