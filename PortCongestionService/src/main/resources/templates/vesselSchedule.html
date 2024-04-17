@@ -91,48 +91,9 @@
                 // 행(tr) 생성
                 var row = $("<tr>");
                     
-                    // 각 셀(td)에 데이터 추가
-                    // tr 하나당 td 7개 필요
-                    
-                var logo = '';
-                var image = '-';
-                // 여기 수정해야함
-                let logoSrc = '<img src="/img/shipping_com_';
-                switch(item['company_name']){
-                    case 'CK Line': logo = 'CKL'; break;
-                    case 'COSCO': logo = 'COA'; break;
-                    case 'DongJin': logo = 'DJS'; break;
-                    case 'HEUNG-A': logo = 'HAS'; break;
-                    case 'HMM': logo = 'HMM'; break;
-                    case 'KMTC': logo = 'KMD'; break;
-                    case 'MSC': logo = 'MSC'; break;
-                    case 'NamSung': logo = 'NSS'; break;
-                    case 'ONE': logo = 'ONE'; break;
-                    case 'Pan Ocean': logo = 'PAN'; break;
-                    case 'Pancon': logo = 'PCL'; break;
-                    case 'DongYoung': logo = 'PCS'; break;
-                    case 'SITC': logo = 'SIT'; break;
-                    case 'TaiYoung': logo = 'TYS'; break;
-                    case 'TS Line': logo = 'TSL'; break;
-                    case 'Evergreen': logo = 'EMC'; break;
-                    case 'MAERSK': logo = 'MAE'; break;
-                    case 'WanHai': logo = 'WHL'; break;
-                    case 'SM Line': logo = 'SML'; break;
-                    case 'COHEUNG': logo = 'COH'; break;
-                    case 'EAS': logo = 'EAS'; break;
-                    case 'Emirates': logo = 'ESL'; break;
-                    case 'Sinotrans': logo = 'SNT'; break;
-                    case 'Sinokor': logo = 'SKR'; break;
-                    default : logo = '-';
-                };
-                
-                if(logo != '-'){
-                    image = logoSrc + logo + '.gif">';
-                }
-
-                // 1번째 td - div (로고)
-                // 여기 바꿔야함
-                row.append('<td><div>' + image + '</div></td>');
+                // 각 셀(td)에 데이터 추가
+                // tr 하나당 td 7개 필요
+                row.append('<td><div> <img src="' + item['logo_img'] + '""> </div></td>');
                 // row.append('<td><div>' + logo + '</div></td>');
                 // 2번째 td - div - p,span (선사명, 선박명)
                 row.append('<td><div><p>' + item['company_name'] + '</p><span>' + item['vessel_name'] + '</span></div></td>');

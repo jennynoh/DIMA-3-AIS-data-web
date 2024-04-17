@@ -36,12 +36,19 @@
                     // 받은 데이터를 리스트 형태로 보여주기
                     var ul = $('<ul>');  // 리스트 생성
                     var li = '';
+                    // 썸네일이 없을 시 임시로 쓸 썸네일
+                    var imgSrc = 'https://cdn.pixabay.com/photo/2018/11/03/15/51/here-3792307_640.png';
 
                     // response 객체의 속성을 확인하여 데이터에 접근
                     for (var key in response) {
                         if (response.hasOwnProperty(key)) {
                             var item = response[key];
+                            if (item['thumb'] != '-') {
+                                imgSrc = item['thumb'];
+                            }
                             li += '<li>' + // li태그 생성
+                                // 썸네일 이미지 불러오기
+                                '<img src="' + imgSrc +'" alt>' +
                                 // 제목, 본문 추가하고 링크 걸어놓기
                                 '<h4 class="titles"> <a href="http://www.maritimepress.co.kr/' + item['link'] + '">' + item['title'] + '</h4>' +
                                 '<p>' + item['content'] + '</p>' + '</a>' +
@@ -72,7 +79,6 @@
         <button id="page1" class="page">1</button>
         <button id="page2" class="page">2</button>
     </div>
-    
     
 </body>
 </html>

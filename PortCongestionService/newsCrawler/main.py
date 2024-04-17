@@ -85,6 +85,9 @@ def my_crawling() :
 # 원하는 데이터를 추출하는 함수
 def extract_schdeule(schedule):
 
+    # 선사 로고 이미지 url 추출
+    logo_img = schedule.find_element(By.CSS_SELECTOR, 'div.col1 img').get_attribute("src")
+
     # 선사명 추출
     company_name = schedule.find_element(By.CSS_SELECTOR, 'div.col-vessel p.port-name').text.strip()
 
@@ -119,6 +122,7 @@ def extract_schdeule(schedule):
 
 
     return {
+        'logo_img' : logo_img,
         'company_name': company_name,
         'vessel_name': vessel_name,
         'origin' : origin,
