@@ -4,8 +4,190 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        /* 로더 스타일 */
+        .loader {
+            border: 16px solid #f3f3f3; /* Light grey */
+            border-top: 16px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 로딩 화면 전체 커버 */
+        #loading {
+            position: top; /* 절대적 위치 */
+            z-index: 999;
+            width: 100%;
+            top: 90%; /* 표 아래에 위치하도록 수정 */
+            transform: translateY(-50%); /* 세로 중앙 정렬 */
+            background-color: rgba(248, 248, 248, 0.6);
+            color: #fff;
+            text-align: center;
+            line-height: 100vh; /* 중앙 정렬 */
+            margin-top: 120px;
+            margin-left: 190px;
+        }
+
+
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        
+        
+        // ======================================== 크롤링 ========================================
+        $(function(){
+            $("#btn").on('click', retrieve);
+        });
+        
+        function retrieve() {
+            
+            // 로딩창 띄우기
+            showLoading();
+            
+            let dep_port = $("#dep_port").val();
+            let arr_port = $("#arr_port").val();
+
+            let sendData = {"depPort" : dep_port, "arrPort": arr_port};
+            $.ajax({
+                url : "/port_info",
+                method: "GET",
+                data : sendData,
+                success : function(response) {
+                 
+                    hideLoading(); // 로딩창 숨기기
+                    
+                    add(response); // AJAX 호출이 성공한 후에 add() 함수 호출
+                },
+                error: function(xhr, status, error) {
+                    console.error("AJAX request failed:", status, error);
+                }
+            });
+        }
+
+        function add(response) {
+            console.log(response);
+
+            // 받은 데이터를 테이블에 넣기
+            // 기존의 tbody 선택
+            var tbody = $("#tableBody");
+
+            // response에 대한 반복문
+            $.each(response, function(index, item) {
+                // 행(tr) 생성
+                var row = $("<tr>");
+                    
+                    // 각 셀(td)에 데이터 추가
+                    // tr 하나당 td 7개 필요
+                    
+                var logo = '';
+                var image = '-';
+                // 여기 수정해야함
+                let logoSrc = '<img src="/img/shipping_com_';
+                switch(item['company_name']){
+                    case 'CK Line': logo = 'CKL'; break;
+                    case 'COSCO': logo = 'COA'; break;
+                    case 'DongJin': logo = 'DJS'; break;
+                    case 'HEUNG-A': logo = 'HAS'; break;
+                    case 'HMM': logo = 'HMM'; break;
+                    case 'KMTC': logo = 'KMD'; break;
+                    case 'MSC': logo = 'MSC'; break;
+                    case 'NamSung': logo = 'NSS'; break;
+                    case 'ONE': logo = 'ONE'; break;
+                    case 'Pan Ocean': logo = 'PAN'; break;
+                    case 'Pancon': logo = 'PCL'; break;
+                    case 'DongYoung': logo = 'PCS'; break;
+                    case 'SITC': logo = 'SIT'; break;
+                    case 'TaiYoung': logo = 'TYS'; break;
+                    case 'TS Line': logo = 'TSL'; break;
+                    case 'Evergreen': logo = 'EMC'; break;
+                    case 'MAERSK': logo = 'MAE'; break;
+                    case 'WanHai': logo = 'WHL'; break;
+                    case 'SM Line': logo = 'SML'; break;
+                    case 'COHEUNG': logo = 'COH'; break;
+                    case 'EAS': logo = 'EAS'; break;
+                    case 'Emirates': logo = 'ESL'; break;
+                    case 'Sinotrans': logo = 'SNT'; break;
+                    case 'Sinokor': logo = 'SKR'; break;
+                    default : logo = '-';
+                };
+                
+                if(logo != '-'){
+                    image = logoSrc + logo + '.gif">';
+                }
+
+                // 1번째 td - div (로고)
+                // 여기 바꿔야함
+                row.append('<td><div>' + image + '</div></td>');
+                // row.append('<td><div>' + logo + '</div></td>');
+                // 2번째 td - div - p,span (선사명, 선박명)
+                row.append('<td><div><p>' + item['company_name'] + '</p><span>' + item['vessel_name'] + '</span></div></td>');
+                // 3번째 td - div - p,p (출발항, 출발일)
+                row.append('<td><div><p>' + item['origin'] + '</p><p>' + item['dep_time'] + '</p></div></td>');
+                // 4번째 td - div - p,p (도착항, 도착일)
+                row.append('<td><div><p>' + item['destination'] + '</p><p>' + item['arr_time'] + '</p></div></td>');
+                // 5번째 td - div (소요시간)
+                row.append('<td><div>' + item['duration'] + '</div></td>');
+                // 6번째 td - div (환적여부)
+                row.append('<td><div>' + item['trans'] + '</div></td>');
+                // 7번째 td - div - span,span (운임비 20',40')
+                row.append('<td><div><span>' + item['of20'] + '</span><span>' + item['of40'] + '</span></div></td>');
+
+                // 행을 tbody에 추가
+                tbody.append(row);
+            });
+        }
+    </script>
 </head>
 <body>
-    
+    <h1>해상 스케줄</h1>
+    <div>
+        <div>Point to Point</div>
+        <div>
+            <span>출발지</span>
+            <input autocomplete="off" type="text" id="dep_port" placeholder="출발항을 입력해주세요">
+        </div>
+        <div>
+            <span>도착지</span>
+            <input autocomplete="off" type="text" id="arr_port" placeholder="도착항을 입력해주세요">
+        </div>
+        <div>
+            <input type="button" value="조회" id="btn">
+        </div>
+    </div>
+    <div class="schedule-container">
+        <table>
+            <thead>
+                <tr> <!-- 각 행 -->
+                    <th>Carrier</th> <!-- 각 열의 제목 -->
+                    <th>Name/Vessel</th>
+                    <th>Origin</th>
+                    <th>Destination</th>
+                    <th>T/Time</th>
+                    <th>T/S</th>
+                    <th>O/F(20'/40')</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody"> <!-- 표의 본문 부분 -->
+            </tbody>
+        </table>
+    </div>
+    <div id="loading" style="display: none;">
+        <div class="loader"></div>
+    </div>
 </body>
 </html>
