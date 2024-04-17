@@ -1,53 +1,81 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .line {
+            align-self: stretch;
+            height: 3px;
+            position: relative;
+            border-top: 3px solid #000;
+            box-sizing: border-box;
+            margin: 20px;
+        }
+
+        .menu-title {
+            margin: 20px;
+        }
+
+        #pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page-button {
+            margin: 10px;
+        }
+
+        .article:hover {
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+    </style>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
         // 페이지 로드 완료시 실행
-        $(function() {
-        	$(".page").on('click', crawlingAll);
-        	crawlingAll();
+        $(function () {
+            $(".page").on('click', crawlingAll);
+            crawlingAll();
         })
-       function crawlingAll() {
-        	
-        	let curr = $(this).text();
-        	console.log(typeof curr);
-        	if(curr == "") curr = 1;
-        	
-            // 현재 날짜 표시
-            var currentDate = new Date();
-            var year = currentDate.getFullYear();
-            var month = currentDate.getMonth() + 1; // 월은 0부터 시작하므로 1 더하기
-            var day = currentDate.getDate();
-            var formattedDate = '최종편집 : ' + year + '-' + month + '-' + day; // 최종편집일 추가
-            document.getElementById('currentdate').innerText = formattedDate; // div태그에 뿌리기
+        function crawlingAll() {
+
+            let curr = $(this).text();
+            console.log(typeof curr);
+            if (curr == "") curr = 1;
 
             // 서버로부터 데이터 받아서 처리
             $.ajax({
                 url: '/receive_data',  // 데이터를 받을 엔드포인트 URL
-                data: {"curr":curr},
+                data: { "curr": curr },
                 method: 'GET',            // GET 요청
-                success: function(response) {
+                success: function (response) {
                     console.log(response);
 
                     // 받은 데이터를 리스트 형태로 보여주기
-                    var ul = $('<ul>');  // 리스트 생성
+                    var ul = $('<ul class="articles">');  // 리스트 생성
                     var li = '';
 
                     // response 객체의 속성을 확인하여 데이터에 접근
                     for (var key in response) {
                         if (response.hasOwnProperty(key)) {
                             var item = response[key];
-                            li += '<li>' + // li태그 생성
-                                // 제목, 본문 추가하고 링크 걸어놓기
-                                '<h4 class="titles"> <a href="http://www.maritimepress.co.kr/' + item['link'] + '">' + item['title'] + '</h4>' +
-                                '<p>' + item['content'] + '</p>' + '</a>' +
-                                // 기자 이름, 기사 올라온 날짜 추가
-                                '<span> <em>' + item['name'] + '</em> <em>' + item['date'] + '</em> </span>' + 
-                                '</li>'; // li태그 닫기
+                            li += `<li>
+                                <div class="container">
+                                    <div class="article">
+                                        <img class="news-img" src="https://cdn.maritimepress.co.kr/news/thumbnail/202404/320170_65609_1319_v150.jpg" alt="">
+                                        <div class="news-container">
+                                            <div class="news-title"><a href="http://www.maritimepress.co.kr/${item['link']}">${item['title']}</a></div>
+                                            <div class="news-info">${item['name']} | ${item['date']}</div>
+                                            <div class="news-content">${item['content']}...</div>
+                                        </div>
+                                    </div>
+                                    <div class="news-divide"></div>
+                                </div>
+                            </li>`
                         }
                     }
 
@@ -56,23 +84,58 @@
 
                     $('#crawlingResult').html(ul); // currentdate 다음에 ul 추가
 
+                    // css 적용
+                    $(".container").css({ "display": "flex", "flex-direction": "column", "align-items": "center" });
+                    $(".articles").css({ "list-style-type": "none" });
+                    $(".article").css({ "margin": "10px 50px", "display": "flex", "justify-content": "center", "padding": "20px" });
+                    $(".news-img").css({ "height": "145px", "width": "300px", "position": "relative", "object-fit": "cover", "display": "inline-block", "margin": "0 10px" });
+                    $(".news-container").css({ "width": "800px" });
+                    $(".news-divide").css({ "height": "1px", "width": "1100px", "position": "relative", "border-top": "1px solid #b2b2b2", "box-sizing": "border-box", "display": "block" });
+                    $(".news-title").css({
+                        "height": "45px", "font-weight": "600", "font-size": "18px", "display": "inline-block"
+                        , "max-width": "100%", "position": "relative", "line-height": "22px"
+                    });
+                    $(".news-info").css({ "flex": "1", "display": "inline-block", "font-size": "15px", "font-color": "#484848", "margin": "0 10px" });
+                    $(".news-content").css({
+                        "position": "relative", "line-height": "20px", "flex-shrink": "0", "align-self": "stretch", "min-height": "50px", "display": "inline-block"
+                        , "font-size": "15px"
+                    });
+
+                    // article 영역 클릭하면 해당 뉴스 페이지로 이동
+                    $(".article").on('click', function () {
+                        window.location.href = $(this).find('a').attr('href');
+                    });
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     console.error('Error fetching data:', error);
                 }
             });
         };
     </script>
+
 </head>
+
 <body>
-    <h1>Marine News</h1>
-    <div id="currentdate"></div>
+    <h1 class="menu-title">Marine News</h1>
+    <div class="line"></div>
     <div id="crawlingResult"></div>
+
     <div id="pagination">
-        <button id="page1" class="page">1</button>
-        <button id="page2" class="page">2</button>
+        <button id="page1" class="page page-button">1</button>
+        <button id="page2" class="page page-button">2</button>
+        <button class="page-button">3</button>
+        <button class="page-button">4</button>
+        <button class="page-button">5</button>
     </div>
-    
-    
+
+
+
+
+
+
+
+
+
 </body>
+
 </html>

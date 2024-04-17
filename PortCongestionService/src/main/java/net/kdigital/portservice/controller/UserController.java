@@ -1,5 +1,7 @@
 package net.kdigital.portservice.controller;
 
+import java.time.LocalDateTime;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -56,7 +58,9 @@ public class UserController {
 
 	@PostMapping("/user/joinProc")
 	public String joinProc(@ModelAttribute UserDTO userDTO) {
+		userDTO.setJoinDate(LocalDateTime.now());
 		userDTO.setUserRole("ROLE_USER");
+		userDTO.setNotificationSetting(true);
 		userDTO.setEnabled(true);
 
 		userService.joinProc(userDTO);
