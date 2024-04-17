@@ -20,11 +20,17 @@ import pandas as pd
 # 원하는 데이터를 추출하는 함수
 def extract_data(schedule):
 
-    # 해운사명 추출
+    # 선사명 추출
     company_name = schedule.find_element(By.CSS_SELECTOR, 'div.col-vessel p.port-name').text.strip()
 
     # 선박명 추출
     vessel_name = schedule.find_element(By.CSS_SELECTOR, 'div.col-vessel div.vessel-name-overcheck').text.strip()
+
+    # 출발항 추출
+    origin = schedule.find_element(By.CSS_SELECTOR, 'div.col2 p.port-name').text.strip()
+
+    # 도착항 추출
+    destination = schedule.find_element(By.CSS_SELECTOR, 'div.col3 p.port-name').text.strip()
 
     # 출발일 추출
     dep_time = schedule.find_element(By.CSS_SELECTOR, 'div.col2 p.date').text.strip()
@@ -35,10 +41,10 @@ def extract_data(schedule):
     # 소요시간 추출
     duration = schedule.find_element(By.CSS_SELECTOR, 'div.col5 div.col-box').text.strip()
 
-    # 직항 여부 추출
+    # 환적여부 추출
     trans = schedule.find_element(By.CSS_SELECTOR, 'div.col6 span.trans-str').text.strip()
 
-    # 해상 운임비 추출
+    # 해상 운임비(O/F) 추출
     price = schedule.find_elements(By.CSS_SELECTOR, 'div.currency-box span.price')
     if len(price) > 1:
         of20 = price[0].text.strip()
@@ -46,9 +52,12 @@ def extract_data(schedule):
     else:
         of20, of40 = "", ""
 
+
     return {
         'company_name': company_name,
         'vessel_name': vessel_name,
+        'origin' : origin,
+        'destination' : destination,
         'dep_time' : dep_time,
         'arr_time': arr_time,
         'duration' : duration,
@@ -113,9 +122,24 @@ def my_crawling() : # 나중에 출발항, 도착항을 넣을것
 
     return schedule_list
         
-
 crawling_result = my_crawling()
 print(crawling_result)
 print('='*30)
 print(len(crawling_result))
 print(crawling_result[0])
+
+
+# ========================================== fast api로 데이터 전송 ==========================================
+
+# app = FastAPI()
+
+# @app.get(path="/", status_code=201)
+# def myiris() :
+                                 
+#     result = my_crawling()
+#     print("=========== 크롤링 결과 ===========", result)
+
+#     return JSONResponse(result)
+
+# if __name__ == '__main__' :
+#     uvicorn.run(app, host="127.0.0.1", port=8002)
