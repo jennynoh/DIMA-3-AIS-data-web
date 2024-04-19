@@ -6,11 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Port Congestion Service Home</title>
 
-    <link rel="stylesheet" th:href="@{/css/glv.css}" />
-    <script th:src="@{/script/glv.js}" defer></script>
+    <!-- 페이지 css 추가 -->
 
-    <link rel="stylesheet" th:href="@{/css/index.css}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" />
+    <link rel="stylesheet" th:href="@{/css/glv.css}" />
     <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
     <script>
         const nav = document.querySelector('.global-navigation-bar');
@@ -53,7 +51,6 @@
 </head>
 
 <body>
-    <h2>랜딩 페이지</h2>
     <div class="global-navigation-bar">
         <div class="navigation-menu">
             <div class="menu"><a th:href="@{/}">Home</a></div>
@@ -70,11 +67,8 @@
         </div>
     </div>
 
-    <div class="contents landing-page">
-        <a th:href="@{/weatherinfo}">Weather (Temp)</a><br>
-        <a th:href="@{/liveChatting}">Live Chatting (Temp)</a><br>
-        <a th:href="@{/gptChatbot}">GPT Chatbot (Temp)</a><br>
-    </div>
+
+
 </body>
 
 </html>

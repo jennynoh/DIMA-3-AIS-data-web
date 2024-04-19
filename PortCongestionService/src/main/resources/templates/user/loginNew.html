@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" th:href="@{/css/styleguide.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/loginGlobal.css}" />
+    <link rel="stylesheet" th:href="@{/css/login.css}" />
+
+</head>
+
+<body>
+    <div class="login">
+        <!-- <div class="frame-parent">
+            <img class="frame-child" loading="lazy" alt="" src="./public/group-2.svg" />
+
+            <div class="bg-parent">
+                <div class="bg"></div>
+                <div class="valuelinku-parent">
+                    <h1 class="valuelinku">ValueLinkU</h1>
+                    <div class="intelligent-port-information">
+                        Intelligent Port Information Service
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div class="left-content">
+            <div class="overlap">
+                <div class="bg"></div>
+                <div class="group">
+                    <div class="overlap-group">
+                        <div class="ellipse"></div>
+                        <div class="ellipse-2"></div>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="frame">
+                        <div class="group-2">
+                            <div class="text-wrapper">ValueLinkU</div>
+                            <div class="text-wrapper-2">Intelligent Port Information Service</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="login-inner">
+            <div class="frame-group">
+                <div class="hello-again-parent">
+                    <h2 class="hello-again">Hello again!</h2>
+                    <div class="login-to-get">Login to get started</div>
+                </div>
+                <form class="email-parent">
+                    <div class="email">
+                        <img class="codiconmail" alt="" th:src="@{/img/email.svg}" />
+
+                        <input class="email-child" placeholder="Email Address" type="text" />
+                    </div>
+                    <div class="password">
+                        <img class="bxbxs-lock-alt-icon" alt="" th:src="@{/img/password.svg}" />
+
+                        <input class="password-child" placeholder="Password" type="password" />
+                    </div>
+                    <button class="button">
+                        <div class="log-in">Log in</div>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -218,6 +218,9 @@
     font-size: 18px;
     letter-spacing: 0;
     line-height: normal;
+    display: flex;
+    flex-direction: column;
+
 }
 
 /* register-form */
@@ -275,7 +278,7 @@ input {
 }
 
 /* register button */
-.button {
+/* .button {
     all: unset;
     box-sizing: border-box;
     display: flex;
@@ -288,6 +291,26 @@ input {
     position: relative;
     background-color: #0575e6;
     border-radius: 30px;
+} */
+
+.button {
+    cursor: pointer;
+    border: 0;
+    padding: 18px 40px;
+    background-color: #0575e6;
+    /* align-self: stretch; */
+    border-radius: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    white-space: nowrap;
+    width: 360px;
+    margin: 0 10px;
+}
+
+.button:hover {
+    background-color: #2b9cff;
 }
 
 .button .placeholder {
@@ -296,7 +319,17 @@ input {
     height: 21px;
 }
 
-.button .text {
+.log-in {
+    position: relative;
+    font-size: 14px;
+    font-family: Poppins;
+    color: #fff;
+    text-align: left;
+    display: inline-block;
+    min-width: 41px;
+}
+
+.button .next {
     position: absolute;
     top: 0;
     left: 0;

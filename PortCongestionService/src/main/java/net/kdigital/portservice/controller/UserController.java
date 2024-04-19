@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.kdigital.portservice.dto.UserDTO;
 import net.kdigital.portservice.service.MailService;
 import net.kdigital.portservice.service.UserService;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class UserController {
 	private final UserService userService;
 	private final MailService mailService;
@@ -62,6 +64,7 @@ public class UserController {
 		userDTO.setUserRole("ROLE_USER");
 		userDTO.setNotificationSetting(true);
 		userDTO.setEnabled(true);
+		log.info(userDTO.toString());
 
 		userService.joinProc(userDTO);
 
@@ -77,10 +80,5 @@ public class UserController {
 
 		return "user/login";
 
-	}
-
-	@GetMapping("/weatherinfo")
-	public String weather() {
-		return "weather";
 	}
 }

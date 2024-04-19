@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.kdigital.portservice.dto.UserDTO;
@@ -23,16 +24,20 @@ public class UserService {
 	 * @param userDTO
 	 * @return 회원가입 성공 여부 
 	 */
-	public boolean joinProc(UserDTO userDTO) {
-		boolean isExistUser = userRepository.existsById(userDTO.getUserEmail());
-		if(isExistUser) return false;
-		
+	@Transactional
+	public void joinProc(UserDTO userDTO) {
+		log.info("회원가입 서비스 도착!");
+//		
+//		boolean isExistUser = userRepository.existsById(userDTO.getUserEmail());
+//		log.info("{}", isExistUser);
+//		if(isExistUser) return false;
+//		
 		userDTO.setUserPwd(bCryptPasswordEncoder.encode(userDTO.getUserPwd()));
 		
 		UserEntity entity = UserEntity.toEntity(userDTO);
 		userRepository.save(entity);
 		
-		return true;
+//		return true;
 	}
 
 	public boolean valEmail(String inputMail) {

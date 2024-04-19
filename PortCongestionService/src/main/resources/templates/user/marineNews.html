@@ -5,42 +5,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        .line {
-            align-self: stretch;
-            height: 3px;
-            position: relative;
-            border-top: 3px solid #000;
-            box-sizing: border-box;
-            margin: 20px;
-        }
 
-        .menu-title {
-            margin: 20px;
-        }
+    <!-- global navigation bar 설정 -->
+    <link rel="stylesheet" th:href="@{/css/glv.css}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" />
 
-        #pagination {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    <link rel="stylesheet" th:href="@{/css/marineNews.css}">
 
-        .page-button {
-            margin: 10px;
-        }
-
-        .article:hover {
-            transform: scale(1.05);
-            cursor: pointer;
-        }
-    </style>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
+        // global navigation bar 설정
+        const nav = document.querySelector('.global-navigation-bar');
+        let lastScrollY = window.scrollY;
+
+        $(function () {
+            // 로그인/회원가입 액션
+            $(".log-in").on('click', function () {
+                window.location.href = "/user/login";
+            });
+            $(".sign-up").on('click', function () {
+                window.location.href = "/user/join";
+            });
+            $(".log-out").on('click', function () {
+                window.location.href = "/user/logout";
+            });
+            $(".my-page").on('click', function () {
+                // window.location.href = "/user/mypage";
+            });
+            // 스크롤 액션 
+            $(document).on('scroll', () => {
+                console.log(lastScrollY);
+                if (window.scrollY > lastScrollY) { // 아래로 스크롤
+                    console.log("아래로 스크롤");
+                    $('.global-navigation-bar').addClass('hide');
+                } else { // 위로 스크롤
+                    console.log("위로 스크롤");
+                    $('.global-navigation-bar').removeClass('hide');
+                }
+                lastScrollY = window.scrollY;
+            });
+
+        });
+
         // 페이지 로드 완료시 실행
         $(function () {
+            // 뉴스 스크래핑 
             $(".page").on('click', crawlingAll);
             crawlingAll();
-        })
+        });
+
         function crawlingAll() {
 
             let curr = $(this).text();
@@ -58,15 +71,17 @@
                     // 받은 데이터를 리스트 형태로 보여주기
                     var ul = $('<ul class="articles">');  // 리스트 생성
                     var li = '';
-                    var imgSrc = 'https://i.pinimg.com/564x/14/db/87/14db871979cbf98a6ffec8d4c74bd46e.jpg';
+
 
                     // response 객체의 속성을 확인하여 데이터에 접근
                     for (var key in response) {
                         if (response.hasOwnProperty(key)) {
                             var item = response[key];
+                            var imgSrc = 'https://cdn.getnews.co.kr/news/thumbnail/202008/231175_173670_1155_v150.jpg';
                             if (item['thumb'] != '-') {
                                 imgSrc = item['thumb'];
                             }
+                            console.log(imgSrc);
                             li += `<li>
                                 <div class="container">
                                     <div class="article">
@@ -120,6 +135,22 @@
 </head>
 
 <body>
+    <div class="global-navigation-bar">
+        <div class="navigation-menu">
+            <div class="menu"><a th:href="@{/}">Home</a></div>
+            <div class="menu"><a th:href="@{/portStatus}">Port Status</a></div>
+            <div class="menu"><a th:href="@{/vesselSchedule}">Vessel Schedule</a></div>
+            <div class="menu"><a th:href="@{/marineNews}">Marine News</a></div>
+            <div class="menu"><a th:href="@{/subscription}">Subscription</a></div>
+        </div>
+        <div class="user-menu">
+            <button class="log-in" sec:authorize="isAnonymous()">Log in</button>
+            <button class="sign-up" sec:authorize="isAnonymous()">Sign up</button>
+            <button class="log-out" sec:authorize="isAuthenticated()">Log out</button>
+            <button class="my-page" sec:authorize="isAuthenticated()">My page</button>
+        </div>
+    </div>
+
     <h1 class="menu-title">Marine News</h1>
     <div class="line"></div>
     <div id="crawlingResult"></div>

@@ -24,10 +24,11 @@ def extract_data(article):
 
     # 썸네일 이미지 URL 추출
     find_thumb = article.find('a', class_='thumb')
+    thumb = '-'
     if find_thumb:
         thumb = find_thumb.find('img')['src']
-    else:
-        thumb = '-'
+
+    print(thumb)
 
     # 기사 url 추출
     link = article.find('h4', class_='titles').find('a')['href']

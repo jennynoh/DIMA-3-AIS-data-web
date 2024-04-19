@@ -18,11 +18,12 @@ public class SecurityConfig {
 
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests((auth) -> auth.requestMatchers("/", "/portinfo", "/portinfo/searchPort",
-				"/user/login", "/user/join", "/user/joinNext", "/user/joinProc", "/marineNews", "/subscription", "/port", "/port_info", "/receive_data", "/img/**", "/css/**", "/script/**", "/weatherinfo").permitAll());
+		http.authorizeHttpRequests((auth) -> auth.requestMatchers("/", "/portStatus", "/portStatus/searchPort",
+				"/user/login", "/user/join", "/user/joinNext", "/user/joinProc", "/marineNews", "/subscription", "/port", "/port_info", "/receive_data", "/img/**", "/css/**", "/script/**", "/weatherinfo"
+				, "/liveChatting", "/gptChatbot").permitAll());
 
 		http.formLogin((auth) -> auth.loginPage("/user/login")
-				.usernameParameter("userId")
+				.usernameParameter("userEmail")
 				.passwordParameter("userPwd")
 				.loginProcessingUrl("/user/loginProc")
 				.defaultSuccessUrl("/").permitAll()

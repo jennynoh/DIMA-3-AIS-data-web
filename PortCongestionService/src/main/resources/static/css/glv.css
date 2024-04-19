@@ -1,0 +1,78 @@
+.global-navigation-bar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    margin: 0;
+    background-color: #152b46;
+    display: flex;
+    justify-content: space-around;
+    /* 스크롤 효과 */
+    transition: transform 0.3s ease-in-out;
+    transform: translateY(0);
+    /* 초기상태: 보임 */
+    z-index: 1000;
+    /* 다른 요소 위에 표시 */
+}
+
+/* 스크롤 다운 시 숨기는 클래스 */
+.hide {
+    transform: translateY(-100%);
+    /* 네비게이션 바 높이만큼 위로 이동 */
+}
+
+/* 스크롤 업 시 나타나게 하는 클래스 */
+.show {
+    transform: translateY(0);
+    /* 원래 위치로 이동 */
+}
+
+.navigation-menu {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0px 30px;
+}
+
+.menu {
+    margin: 0px 40px;
+    padding: 30px;
+}
+
+.menu>a {
+    color: azure;
+    font-size: 15px;
+    font-family: Inter;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.menu>a:hover {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #6185bd, 0 0 40px #6185bd;
+}
+
+.user-menu {
+    display: inline-flex;
+    flex-direction: row;
+}
+
+.user-menu>button {
+    margin: 20px 10px;
+    padding: 10px;
+    background-color: transparent;
+    border: 1px solid #93b7f0;
+    border-radius: 20px;
+    color: azure;
+    font-size: 12px;
+    cursor: pointer;
+    box-shadow: 0 0 0 3px rgba(225, 225, 225, 0.14);
+    z-index: 1;
+    width: 100px;
+    backdrop-filter: blur(20.9px);
+}
+
+.user-menu>button:hover {
+    background-color: rgba(230, 230, 230, 0.01);
+    border: 1px solid #6185bd;
+}

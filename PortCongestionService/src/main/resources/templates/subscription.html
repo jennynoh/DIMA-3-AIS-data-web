@@ -5,6 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
 
+    <link rel="stylesheet" th:href="@{/css/glv.css}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" />
+
     <link rel="stylesheet" th:href="@{/css/globalsubs.css}" />
     <link rel="stylesheet" th:href="@{/css/subs.css}" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
@@ -13,7 +16,48 @@
 
     <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
     <script>
+        const nav = document.querySelector('.global-navigation-bar');
+        let lastScrollY = window.scrollY;
+
         $(function () {
+            // 로그인/회원가입 액션
+            $(".log-in").on('click', function () {
+                window.location.href = "/user/login";
+            });
+            $(".sign-up").on('click', function () {
+                window.location.href = "/user/join";
+            });
+            $(".log-out").on('click', function () {
+                window.location.href = "/user/logout";
+            });
+            $(".my-page").on('click', function () {
+                // window.location.href = "/user/mypage";
+            });
+            // 스크롤 액션 
+            $(document).on('scroll', () => {
+                console.log(lastScrollY);
+                if (window.scrollY > lastScrollY) { // 아래로 스크롤
+                    console.log("아래로 스크롤");
+                    $('.global-navigation-bar').addClass('hide');
+                } else { // 위로 스크롤
+                    console.log("위로 스크롤");
+                    $('.global-navigation-bar').removeClass('hide');
+                }
+                lastScrollY = window.scrollY;
+            });
+
+        });
+
+        $(function () {
+            // global navigation bar 
+            $(".log-in").on('click', function () {
+                window.location.href = "/user/login";
+            });
+            $(".sign-up").on('click', function () {
+                window.location.href = "/user/join";
+            });
+
+            // subscription plan 
             $("#button-monthly").on('click', function () { generateOrder('monthly'); });
             $("#button-yearly").on('click', function () { generateOrder('yearly'); });
         });
@@ -45,27 +89,22 @@
 </head>
 
 <body>
+    <div class="global-navigation-bar">
+        <div class="navigation-menu">
+            <div class="menu"><a th:href="@{/}">Home</a></div>
+            <div class="menu"><a th:href="@{/portStatus}">Port Status</a></div>
+            <div class="menu"><a th:href="@{/vesselSchedule}">Vessel Schedule</a></div>
+            <div class="menu"><a th:href="@{/marineNews}">Marine News</a></div>
+            <div class="menu"><a th:href="@{/subscription}">Subscription</a></div>
+        </div>
+        <div class="user-menu">
+            <button class="log-in" sec:authorize="isAnonymous()">Log in</button>
+            <button class="sign-up" sec:authorize="isAnonymous()">Sign up</button>
+            <button class="log-out" sec:authorize="isAuthenticated()">Log out</button>
+            <button class="my-page" sec:authorize="isAuthenticated()">My page</button>
+        </div>
+    </div>
     <div class="subscription">
-        <header class="global-navigation-bar-anonym">
-            <div class="navigation-background"></div>
-            <div class="log-in-parent">
-                <button class="log-in">
-                    <div class="log-in1">Log in</div>
-                </button>
-                <nav class="menu-list">
-                    <div class="home">Home</div>
-                    <div class="port-status">Port Status</div>
-                    <div class="vessel-schedule">Vessel Schedule</div>
-                    <div class="marine-news">Marine News</div>
-                    <div class="subscription1">Subscription</div>
-                </nav>
-            </div>
-            <div class="sign-up-wrapper">
-                <button class="sign-up">
-                    <div class="sign-up1">Sign up</div>
-                </button>
-            </div>
-        </header>
         <section class="pricing">
             <div class="pricing-container-wrapper">
                 <div class="pricing-container">
