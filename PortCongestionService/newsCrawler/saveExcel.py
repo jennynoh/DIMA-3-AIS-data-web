@@ -83,21 +83,25 @@ def extract_schdeule(schedule):
 # url 설정하는 함수
 def set_url(dep, arr, date):
 
+    origin = ''
     if dep == '부산':
         origin = '105169'
     elif dep == '인천':
-        origin == '105162'
+        origin = '105162'
 
+    destination = ''
     if arr == '도쿄':
         destination = '105149'
     elif arr == '오사카':
-        destination == '105132'
+        destination = '105132'
     elif arr == '싱가포르':
-        destination == '105312'
+        destination = '105312'
     elif arr == '홍콩':
-        destination == '105038'
+        destination = '105038'
     elif arr == '상하이':
-        destination == '104947'
+        destination = '104947'
+
+    print("출발항 : ",dep," - ",origin," / 도착항 : ",arr," - ",destination)
 
     # 크롤링할 페이지 url
     url = 'https://www.tradlinx.com/ocean-schedule-fcl?org='+origin+'&des='+destination+'&day=' + date

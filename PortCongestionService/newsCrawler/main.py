@@ -85,18 +85,20 @@ def my_crawling() :
 
 # ========================================== 해상 스케줄 데이터 불러오기 ==========================================
 
-# 해상 스케줄 엑셀 파일 읽어오는 함수
+# 해상 스케줄 csv 파일 읽어오는 함수
 def read_shipSchedule_excel(dep, arr) :
 
     # 당일 날짜 추출
     current_date = datetime.datetime.now().date()
     formatted_date = current_date.strftime("%Y-%m-%d")
 
-    # 엑셀 파일 경로
-    excel_path = 'C:/PR/Dima project/DIMA-3-AIS-data-web/PortCongestionService/src/main/resources/static/excel/' + dep + arr + formatted_date + '.xls'
+    # csv 파일 경로
+    excel_path = 'C:/PR/Dima project/DIMA-3-AIS-data-web/PortCongestionService/src/main/resources/static/excel/' + dep + arr + formatted_date +'.csv'
+    # print("출발항 : ",dep," / 도착항 : ",arr)
+    # print(excel_path)
 
-    # 엑셀 파일을 읽어서 데이터프레임으로 변환
-    terminalSchedule = pd.read_excel(excel_path) # 1번째 행을 컬럼명으로 설정
+    # csv 파일을 읽어서 데이터프레임으로 변환
+    terminalSchedule = pd.read_csv(excel_path) # 1번째 행을 컬럼명으로 설정
 
     # 결측치 채우기
     terminalSchedule.fillna("-", inplace=True)

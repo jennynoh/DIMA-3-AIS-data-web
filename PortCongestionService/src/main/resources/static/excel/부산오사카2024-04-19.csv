@@ -1,0 +1,21 @@
+logo_img,company_name,vessel_name,origin,destination,dep_time,arr_time,duration,trans,of20,of40
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,SHECAN 2414E,Busan,Osaka,2024.04.19 (Fri),2024.04.22 (Mon),3 days,Direct,$335.00,$670.00
+https://www.tradlinx.com/images/carrier/shipping_com_CKL.gif,CK Line,SHECAN 2414E,Busan,Osaka,2024.04.19 (Fri),2024.04.22 (Mon),3 days,Direct,$336.00,$671.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCL.gif,Pancon,SHECAN 2414E,Busan,Osaka,2024.04.19 (Fri),2024.04.22 (Mon),3 days,Direct,$285.00,$570.00
+https://www.tradlinx.com/images/carrier/shipping_com_HAS.gif,HEUNG-A,DONGJIN FORTUNE 0104S,Busan,Osaka,2024.04.20 (Sat),2024.04.22 (Mon),2 days,Direct,$500.00,"$1,000.00"
+https://www.tradlinx.com/images/carrier/shipping_com_DJS.gif,DongJin,DONGJIN FORTUNE 0104S,Busan,Osaka,2024.04.20 (Sat),2024.04.22 (Mon),2 days,Direct,$335.00,$670.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCS.gif,DongYoung,DONGJIN FORTUNE JDFT0104S,Busan,Osaka,2024.04.20 (Sat),2024.04.22 (Mon),2 days,Direct,$255.00,$510.00
+https://www.tradlinx.com/images/carrier/shipping_com_SKR.gif,Sinokor,DONGJIN FORTUNE 0104S,Busan,Osaka,2024.04.20 (Sat),2024.04.22 (Mon),2 days,Direct,$255.00,$510.00
+https://www.tradlinx.com/images/carrier/shipping_com_NSS.gif,NamSung,DONGJIN FORTUNE JDFT0104S,Busan,Osaka,2024.04.20 (Sat),2024.04.22 (Mon),2 days,Direct,$305.00,$610.00
+https://www.tradlinx.com/images/carrier/shipping_com_PAN.gif,Pan Ocean,DONGJIN FORTUNE 104E,Busan,Osaka,2024.04.20 (Sat),2024.04.22 (Mon),2 days,Direct,$285.00,$570.00
+https://www.tradlinx.com/images/carrier/shipping_com_ONE.gif,ONE,MARVEL 4022E,Busan,Osaka,2024.04.21 (Sun),2024.04.23 (Tue),2 days,Direct,$183.00,$366.00
+https://www.tradlinx.com/images/carrier/shipping_com_HAS.gif,HEUNG-A,PACIFIC BUSAN 2425E,Busan,Osaka,2024.04.22 (Mon),2024.04.24 (Wed),2 days,Direct,$500.00,"$1,000.00"
+https://www.tradlinx.com/images/carrier/shipping_com_DJS.gif,DongJin,SKY AURORA 2417S,Busan,Osaka,2024.04.22 (Mon),2024.04.24 (Wed),2 days,Direct,$335.00,$670.00
+https://www.tradlinx.com/images/carrier/shipping_com_DJS.gif,DongJin,PACIFIC BUSAN 2425E,Busan,Osaka,2024.04.22 (Mon),2024.04.24 (Wed),2 days,Direct,$335.00,$670.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCS.gif,DongYoung,PACIFIC BUSAN JPCB2425E,Busan,Osaka,2024.04.22 (Mon),2024.04.24 (Wed),2 days,Direct,$255.00,$510.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,PEGASUS PACER 2422E,Busan,Osaka,2024.04.22 (Mon),2024.04.24 (Wed),2 days,Direct,$335.00,$670.00
+https://www.tradlinx.com/images/carrier/shipping_com_SKR.gif,Sinokor,PACIFIC BUSAN 2425E,Busan,Osaka,2024.04.22 (Mon),2024.04.24 (Wed),2 days,Direct,$255.00,$510.00
+https://www.tradlinx.com/images/carrier/shipping_com_CKL.gif,CK Line,PEGASUS PACER 2422E,Busan,Osaka,2024.04.22 (Mon),2024.04.24 (Wed),2 days,Direct,$336.00,$671.00
+https://www.tradlinx.com/images/carrier/shipping_com_NSS.gif,NamSung,PACIFIC BUSAN JPCB2425E,Busan,Osaka,2024.04.22 (Mon),2024.04.24 (Wed),2 days,Direct,$305.00,$610.00
+https://www.tradlinx.com/images/carrier/shipping_com_ONE.gif,ONE,PEGASUS PACER 2422E,Busan,Osaka,2024.04.22 (Mon),2024.04.24 (Wed),2 days,Direct,$183.00,$366.00
+https://www.tradlinx.com/images/carrier/shipping_com_PAN.gif,Pan Ocean,PACIFIC BUSAN 2425E,Busan,Osaka,2024.04.22 (Mon),2024.04.24 (Wed),2 days,Direct,$285.00,$570.00
