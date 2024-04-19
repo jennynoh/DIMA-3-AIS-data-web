@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 페이지가 로드되면 함수 실행
+            retrieve();
+        });
+        
+        // 파이썬에서 엑셀 파일 불러와서 데이터 받아오기
+        function retrieve() {
+ 
+            $.ajax({
+                url : "/get_terminalSchedule",
+                method: "GET",
+                success : function(response) {
+                    add(response); // AJAX 호출이 성공한 후에 add() 함수 호출
+                },
+                error: function(xhr, status, error) {
+                    console.error("AJAX request failed:", status, error);
+                }
+            });
+        }
+
+        function add(response) {
+            console.log(response);
+
+            // 받은 데이터를 테이블에 넣기
+            // 기존의 tbody 선택
+            var tbody = $("#tableBody");
+
+            // response에 대한 반복문
+            $.each(response, function(index, item) {
+                // 행(tr) 생성
+                var row = $("<tr>");
+                    
+                // 각 셀(td)에 데이터 추가
+                // tr 하나당 td 8개 필요
+                // 1번째 td - Port
+                row.append('<td><div>' + item['Port'] + '</div></td>');
+                // 2번째 td - Terminal
+                row.append('<td><div>' + item['Terminal'] + '</div></td>');
+                // 3번째 td - Vessel Name
+                row.append('<td><div>' + item['Vessel Name'] + '</div></td>');
+                // 4번째 td - Vessel Call
+                row.append('<td><div>' + item['Vessel Call'] + '</div></td>');
+                // 5번째 td - Cut-off
+                row.append('<td><div>' + item['Cut-off'] + '</div></td>');
+                // 6번째 td - Arrival
+                row.append('<td><div>' + item['Arrival'] + '</div></td>');
+                // 7번째 td - Departure
+                row.append('<td><div>' + item['Departure'] + '</div></td>');
+                // 8번째 td - Carrier
+                row.append('<td><div>' + item['Carrier'] + '</div></td>');
+
+                // 행을 tbody에 추가
+                tbody.append(row);
+            });
+        }
+
+    </script>
+</head>
+<body>
+    <h1>컨테이너 터미널 스케줄</h1>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Port</th>
+                    <th>Terminal</th>
+                    <th>Vessel Name</th>
+                    <th>터미널 항차</th>
+                    <th>Cut-off(closed)</th>
+                    <th>Arrival(ETA)</th>
+                    <th>Departure(ETD)</th>
+                    <th>Carrier</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+</body>
+</html>

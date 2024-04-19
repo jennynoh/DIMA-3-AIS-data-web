@@ -32,6 +32,9 @@ public class CrawlingController {
 
 	@Value("${news.crawling.server}")
 	String url;
+	
+	
+	// ======================================== 뉴스 기사 크롤러 ========================================
 
 	@GetMapping("/marineNews")
 	public String marineNews() {
@@ -62,12 +65,6 @@ public class CrawlingController {
 		return list; // 정상반환
 	}
 
-
-	@GetMapping("/port")
-	public String portInfo() {
-
-		return "vesselSchedule";
-	}
 	
 	private void crawlingAll() { //뉴스기사 전체 크롤링
 		log.info("crawling server: {}", url);
@@ -86,7 +83,14 @@ public class CrawlingController {
 		// result가 멤버변수로 선언되어서 반환할 필요x
 	}
 
-	// ============================================== 스케줄 크롤러 ==============================================
+	// ======================================== 스케줄 크롤러 ========================================
+	
+	@GetMapping("/port")
+	public String portInfo() {
+		
+		return "vesselSchedule";
+	}
+	
 	//항구 정보
 	@GetMapping("/port_info")
 	@ResponseBody
@@ -131,6 +135,40 @@ public class CrawlingController {
 		} 
 
 		return dataList;
+	}
+	
+	
+	// ============================== 컨테이너 터미널 스케줄 불러오기 =====================================
+	
+	@GetMapping("/terminalSchedule")
+	public String terminalSchedule() {
+
+		return "terminalSchedule";
+	}
+	
+	@GetMapping("/get_terminalSchedule")
+	@ResponseBody
+	public List<Map<String, String>> get_terminalSchedule() {
+		
+		List<Map<String, String>> terminalSchedule_list = terminal(); // terminal() 메서드 호출해서 결과 받아오기
+		
+		log.info("==========={}", terminalSchedule_list.get(0));
+		return terminalSchedule_list; // 정상반환
+	}
+	
+	private List<Map<String, String>> terminal() { // 엑셀 데이터 fast api로 받아오기
+		
+		List<Map<String, String>> terminalSchedule = null;
+		
+		try {
+			
+			terminalSchedule = restTemplate.getForObject(url+"/terminal", List.class);
+			
+		} catch (HttpClientErrorException | HttpServerErrorException e) {
+		} 
+		log.info("=====스케줄 결과 :{}",terminalSchedule);
+		
+		return terminalSchedule;
 	}
 
 }
