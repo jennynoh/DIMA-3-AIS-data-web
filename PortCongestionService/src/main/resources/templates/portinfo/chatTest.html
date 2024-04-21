@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Port Congestion Service Home</title>
+
+    <!-- 페이지 css 추가 -->
+    <link rel="stylesheet" th:href="@{/css/liveChat.css}" />
+    <link rel="stylesheet" th:href="@{/css/glv.css}" />
+    <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
+    <script>
+        const nav = document.querySelector('.global-navigation-bar');
+        let lastScrollY = window.scrollY;
+
+        $(function () {
+            // 로그인/회원가입 액션
+            $(".log-in").on('click', function () {
+                window.location.href = "/user/login";
+            });
+            $(".sign-up").on('click', function () {
+                window.location.href = "/user/join";
+            });
+            $(".log-out").on('click', function () {
+                window.location.href = "/user/logout";
+            });
+            $(".my-page").on('click', function () {
+                // window.location.href = "/user/mypage";
+            })
+            // 스크롤 액션 
+            $(document).on('scroll', () => {
+                console.log(lastScrollY);
+                if (window.scrollY > lastScrollY) { // 아래로 스크롤
+                    console.log("아래로 스크롤");
+                    $('.global-navigation-bar').addClass('hide');
+                } else { // 위로 스크롤
+                    console.log("위로 스크롤");
+                    $('.global-navigation-bar').removeClass('hide');
+                }
+                lastScrollY = window.scrollY;
+            });
+
+        });
+
+        // 본문 동작
+        $(function () {
+            // 웹소켓 연결  
+            $(document).ready(function () {
+                let portCD = $("#portCD").val();
+                var wsUrl = "ws://localhost:9999/ws/chat"; // 웹소켓 서버 url
+                // var wsUrl = "ws://localhost:9999/ws/chat/" + portCD; // 웹소켓 서버 url
+                var ws = new WebSocket(wsUrl);  // 웹소켓 객체 생성 
+
+                ws.onopen = function () {
+                    console.log("Connected to" + wsUrl);
+                    // 웹소켓 연결 시 수행할 동작 
+
+                    // 웹소켓 보내기
+                    $("#send-button").on('click', function () {
+                        // button이 enabled 되어있으면..
+                        if (!$(this).prop('disabled')) {
+                            let message = $("#message-field").val();
+                            console.log("보내는 메세지: " + message);
+                            // websocket 메세지 보내기
+                            let sendMessage = {
+                                "messageType": "TALK",
+                                "roomId": 1,
+                                "senderId": 1,
+                                "message": message
+                            };
+                            ws.send(JSON.stringify(sendMessage));
+
+                            // 메세지 입력창 초기화
+                            $("#message-field").val(null);
+                        }
+                    })
+                };
+
+                ws.onmessage = function (event) {
+                    // 서버로부터 메세지를 받았을 때 수행할 동작 
+                    console.log("Received message: " + event.data);
+                };
+
+                ws.onclose = function () {
+                    // 웹소켓 연결이 닫혔을 떄 수행할 동작 
+                    console.log("Disconnected from " + wsUrl);
+                };
+
+                ws.onerror = function (error) {
+                    // 오류 발생 시 수행할 동작
+                    console.log("WebSocket error: " + error);
+                };
+
+                // 사용자가 웹페이지를 떠날 때 웹소켓 연결 종료 
+                function closeWebSocket() {
+                    if (ws) {
+                        ws.close();
+                    }
+                }
+                $(window).on('beforeunload', closeWebSocket);
+
+            });
+
+            // 채팅 메세지 입력
+            $("#message-field").on('keyup', function () {
+                let text = $("#message-field").val();
+                if (text.length != 0) {
+                    $("#img-change-to").attr('src', '/img/paper_airplane_white.svg');
+                    $("#send-button").prop('disabled', false);
+                } else {
+                    $("#img-change-to").attr('src', '/img/paper_airplane_gray.svg');
+                    $("#send-button").prop('disabled', true);
+                }
+            });
+
+
+        });
+
+
+    </script>
+</head>
+
+<body>
+    <div class="global-navigation-bar">
+        <div class="navigation-menu">
+            <div class="menu"><a th:href="@{/}">Home</a></div>
+            <div class="menu"><a th:href="@{/portStatus}">Port Status</a></div>
+            <div class="menu"><a th:href="@{/vesselSchedule}">Vessel Schedule</a></div>
+            <div class="menu"><a th:href="@{/marineNews}">Marine News</a></div>
+            <div class="menu"><a th:href="@{/subscription}">Subscription</a></div>
+        </div>
+        <div class="user-menu">
+            <button class="log-in" sec:authorize="isAnonymous()">Log in</button>
+            <button class="sign-up" sec:authorize="isAnonymous()">Sign up</button>
+            <button class="log-out" sec:authorize="isAuthenticated()">Log out</button>
+            <button class="my-page" sec:authorize="isAuthenticated()">My page</button>
+        </div>
+    </div>
+
+    <!-- 본문 -->
+    <input type="hidden" id="portCD" value="SGSIN">
+    <!-- 채팅방 -->
+    <div class="chat-window">
+        <div class="chat-header">
+            <div class="chat-title">
+                <!-- portcd 받아서 동적으로 변경 -->
+                <span>🇭🇰 Hongkong Port</span>
+            </div>
+            <div class="toggle">
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+        <div class="chat-message-window">
+
+        </div>
+        <div class="chat-input-bar">
+            <div class="emoji"><img th:src="@{/img/emoji.svg}" alt=""></div>
+            <div class="text-field">
+                <input type="text" id="message-field" name="message" placeholder="Start typing...">
+            </div>
+            <div class="send-box">
+                <div class="mention"><img th:src="@{/img/mention.svg}" alt=""></div>
+                <div class="send-button-container">
+                    <button id="send-button" disabled>
+                        <img id="img-change-to" th:src="@{/img/paper_airplane_gray.svg}" alt="">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

@@ -20,7 +20,7 @@ public class SecurityConfig {
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests((auth) -> auth.requestMatchers("/", "/portStatus", "/portStatus/searchPort",
 				"/user/login", "/user/join", "/user/joinNext", "/user/joinProc", "/marineNews", "/subscription", "/port", "/port_info", "/receive_data", "/img/**", "/css/**", "/script/**", "/weatherinfo"
-				, "/liveChatting", "/gptChatbot").permitAll());
+				, "/liveChatting", "/gptChatbot", "/chat", "/ws/chat").permitAll());
 
 		http.formLogin((auth) -> auth.loginPage("/user/login")
 				.usernameParameter("userEmail")
