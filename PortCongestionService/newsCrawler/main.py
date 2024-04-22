@@ -122,7 +122,9 @@ def read_terminal_excel() :
     excel_file = pd.read_excel(excel_path, header=1) # 1번째 행을 컬럼명으로 설정
 
     # 필요한 컬럼만 추출
-    terminalSchedule = excel_file[['Port', 'Terminal', 'Vessel Name', 'Vessel Call', 'Cut-off', 'Arrival', 'Departure', 'Carrier']]
+    # terminalSchedule = excel_file[['Port', 'Terminal', 'Vessel Name', 'Vessel Call', 'Cut-off', 'Arrival', 'Departure', 'Carrier']]
+    # 150행까지만 가져옴
+    terminalSchedule = excel_file.loc[:149, ['Port', 'Terminal', 'Vessel Name', 'Vessel Call', 'Cut-off', 'Arrival', 'Departure', 'Carrier']]
 
     # 결측치 채우기
     terminalSchedule.fillna("-", inplace=True)
