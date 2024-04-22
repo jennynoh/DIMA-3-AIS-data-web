@@ -124,7 +124,7 @@ def read_terminal_excel() :
     # 필요한 컬럼만 추출
     # terminalSchedule = excel_file[['Port', 'Terminal', 'Vessel Name', 'Vessel Call', 'Cut-off', 'Arrival', 'Departure', 'Carrier']]
     # 150행까지만 가져옴
-    terminalSchedule = excel_file.loc[:149, ['Port', 'Terminal', 'Vessel Name', 'Vessel Call', 'Cut-off', 'Arrival', 'Departure', 'Carrier']]
+    terminalSchedule = excel_file.loc[:49, ['Port', 'Terminal', 'Vessel Name', 'Vessel Call', 'Cut-off', 'Arrival', 'Departure', 'Carrier']]
 
     # 결측치 채우기
     terminalSchedule.fillna("-", inplace=True)
