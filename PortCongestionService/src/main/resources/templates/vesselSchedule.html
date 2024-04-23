@@ -15,9 +15,15 @@
     <title>Document</title>
     <style>
 
-        /* 전체 글씨체 */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
         body {
-            font-family: var(--font-rubik);
+            font-family: var(--font-rubik); /* 전체 글씨체 */
+            display: flex;
+            flex-direction: column;
         }
 
         /* 버튼 */
@@ -201,15 +207,17 @@
         .center {
             width: 800px;
             margin: 20px auto;
+            flex: 1;
         }
 
 
         /* footer */
         .footer {
+            /* position: fixed; */
+            left: 0;
+            bottom: 0;
             background-color: #152b46;
             color: white;
-            position: absolute;
-            bottom: 0;
             width: 100%;
             font-size: x-small;
         }
