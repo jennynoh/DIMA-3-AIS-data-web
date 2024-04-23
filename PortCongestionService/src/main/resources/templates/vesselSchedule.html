@@ -1,64 +1,301 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/css/glv.css}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" />
+    <link rel="stylesheet" th:href="@{/css/globalsubs.css}" />
+    <link rel="stylesheet" th:href="@{/css/subs.css}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Krub:wght@600&display=swap" />
+
     <title>Document</title>
     <style>
-        /* 로더 스타일 */
-        .loader {
-            border: 16px solid #f3f3f3; /* Light grey */
-            border-top: 16px solid #3498db; /* Blue */
-            border-radius: 50%;
-            width: 70px;
-            height: 70px;
-            animation: spin 2s linear infinite;
+
+        body {
+            font-family: var(--font-rubik);
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .btns.clicked, #btn {
+            background-color: #03a9f4; /* 초록색 배경 */
+            color: white; /* 흰색 텍스트 */
+            border: none; /* 테두리 없음 */
+            border-radius: 6px; /* 모서리를 둥글게 */
+            padding-top: 3px;
+            padding-bottom: 3px;
+            text-align: center; /* 텍스트 가운데 정렬 */
+            text-decoration: none; /* 밑줄 없음 */
+            display: inline-block; /* 인라인 요소로 표시 */
+            /* font-size: 16px; 텍스트 크기 */
+            cursor: pointer; /* 마우스 커서 모양 변경 */
         }
 
-        /* 로딩 화면 전체 커버 */
-        #loading {
-            position: top; /* 절대적 위치 */
-            z-index: 999;
-            width: 100%;
-            top: 90%; /* 표 아래에 위치하도록 수정 */
-            transform: translateY(-50%); /* 세로 중앙 정렬 */
-            background-color: rgba(248, 248, 248, 0.6);
-            color: #fff;
+        .btns.notclicked {
+            background-color: white; 
+            color: #03a9f4;
+            border: none; /* 테두리 */
+            /* border-color: #03a9f4;
+            border-width: 0.5px; */
+            border-radius: 6px; /* 모서리를 둥글게 */
+            padding-top: 3px;
+            padding-bottom: 3px;
+            text-align: center; /* 텍스트 가운데 정렬 */
+            text-decoration: none; /* 밑줄 없음 */
+            display: inline-block; /* 인라인 요소로 표시 */
+            /* font-size: 16px; 텍스트 크기 */
+            cursor: pointer; /* 마우스 커서 모양 변경 */
+        }
+
+        .btns:hover {
+            box-shadow: 0 1px 2px gray; /* 그림자 효과 */
+        }
+        
+        #pageTitle {
+            margin-top: 100px;
+            margin-bottom: 20px;
+            background: url(https://www.tradlinx.com/images/ocean/bg_title_fcl.png) 0 2px no-repeat;
+            font-size: 30px;
+            padding-left: 33px;
+            margin-bottom: 20px;
+        }
+        
+        #pageTitle, #changeTableBtn, .schedule-container, #inputPort {
+            margin-left: 20px;
+            margin-bottom: 10px;
+            
+        }
+
+        #changeTableBtn {
+            margin-bottom: 15px;
+            margin-top: 20px;
+        }
+
+        #search, #searchBtn {
+            display: inline-block;
+            padding-bottom: 0;
+        }
+
+        #search > div {
+            margin-bottom: 8px;
+        }
+
+        #btn {
+            padding: 12px 8px 12px 8px;
+        }
+        
+        #searchBtn{
+            position: relative; /* 요소를 상대적 위치로 배치 */
+            top: -9.5px; /* 추가적으로 위로 9.5px만큼 이동 */
+
+        }
+        
+        .schedule-container {
             text-align: center;
-            line-height: 100vh; /* 중앙 정렬 */
-            margin-top: 120px;
-            margin-left: 190px;
+            margin-bottom: 20px;
+        }        
+
+        #myTable {
+            border-top: 3px solid black;
+        }
+        
+        th {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            
         }
 
+        table {
+            border-collapse: collapse; /* 셀 간의 테두리를 병합 */
+            border-spacing: 0; /* 셀 간의 간격 설정 */
+        }
+        
+        tr {
+            border-top: 1px solid gray !important;
+        }
+        
+        .terminalTd , th {
+            border: none; /* 셀의 테두리 제거 */
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        
+        /* 터미널 스케줄 */
+        .col1 {
+            width: 90px;
+        }
+
+        .col5 {
+            width: 60px;
+        }
+
+        .col2, .col3, .col4, .col8, .col6, .col7, .col8 {
+            width: 120px;
+        }
+
+        /* 해상 스케줄 */
+        .col1-2, .col7-2 {
+            width: 90px;
+        }
+
+        .col2-2 {
+            width: 180px;
+        }
+
+        .col3-2, .col4-2 {
+            width: 140px;
+        }
+
+        .col6-2, .col5-2 {
+            width: 60px;
+        }
+
+        td.col4, td.col1, td.col2, td.col5  { /* Port, Terminal, 터미널 항차, Carrier 컬럼 */
+            color: rgb(70, 70, 70);
+        }
+
+        td.col6 { /* Cut-off 컬럼 */
+            color: #dc0046;
+        }
+        
+        td.col7 { /* Arrival 컬럼 */
+            color: #008bdc;
+        }
+        
+        td.col8 { /* Departure 컬럼 */
+            color: #f79f07;
+        }
+
+        #wholeWrapper {
+            font-size: small;
+        }
+
+        .blue {
+            color: #03a9f4;
+        }
+
+        .gray {
+            color: #999;
+        }
+
+        p {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .medium {
+            font-size: medium;
+        }
+
+        .center {
+            width: 800px;
+            margin: 20px auto;
+        }
 
     </style>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
-        function showLoading() {
-            document.getElementById('loading').style.display = 'block';
-        }
 
-        function hideLoading() {
-            document.getElementById('loading').style.display = 'none';
-        }
+        // ======================================== 스크롤바 ========================================
+        const nav = document.querySelector('.global-navigation-bar');
+        let lastScrollY = window.scrollY;
 
-        
-        
-        // ======================================== 크롤링 ========================================
-        $(function(){
-            $("#btn").on('click', retrieve);
+        $(function () {
+            // 로그인/회원가입 액션
+            $(".log-in").on('click', function () {
+                window.location.href = "/user/login";
+            });
+            $(".sign-up").on('click', function () {
+                window.location.href = "/user/join";
+            });
+            $(".log-out").on('click', function () {
+                window.location.href = "/user/logout";
+            });
+            $(".my-page").on('click', function () {
+                // window.location.href = "/user/mypage";
+            });
+            // 스크롤 액션 
+            $(document).on('scroll', () => {
+                console.log(lastScrollY);
+                if (window.scrollY > lastScrollY) { // 아래로 스크롤
+                    console.log("아래로 스크롤");
+                    $('.global-navigation-bar').addClass('hide');
+                } else { // 위로 스크롤
+                    console.log("위로 스크롤");
+                    $('.global-navigation-bar').removeClass('hide');
+                }
+                lastScrollY = window.scrollY;
+            });
+
         });
+
+        $(function () {
+            // global navigation bar 
+            $(".log-in").on('click', function () {
+                window.location.href = "/user/login";
+            });
+            $(".sign-up").on('click', function () {
+                window.location.href = "/user/join";
+            });
+
+            // subscription plan 
+            $("#button-monthly").on('click', function () { generateOrder('monthly'); });
+            $("#button-yearly").on('click', function () { generateOrder('yearly'); });
+        });
+
+        function scrollToOrder() {
+            // payment-panel 영역으로 스크롤 
+            let orderInfo = document.querySelector('.payment-form').offsetTop;
+            window.scrollTo({ left: 0, top: orderInfo, behavior: 'smooth' });
+        }
+
+        function generateOrder(planType) {
+            if (planType == 'monthly') {
+                console.log(planType);
+                $(".payment-button").text('USD 50.00 결제');
+                $(".subscription-plan").text('Monthly Subscription');
+                $(".item-price").text('$50.00');
+                $(".total-price").text('$50.00');
+            } else {
+                console.log(planType);
+                $(".payment-button").text('USD 48.00 결제');
+                $(".subscription-plan").text('Yearly Subscription');
+                $(".item-price").text('$48.00');
+                $(".total-price").text('$48.00');
+            }
+
+            scrollToOrder();
+        }
         
-        function retrieve() {
+        
+        // ======================================== 페이지 로드 ========================================
+        // 기본으로 보여줄 테이블 : 해상 스케줄
+        $(function(){
+            // retrieveTerminal(); // css하는동안 임시로 먼저 로드되게
+            $("#btn").on('click', retrieveVessel);
+            $("#containerSchBtn").on('click', retrieveTerminal);
+            $("#vesselSchBtn").on('click', function(){
+                // 출발항, 도착항 입력하는 div 보이게 만들기
+                document.getElementById("inputPort").style.display = 'block';
+                // 테이블 비우기
+                clearTable();
+            });
+        });
+
+        // 테이블 내용 지우는 함수
+        function clearTable() {
+            // tbody와 thead를 모두 선택하여 삭제
+            $('#myTable > thead, #myTable > tbody').empty();
+        }
+        
+        
+        // 해상 스케줄 데이터 불러오는 함수
+        function retrieveVessel() {          
             
-            // 로딩창 띄우기
-            showLoading();
-            
+            clearTable();
+
             let dep_port = $("#dep_port").val();
             let arr_port = $("#arr_port").val();
 
@@ -68,10 +305,8 @@
                 method: "GET",
                 data : sendData,
                 success : function(response) {
-                 
-                    hideLoading(); // 로딩창 숨기기
                     
-                    add(response); // AJAX 호출이 성공한 후에 add() 함수 호출
+                    addVessel(response); // AJAX 호출이 성공한 후에 add() 함수 호출
                 },
                 error: function(xhr, status, error) {
                     console.error("AJAX request failed:", status, error);
@@ -79,8 +314,16 @@
             });
         }
 
-        function add(response) {
+        // 불러온 해상 스케줄 데이터 테이블에 뿌리는 함수
+        function addVessel(response) {
             console.log(response);
+
+            // thead 넣기
+            var vesselThead = '<tr><th class="col1-2">Carrier</th><th class="col2-2">Name/Vessel</th>' + 
+            '<th class="col3-2">Origin</th><th class="col4-2">Destination</th>'+
+            '<th class="col5-2">T/Time</th><th class="col6-2">T/S</th><th class="col7-2">O/F(20\'/40\')</th></tr>'
+            $("#tableHead").append(vesselThead);
+
 
             // 받은 데이터를 테이블에 넣기
             // 기존의 tbody 선택
@@ -93,62 +336,160 @@
                     
                 // 각 셀(td)에 데이터 추가
                 // tr 하나당 td 7개 필요
-                row.append('<td><div> <img src="' + item['logo_img'] + '""> </div></td>');
+                row.append('<td class="vesselTd col1-2"><div> <img src="' + item['logo_img'] + '""> </div></td>');
                 // row.append('<td><div>' + logo + '</div></td>');
                 // 2번째 td - div - p,span (선사명, 선박명)
-                row.append('<td><div><p>' + item['company_name'] + '</p><span>' + item['vessel_name'] + '</span></div></td>');
+                row.append('<td class="vesselTd col2-2"><div><p>' + item['company_name'] + '</p><p class="blue">' + item['vessel_name'] + '</p></div></td>');
                 // 3번째 td - div - p,p (출발항, 출발일)
-                row.append('<td><div><p>' + item['origin'] + '</p><p>' + item['dep_time'] + '</p></div></td>');
+                row.append('<td class="vesselTd col3-2"><div><p>' + item['origin'] + '</p><p class="gray">' + item['dep_time'] + '</p></div></td>');
                 // 4번째 td - div - p,p (도착항, 도착일)
-                row.append('<td><div><p>' + item['destination'] + '</p><p>' + item['arr_time'] + '</p></div></td>');
+                row.append('<td class="vesselTd col4-2"><div><p>' + item['destination'] + '</p><p class="gray">' + item['arr_time'] + '</p></div></td>');
                 // 5번째 td - div (소요시간)
-                row.append('<td><div>' + item['duration'] + '</div></td>');
+                row.append('<td class="vesselTd col5-2"><div>' + item['duration'] + '</div></td>');
                 // 6번째 td - div (환적여부)
-                row.append('<td><div>' + item['trans'] + '</div></td>');
+                row.append('<td class="vesselTd col6-2"><div>' + item['trans'] + '</div></td>');
                 // 7번째 td - div - span,span (운임비 20',40')
-                row.append('<td><div><span>' + item['of20'] + '</span><span>' + item['of40'] + '</span></div></td>');
+                row.append('<td class="vesselTd col7-2"><div class="blue"><div>' + item['of20'] + '</div><div>' + item['of40'] + '</div></div></td>');
 
                 // 행을 tbody에 추가
                 tbody.append(row);
             });
         }
+
+
+        // 컨테이너 터미널 스케줄 데이터 불러오는 함수
+        function retrieveTerminal() {
+
+            // 테이블 내용 비우기
+            clearTable();
+
+            // 출발항, 도착항 입력하는 div 안보이게 만들기
+            document.getElementById("inputPort").style.display = 'none';
+
+            $.ajax({
+                url : "/get_terminalSchedule",
+                method: "GET",
+                success : function(response) {
+                    addTerminal(response); // AJAX 호출이 성공한 후에 add() 함수 호출
+                },
+                error: function(xhr, status, error) {
+                    console.error("AJAX request failed:", status, error);
+                }
+            });
+        }
+
+        // 불러온 터미널 스케줄 데이터 테이블에 뿌리는 함수
+        function addTerminal(response) {
+            console.log(response);
+
+             // thead 넣기
+             var terminalThead = '<tr><th class="col1">Port</th><th class="col2">Terminal</th>'+
+                '<th class="col3">Vessel Name</th><th class="col4">터미널 항차</th>' +
+                '<th class="col5">Carrier</th><th class="col6">Cut-off(closed)</th>' +
+                '<th class="col7">Arrival(ETA)</th><th class="col8">Departure(ETD)</th></tr>'
+            $("#tableHead").append(terminalThead);
+
+            // 받은 데이터를 테이블에 넣기
+            // 기존의 tbody 선택
+            let tbody = $("#tableBody");
+
+            // response에 대한 반복문
+            $.each(response, function(index, item) {
+                // 행(tr) 생성
+                var row = $("<tr>");
+                    
+                // 각 셀(td)에 데이터 추가
+                // tr 하나당 td 8개 필요
+                // 1번째 td - Port
+                row.append('<td class="terminalTd col1"><div>' + item['Port'] + '</div></td>');
+                // 2번째 td - Terminal
+                row.append('<td class="terminalTd col2"><div>' + item['Terminal'] + '</div></td>');
+                // 3번째 td - Vessel Name
+                row.append('<td class="terminalTd col3"><div>' + item['Vessel Name'] + '</div></td>');
+                // 4번째 td - Vessel Call
+                row.append('<td class="terminalTd col4"><div>' + item['Vessel Call'] + '</div></td>');
+                // 5번째 td - Carrier
+                row.append('<td class="terminalTd col5"><div>' + item['Carrier'] + '</div></td>');
+                // 6번째 td - Arrival
+                row.append('<td class="terminalTd col6"><div>' + item['Arrival'] + '</div></td>');
+                // 7번째 td - Departure
+                row.append('<td class="terminalTd col7"><div>' + item['Departure'] + '</div></td>');
+                // 8번째 td - Cut-off
+                row.append('<td class="terminalTd col8"><div>' + item['Cut-off'] + '</div></td>');
+
+                // 행을 tbody에 추가
+                tbody.append(row);
+            });
+        }
+
+
+        // 클릭한 버튼 스타일 바꾸는 함수
+        function changeBtnStyle(button) {
+            var clickedButton = document.getElementById("vesselSchBtn");
+            var notclickedButton = document.getElementById("containerSchBtn");
+
+            // 클릭된 버튼의 클래스와 다른 버튼의 클래스를 교환
+            var tempClass = clickedButton.className;
+            clickedButton.className = notclickedButton.className;
+            notclickedButton.className = tempClass;
+        }
     </script>
 </head>
 <body>
-    <h1>해상 스케줄</h1>
-    <div>
-        <div>Point to Point</div>
-        <div>
-            <span>출발지</span>
-            <input autocomplete="off" type="text" id="dep_port" placeholder="출발항을 입력해주세요">
+    <!-- 네비게이션 바 (메뉴 바) -->
+    <div class="global-navigation-bar">
+        <div class="navigation-menu">
+            <div class="menu"><a th:href="@{/}">Home</a></div>
+            <div class="menu"><a th:href="@{/portStatus}">Port Status</a></div>
+            <div class="menu"><a th:href="@{/vesselSchedule}">Vessel Schedule</a></div>
+            <div class="menu"><a th:href="@{/marineNews}">Marine News</a></div>
+            <div class="menu"><a th:href="@{/subscription}">Subscription</a></div>
         </div>
-        <div>
-            <span>도착지</span>
-            <input autocomplete="off" type="text" id="arr_port" placeholder="도착항을 입력해주세요">
-        </div>
-        <div>
-            <input type="button" value="조회" id="btn">
+        <div class="user-menu">
+            <button class="log-in" sec:authorize="isAnonymous()">Log in</button>
+            <button class="sign-up" sec:authorize="isAnonymous()">Sign up</button>
+            <button class="log-out" sec:authorize="isAuthenticated()">Log out</button>
+            <button class="my-page" sec:authorize="isAuthenticated()">My page</button>
         </div>
     </div>
-    <div class="schedule-container">
-        <table>
-            <thead>
-                <tr> <!-- 각 행 -->
-                    <th>Carrier</th> <!-- 각 열의 제목 -->
-                    <th>Name/Vessel</th>
-                    <th>Origin</th>
-                    <th>Destination</th>
-                    <th>T/Time</th>
-                    <th>T/S</th>
-                    <th>O/F(20'/40')</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody"> <!-- 표의 본문 부분 -->
-            </tbody>
-        </table>
+    
+    <div class="center">
+    <h1 id="pageTitle">스케줄 조회</h1>
+
+
+    <div id="wholeWrapper">
+        <!-- 테이블 바꾸는 버튼 -->
+        <div id="changeTableBtn"> 
+            <input type="button" value="해상 스케줄" id="vesselSchBtn" class="btns clicked" onclick="changeBtnStyle(this)">
+            <input type="button" value="터미널 스케줄" id="containerSchBtn" class="btns notclicked" onclick="changeBtnStyle(this)">
+        </div>
+        
+        
+        <!-- 출발항, 도착항 입력 부분 -->
+        <div id="inputPort">
+            <div id="search">
+                <div class="medium">Point to Point</div>
+                <span>출발지</span>
+                <input autocomplete="off" type="text" id="dep_port" placeholder="출발항을 입력해주세요">
+                <div>
+                    <span>도착지</span>
+                    <input autocomplete="off" type="text" id="arr_port" placeholder="도착항을 입력해주세요">
+                </div>
+            </div>
+            
+            <div id="searchBtn">
+                <input type="button" value="조회" id="btn" class="btns">
+            </div>
+        </div>
+        
+        
+            <div class="schedule-container"> <!-- 데이터 로드할 표 부분 -->
+                <table id="myTable">
+                    <thead id="tableHead"></thead> <!-- 표의 컬럼명 부분 -->
+                    <tbody id="tableBody"></tbody> <!-- 표의 본문 부분 -->
+                </table>
+            </div>
+        </div>
     </div>
-    <div id="loading" style="display: none;">
-        <div class="loader"></div>
-    </div>
-</body>
-</html>
+    </body>
+    </html>
