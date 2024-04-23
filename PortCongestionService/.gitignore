@@ -39,3 +39,5 @@ application.properties
 excel/
 saveExcel.py
 img/
+main.py
+scheduleCrawler/
