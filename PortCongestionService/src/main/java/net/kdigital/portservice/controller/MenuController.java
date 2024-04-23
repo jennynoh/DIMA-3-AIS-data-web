@@ -32,5 +32,10 @@ public class MenuController {
 	public String weather() {
 		return "weather";
 	}
+	
+	@GetMapping("/chat")
+	public String chat() {
+		return "portinfo/chatTest";
+	}
 
 }

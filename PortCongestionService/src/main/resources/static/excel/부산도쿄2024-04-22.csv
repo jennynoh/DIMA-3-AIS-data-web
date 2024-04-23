@@ -1,0 +1,21 @@
+logo_img,company_name,vessel_name,origin,destination,dep_time,arr_time,duration,trans,of20,of40
+https://www.tradlinx.com/images/carrier/shipping_com_PCS.gif,DongYoung,HEUNG-A YOUNG JHAY0351S,Busan,Tokyo,2024.04.22 (Mon),2024.04.24 (Wed),2 days,Direct,$255.00,$510.00
+https://www.tradlinx.com/images/carrier/shipping_com_CKL.gif,CK Line,SUNNY FREESIA 2408E,Busan,Tokyo,2024.04.22 (Mon),2024.04.24 (Wed),2 days,Direct,$336.00,$671.00
+https://www.tradlinx.com/images/carrier/shipping_com_TYS.gif,TaiYoung,SUNNY FREESIA 2409E,Busan,Tokyo,2024.04.22 (Mon),2024.04.23 (Tue),1 days,Direct,$265.00,$530.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCL.gif,Pancon,SUNNY FREESIA 2408E,Busan,Tokyo,2024.04.22 (Mon),2024.04.24 (Wed),2 days,Direct,$285.00,$570.00
+https://www.tradlinx.com/images/carrier/shipping_com_HAS.gif,HEUNG-A,DONGJIN VENUS 0225S,Busan,Tokyo,2024.04.23 (Tue),2024.04.26 (Fri),3 days,Direct,$500.00,"$1,000.00"
+https://www.tradlinx.com/images/carrier/shipping_com_DJS.gif,DongJin,DONGJIN VENUS 0225S,Busan,Tokyo,2024.04.23 (Tue),2024.04.26 (Fri),3 days,Direct,$335.00,$670.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCS.gif,DongYoung,DONGJIN VENUS JDJV0225S,Busan,Tokyo,2024.04.23 (Tue),2024.04.26 (Fri),3 days,Direct,$255.00,$510.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,PANCON SUCCESS 2417E,Busan,Tokyo,2024.04.23 (Tue),2024.04.25 (Thu),2 days,Direct,$335.00,$670.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,SUNNY FREESIA 2408E,Busan,Tokyo,2024.04.23 (Tue),2024.04.25 (Thu),2 days,Direct,$335.00,$670.00
+https://www.tradlinx.com/images/carrier/shipping_com_CKL.gif,CK Line,PANCON SUCCESS 2417E,Busan,Tokyo,2024.04.23 (Tue),2024.04.25 (Thu),2 days,Direct,$336.00,$671.00
+https://www.tradlinx.com/images/carrier/shipping_com_CKL.gif,CK Line,BAL STAR 2411E,Busan,Tokyo,2024.04.23 (Tue),2024.04.25 (Thu),2 days,Direct,$336.00,$671.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCL.gif,Pancon,PANCON SUCCESS 2417E,Busan,Tokyo,2024.04.23 (Tue),2024.04.25 (Thu),2 days,Direct,$285.00,$570.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCL.gif,Pancon,BAL STAR 2411E,Busan,Tokyo,2024.04.23 (Tue),2024.04.25 (Thu),2 days,Direct,$285.00,$570.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,BAL STAR 2411E,Busan,Tokyo,2024.04.24 (Wed),2024.04.26 (Fri),2 days,Direct,$335.00,$670.00
+https://www.tradlinx.com/images/carrier/shipping_com_SKR.gif,Sinokor,STAR SKIPPER 2417E,Busan,Tokyo,2024.04.24 (Wed),2024.04.26 (Fri),2 days,Direct,$255.00,$510.00
+https://www.tradlinx.com/images/carrier/shipping_com_NSS.gif,NamSung,STAR SKIPPER NSSK2417E,Busan,Tokyo,2024.04.24 (Wed),2024.04.26 (Fri),2 days,Direct,$305.00,$610.00
+https://www.tradlinx.com/images/carrier/shipping_com_PAN.gif,Pan Ocean,STAR SKIPPER 2417E,Busan,Tokyo,2024.04.24 (Wed),2024.04.26 (Fri),2 days,Direct,$285.00,$570.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,TY INCHEON 2411E,Busan,Tokyo,2024.04.25 (Thu),2024.04.27 (Sat),2 days,Direct,$335.00,$670.00
+https://www.tradlinx.com/images/carrier/shipping_com_CKL.gif,CK Line,TY INCHEON 2411E,Busan,Tokyo,2024.04.25 (Thu),2024.04.27 (Sat),2 days,Direct,$336.00,$671.00
+https://www.tradlinx.com/images/carrier/shipping_com_ONE.gif,ONE,CALIDRIS 0128N,Busan,Tokyo,2024.04.25 (Thu),2024.04.30 (Tue),5 days,Direct,$183.00,$366.00

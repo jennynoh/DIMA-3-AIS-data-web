@@ -152,7 +152,7 @@ def save_excel(dep, arr, list):
     df = pd.DataFrame(list)
     # 파일명 출발항도착항날짜.csv로 저장
     # 경로 각자 알맞게 바꿔줘야 함
-    save_path = 'C:/PR/Dima project/DIMA-3-AIS-data-web/PortCongestionService/src/main/resources/static/excel/' + dep + arr + formatted_date +'.csv'
+    save_path = '/Users/jaeeunjennynoh/Desktop/DIMA_prj/DIMA-3-AIS-data-web/PortCongestionService/src/main/resources/static/excel/' + dep + arr + formatted_date +'.csv'
     df.to_csv(save_path, index=False)
     print("저장완료")
 

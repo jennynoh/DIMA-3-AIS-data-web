@@ -1,27 +1,25 @@
 package net.kdigital.portservice.config;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.socket.config.annotation.EnableWebSocket;
-import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
-import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
-
-import lombok.RequiredArgsConstructor;
-import net.kdigital.portservice.handler.WebSocketHandler;
+import org.springframework.messaging.simp.config.MessageBrokerRegistry;
+import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
+import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
+import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
 @Configuration
-@EnableWebSocket
-@RequiredArgsConstructor
-public class WebSocketConfig implements WebSocketConfigurer {
-	
-	private final WebSocketHandler webSocketHandler;
+@EnableWebSocketMessageBroker
+public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 	
 	@Override
-	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-		// endpoint 설정: /api/v1/chat/{postId}
-		// ws://localhost:9999/ws/chat으로 요청이 들어오면 websocket 통신을 진행한다.
-		// setAllowedOrigins("*")는 모든 ip에서 접속 가능하도록 해
-		registry.addHandler(webSocketHandler, "/ws/chat").setAllowedOrigins("*");
-
+	public void registerStompEndpoints(StompEndpointRegistry registry) {
+		registry.addEndpoint("/ws").setAllowedOrigins("*").withSockJS();
+		// 주소: ws://localhost:9999/ws 
+	}
+	
+	@Override
+	public void configureMessageBroker(MessageBrokerRegistry registry) {
+		registry.enableSimpleBroker("/sub"); // 해당 주소를 구독하고 있는 클라이언트들에게 메세지 전달 
+		registry.setApplicationDestinationPrefixes("/pub");  // 클라이언트에서 보낸 메세지를 받을 prefix
 	}
 
 }

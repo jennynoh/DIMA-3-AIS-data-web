@@ -1,0 +1,21 @@
+logo_img,company_name,vessel_name,origin,destination,dep_time,arr_time,duration,trans,of20,of40
+https://www.tradlinx.com/images/carrier/shipping_com_CKL.gif,CK Line,SKY HOPE 2408S,Busan,Hong Kong,2024.04.22 (Mon),2024.04.25 (Thu),3 days,Direct,$260.00,$520.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,SKY VICTORIA 2412S,Busan,Hong Kong,2024.04.23 (Tue),2024.04.27 (Sat),4 days,Direct,"$1,001.00",$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,KMTC CHENNAI 2404S,Busan,Hong Kong,2024.04.23 (Tue),2024.04.27 (Sat),4 days,Direct,"$1,001.00",$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_SKR.gif,Sinokor,KMTC CHENNAI 2404S,Busan,Hong Kong,2024.04.23 (Tue),2024.04.27 (Sat),4 days,Direct,$111.00,$222.00
+https://www.tradlinx.com/images/carrier/shipping_com_SKR.gif,Sinokor,HE SHENG 2404S,Busan,Hong Kong,2024.04.23 (Tue),2024.04.28 (Sun),5 days,Direct,$111.00,$222.00
+https://www.tradlinx.com/images/carrier/shipping_com_HAS.gif,HEUNG-A,KMTC CHENNAI 2404S,Busan,Hong Kong,2024.04.23 (Tue),2024.04.27 (Sat),4 days,Direct,$400.00,$700.00
+https://www.tradlinx.com/images/carrier/shipping_com_HAS.gif,HEUNG-A,HE SHENG 2404S,Busan,Hong Kong,2024.04.23 (Tue),2024.04.28 (Sun),5 days,Direct,$400.00,$700.00
+https://www.tradlinx.com/images/carrier/shipping_com_NSS.gif,NamSung,SKY VICTORIA JSVR2412S,Busan,Hong Kong,2024.04.23 (Tue),2024.04.27 (Sat),4 days,Direct,$120.00,$240.00
+https://www.tradlinx.com/images/carrier/shipping_com_ONE.gif,ONE,COSCO FELIXSTOWE 187S,Busan,Hong Kong,2024.04.23 (Tue),2024.05.01 (Wed),8 days,Direct,$77.00,$154.00
+https://www.tradlinx.com/images/carrier/shipping_com_DJS.gif,DongJin,STARSHIP URSA 2405S,Busan,Hong Kong,2024.04.24 (Wed),2024.04.27 (Sat),3 days,Direct,$101.00,$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,STARSHIP URSA 2405S,Busan,Hong Kong,2024.04.24 (Wed),2024.04.27 (Sat),3 days,Direct,"$1,001.00",$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,KMTC CHENNAI 2404S,Busan,Hong Kong,2024.04.24 (Wed),2024.04.27 (Sat),3 days,Direct,"$1,001.00",$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_SKR.gif,Sinokor,KMTC CHENNAI 2404S,Busan,Hong Kong,2024.04.24 (Wed),2024.04.27 (Sat),3 days,Direct,$111.00,$222.00
+https://www.tradlinx.com/images/carrier/shipping_com_SKR.gif,Sinokor,SAWASDEE PACIFIC 2405S,Busan,Hong Kong,2024.04.24 (Wed),2024.05.14 (Tue),20 days,Direct,$111.00,$222.00
+https://www.tradlinx.com/images/carrier/shipping_com_HAS.gif,HEUNG-A,KMTC CHENNAI 2404S,Busan,Hong Kong,2024.04.24 (Wed),2024.04.27 (Sat),3 days,Direct,$400.00,$700.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCS.gif,DongYoung,STARSHIP URSA NSSU2405S,Busan,Hong Kong,2024.04.24 (Wed),2024.04.27 (Sat),3 days,Direct,$101.00,$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_CKL.gif,CK Line,STARSHIP URSA 2405S,Busan,Hong Kong,2024.04.24 (Wed),2024.04.27 (Sat),3 days,Direct,$260.00,$520.00
+https://www.tradlinx.com/images/carrier/shipping_com_NSS.gif,NamSung,STARSHIP URSA NSSU2405S,Busan,Hong Kong,2024.04.24 (Wed),2024.04.27 (Sat),3 days,Direct,$120.00,$240.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCL.gif,Pancon,STARSHIP URSA 2405S,Busan,Hong Kong,2024.04.24 (Wed),2024.04.27 (Sat),3 days,Direct,$101.00,$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_SML.gif,SM Line,STARSHIP URSA 2405S,Busan,Hong Kong,2024.04.24 (Wed),2024.04.27 (Sat),3 days,Direct,$200.00,$400.00

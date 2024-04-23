@@ -10,6 +10,10 @@
     <link rel="stylesheet" th:href="@{/css/liveChat.css}" />
     <link rel="stylesheet" th:href="@{/css/glv.css}" />
     <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
+    <!-- 웹소켓 STOMP 프로토콜 script -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client/dist/sockjs.min.js"></script>
+    <script th:src="@{/script/stomp.min.js}"></script>
+    <script th:src="@{/script/liveChat.js}" defer></script>
     <script>
         const nav = document.querySelector('.global-navigation-bar');
         let lastScrollY = window.scrollY;
@@ -45,62 +49,62 @@
 
         // 본문 동작
         $(function () {
-            // 웹소켓 연결  
-            $(document).ready(function () {
-                let portCD = $("#portCD").val();
-                var wsUrl = "ws://localhost:9999/ws/chat"; // 웹소켓 서버 url
-                // var wsUrl = "ws://localhost:9999/ws/chat/" + portCD; // 웹소켓 서버 url
-                var ws = new WebSocket(wsUrl);  // 웹소켓 객체 생성 
+            // // 웹소켓 연결  
+            // $(document).ready(function () {
+            //     let portCD = $("#portCD").val();
+            //     var wsUrl = "ws://localhost:9999/ws/chat"; // 웹소켓 서버 url
+            //     // var wsUrl = "ws://localhost:9999/ws/chat/" + portCD; // 웹소켓 서버 url
+            //     var ws = new WebSocket(wsUrl);  // 웹소켓 객체 생성 
 
-                ws.onopen = function () {
-                    console.log("Connected to" + wsUrl);
-                    // 웹소켓 연결 시 수행할 동작 
+            //     ws.onopen = function () {
+            //         console.log("Connected to" + wsUrl);
+            //         // 웹소켓 연결 시 수행할 동작 
 
-                    // 웹소켓 보내기
-                    $("#send-button").on('click', function () {
-                        // button이 enabled 되어있으면..
-                        if (!$(this).prop('disabled')) {
-                            let message = $("#message-field").val();
-                            console.log("보내는 메세지: " + message);
-                            // websocket 메세지 보내기
-                            let sendMessage = {
-                                "messageType": "TALK",
-                                "roomId": 1,
-                                "senderId": 1,
-                                "message": message
-                            };
-                            ws.send(JSON.stringify(sendMessage));
+            //         // 웹소켓 보내기
+            //         $("#send-button").on('click', function () {
+            //             // button이 enabled 되어있으면..
+            //             if (!$(this).prop('disabled')) {
+            //                 let message = $("#message-field").val();
+            //                 console.log("보내는 메세지: " + message);
+            //                 // websocket 메세지 보내기
+            //                 let sendMessage = {
+            //                     "messageType": "TALK",
+            //                     "roomId": 1,
+            //                     "senderId": 1,
+            //                     "message": message
+            //                 };
+            //                 ws.send(JSON.stringify(sendMessage));
 
-                            // 메세지 입력창 초기화
-                            $("#message-field").val(null);
-                        }
-                    })
-                };
+            //                 // 메세지 입력창 초기화
+            //                 $("#message-field").val(null);
+            //             }
+            //         })
+            //     };
 
-                ws.onmessage = function (event) {
-                    // 서버로부터 메세지를 받았을 때 수행할 동작 
-                    console.log("Received message: " + event.data);
-                };
+            //     ws.onmessage = function (event) {
+            //         // 서버로부터 메세지를 받았을 때 수행할 동작 
+            //         console.log("Received message: " + event.data);
+            //     };
 
-                ws.onclose = function () {
-                    // 웹소켓 연결이 닫혔을 떄 수행할 동작 
-                    console.log("Disconnected from " + wsUrl);
-                };
+            //     ws.onclose = function () {
+            //         // 웹소켓 연결이 닫혔을 떄 수행할 동작 
+            //         console.log("Disconnected from " + wsUrl);
+            //     };
 
-                ws.onerror = function (error) {
-                    // 오류 발생 시 수행할 동작
-                    console.log("WebSocket error: " + error);
-                };
+            //     ws.onerror = function (error) {
+            //         // 오류 발생 시 수행할 동작
+            //         console.log("WebSocket error: " + error);
+            //     };
 
-                // 사용자가 웹페이지를 떠날 때 웹소켓 연결 종료 
-                function closeWebSocket() {
-                    if (ws) {
-                        ws.close();
-                    }
-                }
-                $(window).on('beforeunload', closeWebSocket);
+            //     // 사용자가 웹페이지를 떠날 때 웹소켓 연결 종료 
+            //     function closeWebSocket() {
+            //         if (ws) {
+            //             ws.close();
+            //         }
+            //     }
+            //     $(window).on('beforeunload', closeWebSocket);
 
-            });
+            // });
 
             // 채팅 메세지 입력
             $("#message-field").on('keyup', function () {
@@ -112,6 +116,13 @@
                     $("#img-change-to").attr('src', '/img/paper_airplane_gray.svg');
                     $("#send-button").prop('disabled', true);
                 }
+            });
+
+            // toggle 동작 - 안먹힘 
+            $(".slider").on('click', function () {
+                $(this).siblings("input:checkbox").prop('checked', function (i, val) {
+                    return !val;
+                });
             });
 
 
@@ -139,7 +150,8 @@
     </div>
 
     <!-- 본문 -->
-    <input type="hidden" id="portCD" value="SGSIN">
+    <input type="hidden" id="portId" value="SGSIN">
+    <input type="hidden" id="user" value="채팅유저">
     <!-- 채팅방 -->
     <div class="chat-window">
         <div class="chat-header">
@@ -149,7 +161,7 @@
             </div>
             <div class="toggle">
                 <label class="switch">
-                    <input type="checkbox">
+                    <input type="checkbox" checked>
                     <span class="slider round"></span>
                 </label>
             </div>
