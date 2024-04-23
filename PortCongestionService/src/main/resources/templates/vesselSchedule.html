@@ -15,10 +15,12 @@
     <title>Document</title>
     <style>
 
+        /* 전체 글씨체 */
         body {
             font-family: var(--font-rubik);
         }
 
+        /* 버튼 */
         .btns.clicked, #btn {
             background-color: #03a9f4; /* 초록색 배경 */
             color: white; /* 흰색 텍스트 */
@@ -53,6 +55,7 @@
             box-shadow: 0 1px 2px gray; /* 그림자 효과 */
         }
         
+        /* 페이지 제목 */
         #pageTitle {
             margin-top: 100px;
             margin-bottom: 20px;
@@ -97,6 +100,8 @@
             margin-bottom: 20px;
         }        
 
+
+        /* 테이블 */
         #myTable {
             border-top: 3px solid black;
         }
@@ -197,6 +202,39 @@
             width: 800px;
             margin: 20px auto;
         }
+
+
+        /* footer */
+        .footer {
+            background-color: #152b46;
+            color: white;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            font-size: x-small;
+        }
+
+        .companyInfo {
+            display: inline-block;
+            vertical-align: top;
+            margin: 20px 30px 50px 30px;
+            /* bottom: 70px; */
+            /* height: 264px; */
+        }
+
+        .menuInfo {
+            display: inline-block;
+        }
+
+        .menuList {
+            margin: 20px auto 10px 30px;
+        }
+
+        .contact {
+            display: inline-block;
+            margin: auto auto 20px 30px;
+        }
+        
 
     </style>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -492,6 +530,25 @@
                     <thead id="tableHead"></thead> <!-- 표의 컬럼명 부분 -->
                     <tbody id="tableBody"></tbody> <!-- 표의 본문 부분 -->
                 </table>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="companyInfo">
+            <p>(주)밸류링2유</p>
+            <p>(06164) 서울시 강남구 영동대로 511 (삼성동)</p>
+        </div>
+        <div class="menuInfo">
+            <div class="menuList">
+                <span>User Manual ㅣ </span>
+                <span>서비스 이용약관 ㅣ </span>
+                <span>개인정보처리방침 ㅣ </span>
+                <span>About Us</span>
+            </div>
+            <div class="contact">
+                <p>대표이사 : 노재은</p>
+                <p>Mail : jae.eunjenny.noh@gmail.com</p>
+                <p>상담가능시간 : 오전 10시 ~ 오후 6시 (점심시간 : 오후 1시 ~ 2시) 토요일 및 공휴일 휴무</p>
             </div>
         </div>
     </div>
