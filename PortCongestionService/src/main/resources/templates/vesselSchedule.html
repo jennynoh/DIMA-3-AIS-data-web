@@ -71,9 +71,22 @@
             
         }
 
+        /* 테이블 바꾸는 버튼 */
         #changeTableBtn {
             margin-bottom: 15px;
             margin-top: 20px;
+        }
+
+        /* 검색창 */
+        #inputPort {
+            width: 410px;
+            border: 1px solid #CCC;
+            /* #008bdc #4ab2ee */
+            /* border: none; */
+            /*box-shadow: 0 1px 2px #CCC; */
+            padding: 10px 20px 10px 20px;
+            padding-left: 20px;
+            padding-bottom: 10px;
         }
 
         #search, #searchBtn {
@@ -81,27 +94,36 @@
             padding-bottom: 0;
         }
 
-        #search > div {
-            margin-bottom: 8px;
+        #search {
+            width: 365px;
+        }
+        
+        .inlineBlock {
+            display: inline-block;
+            width: 180px;
         }
 
-        #btn {
-            padding: 12px 8px 12px 8px;
+        input {
+            border: 1px solid #CCC;
+        }
+
+        #search > div {
+            margin-bottom: 8px;
         }
         
         #searchBtn{
             position: relative; /* 요소를 상대적 위치로 배치 */
-            top: -9.5px; /* 추가적으로 위로 9.5px만큼 이동 */
-
+            /* top: -2.5px; 추가적으로 위로 9.5px만큼 이동 */
         }
+
         
+
+        /* 테이블 */
         .schedule-container {
             text-align: center;
             margin-bottom: 20px;
         }        
 
-
-        /* 테이블 */
         #myTable {
             border-top: 3px solid black;
         }
@@ -203,6 +225,24 @@
             margin: 20px auto;
             flex: 1;
         }
+
+        /* 셀렉트바 */
+        #selectBar {
+            width: 365px;
+            margin: 20px auto 10px 27px;
+        }
+
+
+        #portSelect {
+            width: 93px;
+            margin-right: 20px;
+            margin-left: 3px;
+        }
+
+        #terminalSelect {
+            width: 140px;
+            margin-left: 3px;
+        }
         
 
     </style>
@@ -286,12 +326,28 @@
         $(function(){
             // retrieveTerminal(); // css하는동안 임시로 먼저 로드되게
             $("#btn").on('click', retrieveVessel);
-            $("#containerSchBtn").on('click', retrieveTerminal);
+            $("#containerSchBtn").on('click', function() {
+                // 테이블 내용 비우는 함수 호출
+                clearTable();
+                
+                // selectBar도 삭제
+                $('#selectBar').empty();
+                
+                // 선택 메뉴 넣는 함수 호출
+                putSelectBar();
+
+                // 터미널 스케줄 조회 불러오기
+                retrieveTerminal(0);
+            });
             $("#vesselSchBtn").on('click', function(){
                 // 출발항, 도착항 입력하는 div 보이게 만들기
                 document.getElementById("inputPort").style.display = 'block';
                 // 테이블 비우기
                 clearTable();
+                
+                // selectBar도 삭제
+                $('#selectBar').empty();
+
             });
         });
 
@@ -299,6 +355,7 @@
         function clearTable() {
             // tbody와 thead를 모두 선택하여 삭제
             $('#myTable > thead, #myTable > tbody').empty();
+            
         }
         
         
@@ -369,19 +426,20 @@
 
 
         // 컨테이너 터미널 스케줄 데이터 불러오는 함수
-        function retrieveTerminal() {
-
-            // 테이블 내용 비우기
-            clearTable();
-
+        function retrieveTerminal(num) {
+            
             // 출발항, 도착항 입력하는 div 안보이게 만들기
             document.getElementById("inputPort").style.display = 'none';
+            
 
             $.ajax({
                 url : "/get_terminalSchedule",
                 method: "GET",
-                success : function(response) {
-                    addTerminal(response); // AJAX 호출이 성공한 후에 add() 함수 호출
+                success : function(response) { // AJAX 호출이 성공한 후에 실행할 함수
+
+                    // 가져온 데이터를 테이블에 뿌리는 함수 호출
+                    addTerminal(response, num);
+
                 },
                 error: function(xhr, status, error) {
                     console.error("AJAX request failed:", status, error);
@@ -389,9 +447,22 @@
             });
         }
 
-        // 불러온 터미널 스케줄 데이터 테이블에 뿌리는 함수
-        function addTerminal(response) {
-            console.log(response);
+        
+        // 불러온 터미널 스케줄 데이터 필터링하는 함수
+        function addTerminal(response, num) {
+
+            // 선택 메뉴 옵션값 가져오기
+            var selectedPort = document.getElementById('portSelect').options[document.getElementById('portSelect').selectedIndex].value; // 1번째 메뉴 옵션
+            var selectedTerminal = document.getElementById('terminalSelect').options[document.getElementById('terminalSelect').selectedIndex].value; // 2번째 메뉴 옵션
+
+            // num이 1이면(port를 다시 선택해서 retrieveTerminal을 선택했으면) terminal 선택옵션 'All로' 초기화
+            if(num===1) {
+                selectedTerminal = 'All';
+            }
+
+            console.log(response, selectedPort, selectedTerminal);
+
+            clearTable();
 
              // thead 넣기
              var terminalThead = '<tr><th class="col1">Port</th><th class="col2">Terminal</th>'+
@@ -400,37 +471,132 @@
                 '<th class="col7">Arrival(ETA)</th><th class="col8">Departure(ETD)</th></tr>'
             $("#tableHead").append(terminalThead);
 
-            // 받은 데이터를 테이블에 넣기
-            // 기존의 tbody 선택
-            let tbody = $("#tableBody");
 
             // response에 대한 반복문
             $.each(response, function(index, item) {
-                // 행(tr) 생성
-                var row = $("<tr>");
-                    
-                // 각 셀(td)에 데이터 추가
-                // tr 하나당 td 8개 필요
-                // 1번째 td - Port
-                row.append('<td class="terminalTd col1"><div>' + item['Port'] + '</div></td>');
-                // 2번째 td - Terminal
-                row.append('<td class="terminalTd col2"><div>' + item['Terminal'] + '</div></td>');
-                // 3번째 td - Vessel Name
-                row.append('<td class="terminalTd col3"><div>' + item['Vessel Name'] + '</div></td>');
-                // 4번째 td - Vessel Call
-                row.append('<td class="terminalTd col4"><div>' + item['Vessel Call'] + '</div></td>');
-                // 5번째 td - Carrier
-                row.append('<td class="terminalTd col5"><div>' + item['Carrier'] + '</div></td>');
-                // 6번째 td - Arrival
-                row.append('<td class="terminalTd col6"><div>' + item['Arrival'] + '</div></td>');
-                // 7번째 td - Departure
-                row.append('<td class="terminalTd col7"><div>' + item['Departure'] + '</div></td>');
-                // 8번째 td - Cut-off
-                row.append('<td class="terminalTd col8"><div>' + item['Cut-off'] + '</div></td>');
+                // fetchData(item);
 
-                // 행을 tbody에 추가
-                tbody.append(row);
+                if(selectedPort==='All') { // Port 옵션 선택 안하면
+                    fetchData(item); // 필터링하는 거 없이 데이터 다 추가
+                } else { // Port 옵션 선택하면
+                    if(selectedPort===item['Port']) { // Port가 일치할 때
+                        if(selectedTerminal==='All') { // Terminal 옵션 선택 안하면
+                            fetchData(item); // 필터링하는 거 없이 데이터 다 추가
+                        } else { // Terminal 옵션 선택하면
+                            if(selectedTerminal===item['Terminal']) { // Terminal이 일치할 때
+                                fetchData(item);
+                            }
+                        }
+                    }
+                }
+                
             });
+            
+            // num이 1일때(port선택메뉴를 골랐을 때) 두번째 선택 메뉴 바꾸는 함수 호출
+            if(num===1){
+                updateSecondDropdown();
+            }
+
+        }
+        
+        // 데이터 테이블에 넣는 함수
+        function fetchData(item) {
+
+            // 기존의 tbody 선택
+            let tbody = $("#tableBody");
+
+            // 행(tr) 생성
+            var row = $("<tr>");
+         
+            // 각 셀(td)에 데이터 추가
+            // tr 하나당 td 8개 필요
+            // 1번째 td - Port
+            row.append('<td class="terminalTd col1"><div>' + item['Port'] + '</div></td>');
+            // 2번째 td - Terminal
+            row.append('<td class="terminalTd col2"><div>' + item['Terminal'] + '</div></td>');
+            // 3번째 td - Vessel Name
+            row.append('<td class="terminalTd col3"><div>' + item['Vessel Name'] + '</div></td>');
+            // 4번째 td - Vessel Call
+            row.append('<td class="terminalTd col4"><div>' + item['Vessel Call'] + '</div></td>');
+            // 5번째 td - Carrier
+            row.append('<td class="terminalTd col5"><div>' + item['Carrier'] + '</div></td>');
+            // 6번째 td - Arrival
+            row.append('<td class="terminalTd col6"><div>' + item['Arrival'] + '</div></td>');
+            // 7번째 td - Departure
+            row.append('<td class="terminalTd col7"><div>' + item['Departure'] + '</div></td>');
+            // 8번째 td - Cut-off
+            row.append('<td class="terminalTd col8"><div>' + item['Cut-off'] + '</div></td>');
+    
+            // 행을 tbody에 추가
+            tbody.append(row);
+
+        }
+
+
+
+        // 선택 메뉴 넣는 함수
+        function putSelectBar() {
+            // retrieveTerminal()을 호출할 때 전달인자가 1이면 항구선택 onchange, 2면 터미널 선택 onchange
+            // 첫번째 선택 메뉴(항구) 넣기
+            portMenu = '<span>Port <select id="portSelect" onchange="retrieveTerminal(1)"></span>' + // retrieveTerminal updateSecondDropdown
+                '<option value="All">All</option>' +
+                '<option value="Busan">Busan</option>' +
+                '<option value="New Busan">New Busan</option>' +
+                '<option value="Incheon">Incheon</option>' +
+                '</select>';
+
+            // 두번째 선택 메뉴(터미널) 넣기
+            terminalMenu = '<span>Terminal <select id="terminalSelect" onchange="retrieveTerminal(2)"></span>' + //  onchange="retrieveTerminal()"
+                '<option value="All">All</option>' +
+                '</select>';
+
+            // body에 삽입
+            let selectBar = $("#selectBar");
+            selectBar.append(portMenu);
+            selectBar.append(terminalMenu);
+
+            }
+            
+
+
+        // 두번째 선택 메뉴 변경하는 함수
+        function updateSecondDropdown() {
+            var portSelect = document.getElementById('portSelect');
+            var terminalSelect = document.getElementById('terminalSelect');
+            var portOption = portSelect.options[portSelect.selectedIndex].value;
+
+            
+            // 두 번째 셀렉트바의 옵션을 초기화
+            document.getElementById('terminalSelect').options.length = 0;
+            // terminalSelect
+
+            // 첫 번째 셀렉트바에서 선택한 값에 따라 다른 옵션을 추가
+            if (portOption === "Busan") { // 부산항 Busan
+                var busan = ["All", "BPT 감만", "BPT 신선대", "동부부산", "허치슨(부산)"];
+                busan.forEach(function(b) {
+                    var newOption = new Option(b, b);
+                    terminalSelect.add(newOption);
+                });
+            } else if (portOption === "New Busan") { // 부산신항 New Busan
+                var newBusan = ["All", "BCT", "BNCT", "BNMT", "PNIT", "동원부산", "부산신항만", "한진신항(부산)", "현대부산신항"];
+                newBusan.forEach(function(n) {
+                    var newOption = new Option(n, n);
+                    terminalSelect.add(newOption);
+                });
+            } else if (portOption === "Incheon") { // 인천 Incheon
+                var incheon = ["All", "한진(인천)", "E1(인천)", "선광(인천)", "신국제여객터미널", "인천"];
+                incheon.forEach(function(i) {
+                    var newOption = new Option(i, i);
+                    terminalSelect.add(newOption);
+                });
+            } 
+            else if (portOption === "All") { // 인천 Incheon
+                var incheon = ["All"];
+                incheon.forEach(function(all) {
+                    var newOption = new Option(all, all);
+                    terminalSelect.add(newOption);
+                });
+            } 
         }
 
 
@@ -480,10 +646,12 @@
         <div id="inputPort">
             <div id="search">
                 <div class="medium">Point to Point</div>
-                <span>출발지</span>
-                <input autocomplete="off" type="text" id="dep_port" placeholder="출발항을 입력해주세요">
-                <div>
-                    <span>도착지</span>
+                <div class="inlineBlock">
+                    <p>출발지</p>
+                    <input autocomplete="off" type="text" id="dep_port" placeholder="출발항을 입력해주세요">
+                </div>
+                <div class="inlineBlock">
+                    <p>도착지</p>
                     <input autocomplete="off" type="text" id="arr_port" placeholder="도착항을 입력해주세요">
                 </div>
             </div>
@@ -493,13 +661,15 @@
             </div>
         </div>
         
-        
-            <div class="schedule-container"> <!-- 데이터 로드할 표 부분 -->
-                <table id="myTable">
-                    <thead id="tableHead"></thead> <!-- 표의 컬럼명 부분 -->
-                    <tbody id="tableBody"></tbody> <!-- 표의 본문 부분 -->
-                </table>
-            </div>
+        <!-- 셀렉트바(터미널 스케줄 선택할시만 보이게) -->
+        <div id="selectBar"></div>
+
+        <div class="schedule-container"> <!-- 데이터 로드할 표 부분 -->
+            <table id="myTable">
+                <thead id="tableHead"></thead> <!-- 표의 컬럼명 부분 -->
+                <tbody id="tableBody"></tbody> <!-- 표의 본문 부분 -->
+            </table>
+        </div>
         </div>
     </div>
     
