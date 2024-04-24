@@ -5,7 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Port Congestion Service Home</title>
+    <!-- index style -->
+    <link rel="stylesheet" th:href="@{/css/indexGlobal.css}" />
+    <link rel="stylesheet" th:href="@{/css/index.css}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Krub:wght@500;600&display=swap" />
 
+    <!-- custom component -->
     <link rel="stylesheet" th:href="@{/css/glv.css}" />
     <script th:src="@{/script/glv.js}" defer></script>
 
@@ -53,7 +60,6 @@
 </head>
 
 <body>
-    <h2>랜딩 페이지</h2>
     <div class="global-navigation-bar">
         <div class="navigation-menu">
             <div class="menu"><a th:href="@{/}">Home</a></div>
@@ -71,10 +77,277 @@
     </div>
 
     <div class="contents landing-page">
+        <!-- Hero Banner -->
+        <div class="hero-banner">
+            <div class="hero-image-container">
+                <video class="banner-video" autoplay loop muted>
+                    <source th:src="@{/img/banner_video.mp4}" type="video/mp4">
+                </video>
+                <div class="pattern"></div>
+            </div>
+            <div class="subtitle-tag">
+                <div class="logistics-supply">
+                    Logistics & Supply Chain Solutions
+                </div>
+            </div>
+            <b class="banner-title-container">
+                <p class="your-gateway">Your Gateway</p>
+                <p class="to-any-destination">to any Destination in the World</p>
+            </b>
+            <div class="banner-text">
+                <p class="text-line-1">새로운 가치 창출과 공유로 고객 경험을 제고하고</p>
+                <p class="text-line-2">
+                    디지텅 전환 시대 협업을 통한 상생을 추구하는 플랫폼 서비스
+                </p>
+            </div>
+            <button class="button">
+                <img class="background-icon" th:src="@{/img/banner_btn.svg}" />
+                <div class="register">Register</div>
+            </button>
+        </div>
+
+        <!-- 파트너 섹션 -->
+        <section class="section-2-partners">
+            <!-- heading -->
+            <div class="section-heading-container">
+                <div class="section-heading">
+                    <div class="heading-title-text">Partners</div>
+                    <div class="heading-subtitle-text">We wish to work with</div>
+                </div>
+            </div>
+
+            <!-- logo marquee -->
+            <div class="marquee">
+                <div class="marquee-content">
+                    <img src="https://www.tradlinx.com/images/main/logo/15-lg.png">
+                    <img src="https://www.tradlinx.com/images/main/logo/03-ls-nikko.png">
+                    <img src="https://www.tradlinx.com/images/main/logo/20-kita.png">
+                    <img src="https://www.tradlinx.com/images/main/logo/19-kotra.png">
+                    <img src="https://www.tradlinx.com/images/main/logo/21-eland.png">
+                    <img src="https://www.tradlinx.com/images/main/logo/01-doosan.png">
+                    <img src="https://www.tradlinx.com/images/main/logo/11-hyundai.png">
+                    <img src="https://www.tradlinx.com/images/main/logo/09-samsung.png">
+                    <img src="https://www.tradlinx.com/images/main/logo/07-daelim.png" alt="">
+                    <img src="https://www.tradlinx.com/images/main/logo/18-cosco.png" alt="">
+                    <img src="https://www.tradlinx.com/images/main/logo/17-sinokor.png" alt="">
+                    <img src="https://www.tradlinx.com/images/main/logo/10-kmtc.png" alt="">
+                </div>
+            </div>
+        </section>
+
+        <!-- 서비스 소개 섹션 -->
+        <section class="section-3-service">
+            <!-- heading -->
+            <div class="section-heading-container">
+                <div class="section-heading">
+                    <div class="heading-title-text">Service</div>
+                    <div class="heading-subtitle-text">Explore our main service</div>
+                </div>
+            </div>
+            <div class="service-details">
+                <!-- Port Status -->
+                <div class="port-status1">
+                    <div class="service-container">
+                        <div class="info-wrapper">
+                            <div class="section-title">
+                                <h3 class="tagline">항구정보 조회</h3>
+                                <div class="content">
+                                    <h1 class="short-heading-here">Port Status</h1>
+                                    <div class="lorem-ipsum-dolor-container">
+                                        <p class="p1">
+                                            실시간 AIS 데이터를 통해 항구 근처 선박의 위치를
+                                            추적합니다.
+                                        </p>
+                                        <p class="p2">
+                                            항구의 실시간 혼잡도와 작업, 대기상태를 차트로 확인하세요.
+                                        </p>
+                                        <p class="p3">
+                                            항구 상황을 미리 파악하고 대비할 수 있습니다.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="actions">
+                                <button class="button1">
+                                    <div class="button2">Try out</div>
+                                </button>
+                                <div class="button3">
+                                    <div class="button4">Button</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-screen">
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="live-chat2">
+                    <div class="service-container">
+                        <div class="info-wrapper">
+                            <div class="section-title">
+                                <h3 class="tagline">실시간 채팅 & AI 챗봇</h3>
+                                <div class="content">
+                                    <h1 class="short-heading-here">Live Chat & AI Chatbot</h1>
+                                    <div class="lorem-ipsum-dolor-container">
+                                        <p class="p1">
+                                            실시간 채팅을 통해 접속한 사용자들과 정보를 주고받을 수
+                                            있습니다.
+                                        </p>
+                                        <p class="p2">
+                                            AI 챗봇을 통해 데이터에 기반한 다양한 질문에 대한 답변도 받아보세요.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="actions">
+                                <button class="button1">
+                                    <div class="button2">Try out</div>
+                                </button>
+                                <div class="button3">
+                                    <div class="button4">Button</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-screen">
+
+                        </div>
+                    </div>
+
+                    <!-- 3. Vessel Schedule -->
+                    <div class="vessel-schedule3">
+                        <div class="service-container">
+                            <div class="service-screen">
+                                <!-- 서비스 시연 영상 -->
+                            </div>
+                            <div class="info-wrapper right">
+                                <div class="section-title right">
+                                    <h3 class="tagline">입항 & 운항 스케줄 조회</h3>
+                                    <div class="content right">
+                                        <h1 class="short-heading-here">Vessel Schedule</h1>
+                                        <div class="lorem-ipsum-dolor-container">
+                                            <p class="p1">
+                                                노선을 검색해 해운 스케줄을 조회할 수 있습니다.
+                                            </p>
+                                            <p class="p2">
+                                                내 화물을 실은 선박의 도착예정 시간을 확인하고 미리 대응하세요.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="actions">
+                                    <button class="button1">
+                                        <div class="button2">Try out</div>
+                                    </button>
+                                    <div class="button3">
+                                        <div class="button4">Button</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. Maine News -->
+                        <div class="marine-news4">
+                            <div class="service-container">
+                                <div class="service-screen">
+                                    <!-- 서비스 시연 영상 -->
+                                </div>
+                                <div class="info-wrapper right">
+                                    <div class="section-title right">
+                                        <h3 class="tagline">해운뉴스</h3>
+                                        <div class="content right">
+                                            <h1 class="short-heading-here">Marine News</h1>
+                                            <div class="lorem-ipsum-dolor-container">
+                                                <p class="p1">
+                                                    해상 물류와 관련한 최신 뉴스를 받아보세요.
+                                                </p>
+                                                <p class="p2">
+                                                    이젠 번거롭게 검색하지 않아도 됩니다.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="actions">
+                                        <button class="button1">
+                                            <div class="button2">Try out</div>
+                                        </button>
+                                        <div class="button3">
+                                            <div class="button4">Button</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        </section>
+
+        <section class="section-4-team">
+            <!-- heading -->
+            <div class="section-heading-container">
+                <div class="section-heading">
+                    <div class="heading-title-text">Our Team</div>
+                    <div class="heading-subtitle-text">Meet our expert team</div>
+                </div>
+            </div>
+            <!-- team profile -->
+            <div class="profile-container">
+                <div class="profile">
+                    <div class="profile-img">
+                        <img th:src="@{/img/profile_img_ex.jpeg}" alt="">
+                    </div>
+                    <div class="profile-info">
+                        <div class="text">
+                            <span class="name">Jaeeun Noh</span>
+                            <span class="role">Project Manager</span>
+                        </div>
+                    </div>
+                    <div class="social-media">
+                        <img th:src="@{/img/linkedin.png}" alt="">
+                        <img th:src="@{/img/facebook.png}" alt="">
+                        <img th:src="@{/img/instagram.png}" alt="">
+                    </div>
+                </div>
+                <div class="profile">
+                    <div class="profile-img">
+                        <img th:src="@{/img/profile_img_ex.jpeg}" alt="">
+                    </div>
+                    <div class="profile-info">
+                        <div class="text">
+                            <span class="name">Sangyeop Lee</span>
+                            <span class="role">Tech Lead</span>
+                        </div>
+                    </div>
+                    <div class="social-media">
+                        <img th:src="@{/img/linkedin.png}" alt="">
+                        <img th:src="@{/img/facebook.png}" alt="">
+                        <img th:src="@{/img/instagram.png}" alt="">
+                    </div>
+                </div>
+                <div class="profile">
+                    <div class="profile-img">
+                        <img th:src="@{/img/profile_img_ex.jpeg}" alt="">
+                    </div>
+                    <div class="profile-info">
+                        <div class="text">
+                            <span class="name">Harin Lee</span>
+                            <span class="role">Full-stack Developer</span>
+                        </div>
+                    </div>
+                    <div class="social-media">
+                        <img th:src="@{/img/linkedin.png}" alt="">
+                        <img th:src="@{/img/facebook.png}" alt="">
+                        <img th:src="@{/img/instagram.png}" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Test page -->
+        <hr>
         <a th:href="@{/weatherinfo}">Weather (Temp)</a><br>
         <a th:href="@{/gptChatbot}">GPT Chatbot (Temp)</a><br>
         <a th:href="@{/chat}">Live Chat (Temp)</a><br>
+        <hr>
     </div>
+
 </body>
 
 </html>
