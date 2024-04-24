@@ -41,3 +41,6 @@ saveExcel.py
 img/
 main.py
 scheduleCrawler/
+newsCrawler/
+test.py
+*.pyc

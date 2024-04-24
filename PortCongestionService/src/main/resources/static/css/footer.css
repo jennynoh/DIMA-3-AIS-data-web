@@ -1,0 +1,41 @@
+/* footer */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* footer */
+.footer {
+    /* padding-left: 50px; */
+    margin-top: 15px;
+    left: 0;
+    bottom: 0;
+    background-color: #152b46;
+    color: white;
+    width: 100%;
+    font-size: x-small;
+}
+
+.companyInfo {
+    display: inline-block;
+    vertical-align: top;
+    margin: 20px 30px 50px 70px;
+}
+
+.menuInfo {
+    display: inline-block;
+}
+
+.menuList {
+    margin: 20px auto 10px 30px;
+}
+
+.contact {
+    display: inline-block;
+    margin: auto auto 20px 30px;
+}
