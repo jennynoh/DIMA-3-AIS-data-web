@@ -10,10 +10,16 @@
 
     <link rel="stylesheet" th:href="@{/css/globalsubs.css}" />
     <link rel="stylesheet" th:href="@{/css/subs.css}" />
+    <link rel="stylesheet" th:href="@{/css/footer.css}" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Krub:wght@600&display=swap" />
 
+    <style>
+        .heightsize {
+            height: 2572px;
+        }
+    </style>
     <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
     <script>
         const nav = document.querySelector('.global-navigation-bar');
@@ -104,6 +110,8 @@
             <button class="my-page" sec:authorize="isAuthenticated()">My page</button>
         </div>
     </div>
+
+    <div class="heightsize">
     <div class="subscription">
         <section class="pricing">
             <div class="pricing-container-wrapper">
@@ -467,6 +475,28 @@
                     </div>
                     <div class="total-price">$20.00</div>
                 </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer">
+        <div class="companyInfo">
+            <p>(주)밸류링2유</p>
+            <p>(06164) 서울시 강남구 영동대로 511 (삼성동)</p>
+        </div>
+        <div class="menuInfo">
+            <div class="menuList">
+                <span>User Manual ㅣ </span>
+                <span>서비스 이용약관 ㅣ </span>
+                <span>개인정보처리방침 ㅣ </span>
+                <span>About Us</span>
+            </div>
+            <div class="contact">
+                <p>대표이사 : 노재은</p>
+                <p>Mail : jae.eunjenny.noh@gmail.com</p>
+                <p>상담가능시간 : 오전 10시 ~ 오후 6시 (점심시간 : 오후 1시 ~ 2시) 토요일 및 공휴일 휴무</p>
             </div>
         </div>
     </div>
