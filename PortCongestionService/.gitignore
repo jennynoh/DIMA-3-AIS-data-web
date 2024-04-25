@@ -36,7 +36,7 @@ out/
 ### VS Code ###
 .vscode/
 application.properties
-excel/
+/excel/
 saveExcel.py
 img/
 main.py
@@ -57,6 +57,3 @@ test.py
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
-
-
-/excel/
