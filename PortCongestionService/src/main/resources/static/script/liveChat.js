@@ -43,7 +43,7 @@ function showMessage(message) {
     let sendTime = timeFormatter.format(date);
 
     // let userName = document.querySelector('#user').val();
-    let userName = "노재은";
+    let userName = "홍길동";
     // 내가 보낸 메세지이면..
     if (userName == message.sender) {
         // right bubble로 출력
