@@ -1,0 +1,21 @@
+logo_img,company_name,vessel_name,origin,destination,dep_time,arr_time,duration,trans,of20,of40
+https://www.tradlinx.com/images/carrier/shipping_com_SML.gif,SM Line,POS SINGAPORE 1002S,Incheon,Shanghai,2024.04.25 (Thu),2024.04.28 (Sun),3 days,Direct,$101.00,$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_SKR.gif,Sinokor,PEGASUS PETA 2412W,Incheon,Shanghai,2024.04.26 (Fri),2024.04.27 (Sat),1 days,Direct,$100.00,$199.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCS.gif,DongYoung,PEGASUS PETA DPPA2412W,Incheon,Shanghai,2024.04.26 (Fri),2024.04.27 (Sat),1 days,Direct,$101.00,$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,PEGASUS PETA 2412W,Incheon,Shanghai,2024.04.26 (Fri),2024.04.27 (Sat),1 days,Direct,$109.00,$217.00
+https://www.tradlinx.com/images/carrier/shipping_com_DJS.gif,DongJin,PEGASUS PETA 2412W,Incheon,Shanghai,2024.04.26 (Fri),2024.04.27 (Sat),1 days,Direct,$130.00,$260.00
+https://www.tradlinx.com/images/carrier/shipping_com_SIT.gif,SITC,SITC CHUNMING 2405N,Incheon,Shanghai,2024.04.26 (Fri),2024.05.01 (Wed),5 days,Direct,,
+https://www.tradlinx.com/images/carrier/shipping_com_PAN.gif,Pan Ocean,PEGASUS PETA 2412W,Incheon,Shanghai,2024.04.26 (Fri),2024.04.27 (Sat),1 days,Direct,$100.00,$199.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCL.gif,Pancon,PEGASUS PETA 2412W,Incheon,Shanghai,2024.04.26 (Fri),2024.04.29 (Mon),3 days,Direct,$100.00,$199.00
+https://www.tradlinx.com/images/carrier/shipping_com_TSL.gif,TS Line,MAERSK NADI 417S,Incheon,Shanghai,2024.04.26 (Fri),2024.04.29 (Mon),3 days,Direct,,
+https://www.tradlinx.com/images/carrier/shipping_com_PCS.gif,DongYoung,KMTC LAEM CHABANG JKLC2412S,Incheon,Shanghai,2024.04.27 (Sat),2024.05.01 (Wed),4 days,Direct,$101.00,$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,KMTC LAEM CHABANG 2412S,Incheon,Shanghai,2024.04.27 (Sat),2024.05.01 (Wed),4 days,Direct,$109.00,$217.00
+https://www.tradlinx.com/images/carrier/shipping_com_NSS.gif,NamSung,PEGASUS PETA DPPA2412W,Incheon,Shanghai,2024.04.27 (Sat),2024.04.28 (Sun),1 days,Direct,$150.00,$300.00
+https://www.tradlinx.com/images/carrier/shipping_com_NSS.gif,NamSung,KMTC LAEM CHABANG JKLC2412S,Incheon,Shanghai,2024.04.27 (Sat),2024.05.01 (Wed),4 days,Direct,$150.00,$300.00
+https://www.tradlinx.com/images/carrier/shipping_com_SKR.gif,Sinokor,PEGASUS GLORY 2401W,Incheon,Shanghai,2024.04.28 (Sun),2024.04.30 (Tue),2 days,Direct,$100.00,$199.00
+https://www.tradlinx.com/images/carrier/shipping_com_COH.gif,COHEUNG,XIN MING ZHOU 20 2418W,Incheon,Shanghai,2024.04.28 (Sun),2024.05.01 (Wed),3 days,Direct,$101.00,$201.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCS.gif,DongYoung,PEGASUS GLORY DPGL2401W,Incheon,Shanghai,2024.04.28 (Sun),2024.04.29 (Mon),1 days,Direct,$101.00,$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,PEGASUS GLORY 2401W,Incheon,Shanghai,2024.04.28 (Sun),2024.04.29 (Mon),1 days,Direct,$109.00,$217.00
+https://www.tradlinx.com/images/carrier/shipping_com_COA.gif,COSCO,CONCERTO 479W,Incheon,Shanghai,2024.04.28 (Sun),2024.05.02 (Thu),4 days,Direct,$44.00,$88.00
+https://www.tradlinx.com/images/carrier/shipping_com_COA.gif,COSCO,XIN MING ZHOU 20 2418W,Incheon,Shanghai,2024.04.28 (Sun),2024.05.02 (Thu),4 days,Direct,$44.00,$88.00
+https://www.tradlinx.com/images/carrier/shipping_com_SIT.gif,SITC,KMTC TIANJIN 2404N,Incheon,Shanghai,2024.04.28 (Sun),2024.04.30 (Tue),2 days,Direct,,
