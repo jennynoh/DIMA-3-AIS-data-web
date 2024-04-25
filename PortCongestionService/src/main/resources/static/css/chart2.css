@@ -1,0 +1,231 @@
+@charset "UTF-8";
+
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+/*
+	차트 부분
+*/
+body {
+  font-family: Roboto, sans-serif;
+}
+
+
+.arrow_box {
+  position: relative;
+  background: #fff;
+  border: 2px solid #000000;
+}
+/*
+	모달 팝업 파트
+*/
+
+
+.modal {
+    display: none; 
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    width: 50%;
+    height: 80%;
+     /* 내용이 넘칠 경우 스크롤을 허용 */ /*툴팁으로 가로 스크롤 발생  없애면 툴팁이 팝업 위로 나온다.*/ /* overflow: auto; */
+    background: #fff;
+    padding: 0px; /* 원래는 20px */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+}
+
+.modal .flex-container {
+    display: flex; /* 플렉스 컨테이너로 설정 */
+    flex-direction: row; /* 요소들을 가로로 정렬 */
+    flex-wrap: wrap; 
+    
+}
+
+.popup {
+	flex: 1 1 45%;
+    display: block;
+    border: 1px solid #CCC;
+    /* 높이를 자동으로 설정 */ /* 4/24: height:auto를 지움 */
+    margin: 5px;
+    padding: 0px; /* 원래 5px */
+    box-sizing: border-box;
+}
+
+/*
+	popup1 부분
+*/
+#popup1{
+	width: 90%;
+	display: flex;
+    justify-content: flex-start; /* 왼쪽으로 정렬 */
+}
+
+
+/*
+	popup2 파트
+*/
+#popup2{
+	width: 90%;
+}
+
+#efficiencyMessage{
+	margin-bottom: 0;
+}
+
+#portCog{
+	font-size: 2em;
+	font-weight: bold;
+	margin-bottom: 0;
+}
+
+/*
+	popup3 파트
+*/
+#popup3 {
+	width: 90%;
+	display:flex;
+	flex-direction: column;
+}
+
+.TotalCount{
+	display: flex;
+	flex-direction: row;
+}
+h4.Title, div.shipChartToolTip{
+	width:50%;
+}
+
+
+/*
+	popup4 파트
+*/
+#popup4, #popup5{
+	width: 90%;
+	
+}
+div.titleAndtooltip{
+	display: flex;
+	flex-direction: row;
+}
+
+div#avgWaitingChart{
+	height: 90%;
+}
+
+/*
+	popup5
+*/
+
+div#lastWeekChart{
+	width: 100%;
+	height: 90%;
+}
+
+div#lastWeekChartContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#waitingShipListChart, #workingShipListChart{
+	display:flex;
+	flex-direction: row;
+	margin: 0;
+}
+
+.workingChartDiv, .waitingChartDiv {
+	border: 1px solid black;
+ 	position: relative;
+    display: inline-block;
+}
+
+
+/* 공통 */
+h4{
+	margin: 0px;
+	padding: 0px;	
+}
+
+#portCode{
+	position: relative;
+	bottom:-10px;
+}
+
+h2{
+	margin: 0px;
+	padding: 0px;	
+}
+
+.modal .close_btn {
+    position: absolute; /* 위치를 고정합니다. */
+    top: 10px; /* 모달 콘텐츠의 상단에서 20px 아래 */
+    right: 10px; /* 모달 콘텐츠의 왼쪽에서 20px 오른쪽 */
+    padding: 10px 20px;
+    background-color: rgb(116, 0, 0);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+    z-index: 1; /* z-index를 높게 설정하여 다른 요소 위에 위치하도록 합니다. */
+}
+
+/*
+	툴팁
+*/
+.portCogTooltip-container {
+    text-align: center; /* 텍스트를 가운데 정렬 */
+    position: relative; /* 포지션을 상대적으로 설정하여 내부 요소들을 정렬 */
+}
+
+#portCogToolTip, #portCogIconPlace {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shipChartToolTip{ /* 툴팁 발생으로 가로 스크롤이 생김 */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;	
+}
+
+.portCogTooltip-container, #portCog {
+	position: relative;
+	display: inline-block;
+}
+/* 툴팁 텍스트와 출력위치: 아이콘 상단 중앙 */    
+#portCogTooltip-text{
+	position: absolute;
+	z-index:1000;
+	visibility: hidden;
+    width: 120px;
+    position: absolute;
+    background: #00732c;
+    padding: 4px;
+    font-size: 1rem;
+    color: #fff;
+    border-radius: 5px;
+    animation: fadeIn 0.6s;
+    bottom: 50%;
+    right: 5%;
+    margin-right: -50px;
+}    
+
+
+    /* 마우스 오버 시 툴팁 텍스트 표시 */
+    .portCogTooltip-container:hover #portCogTooltip-text {
+        visibility: visible;
+        opacity: 1;
+    }
+    
+ @keyframes fadeIn {
+ from {
+   opacity: 0;
+ }
+ to {
+   opacity: 1;
+ }
+}
