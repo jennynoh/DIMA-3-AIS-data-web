@@ -93,7 +93,7 @@ def read_shipSchedule_excel(dep, arr) :
     formatted_date = current_date.strftime("%Y-%m-%d")
 
     # csv 파일 경로
-    excel_path = '/Users/jaeeunjennynoh/Desktop/DIMA_prj/DIMA-3-AIS-data-web/PortCongestionService/src/main/resources/static/excel/' + dep + arr + formatted_date +'.csv'
+    excel_path = 'C:/PR/Dima project/PortCongestionService/src/main/resources/static/excel/' + dep + arr + formatted_date +'.csv'
     # print("출발항 : ",dep," / 도착항 : ",arr)
     # print(excel_path)
 
@@ -116,13 +116,14 @@ def read_shipSchedule_excel(dep, arr) :
 def read_terminal_excel() :
 
     # 엑셀 파일 경로
-    excel_path = '/Users/jaeeunjennynoh/Desktop/DIMA_prj/DIMA-3-AIS-data-web/PortCongestionService/src/main/resources/static/excel/ContainerTerminalSchedule.xls'
+    excel_path = 'C:/PR/Dima project/PortCongestionService/src/main/resources/static/excel/ContainerTerminalSchedule.xls'
 
     # 엑셀 파일을 읽어서 데이터프레임으로 변환
     excel_file = pd.read_excel(excel_path, header=1) # 1번째 행을 컬럼명으로 설정
 
     # 필요한 컬럼만 추출
-    terminalSchedule = excel_file.loc[:49,['Port', 'Terminal', 'Vessel Name', 'Vessel Call', 'Cut-off', 'Arrival', 'Departure', 'Carrier']]
+    terminalSchedule = excel_file[['Port', 'Terminal', 'Vessel Name', 'Vessel Call', 'Cut-off', 'Arrival', 'Departure', 'Carrier']]
+    # excel_file.loc[:49,['Port', 'Terminal', 'Vessel Name', 'Vessel Call', 'Cut-off', 'Arrival', 'Departure', 'Carrier']]
 
     # 결측치 채우기
     terminalSchedule.fillna("-", inplace=True)
