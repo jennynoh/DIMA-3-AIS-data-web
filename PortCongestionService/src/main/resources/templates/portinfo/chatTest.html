@@ -7,8 +7,8 @@
     <title>Port Congestion Service Home</title>
 
     <!-- 페이지 css 추가 -->
-    <link rel="stylesheet" th:href="@{/css/liveChat.css}" />
     <link rel="stylesheet" th:href="@{/css/glv.css}" />
+    <link rel="stylesheet" th:href="@{/css/liveChat.css}" />
     <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
     <!-- 웹소켓 STOMP 프로토콜 script -->
     <script src="https://cdn.jsdelivr.net/npm/sockjs-client/dist/sockjs.min.js"></script>
@@ -49,63 +49,6 @@
 
         // 본문 동작
         $(function () {
-            // // 웹소켓 연결  
-            // $(document).ready(function () {
-            //     let portCD = $("#portCD").val();
-            //     var wsUrl = "ws://localhost:9999/ws/chat"; // 웹소켓 서버 url
-            //     // var wsUrl = "ws://localhost:9999/ws/chat/" + portCD; // 웹소켓 서버 url
-            //     var ws = new WebSocket(wsUrl);  // 웹소켓 객체 생성 
-
-            //     ws.onopen = function () {
-            //         console.log("Connected to" + wsUrl);
-            //         // 웹소켓 연결 시 수행할 동작 
-
-            //         // 웹소켓 보내기
-            //         $("#send-button").on('click', function () {
-            //             // button이 enabled 되어있으면..
-            //             if (!$(this).prop('disabled')) {
-            //                 let message = $("#message-field").val();
-            //                 console.log("보내는 메세지: " + message);
-            //                 // websocket 메세지 보내기
-            //                 let sendMessage = {
-            //                     "messageType": "TALK",
-            //                     "roomId": 1,
-            //                     "senderId": 1,
-            //                     "message": message
-            //                 };
-            //                 ws.send(JSON.stringify(sendMessage));
-
-            //                 // 메세지 입력창 초기화
-            //                 $("#message-field").val(null);
-            //             }
-            //         })
-            //     };
-
-            //     ws.onmessage = function (event) {
-            //         // 서버로부터 메세지를 받았을 때 수행할 동작 
-            //         console.log("Received message: " + event.data);
-            //     };
-
-            //     ws.onclose = function () {
-            //         // 웹소켓 연결이 닫혔을 떄 수행할 동작 
-            //         console.log("Disconnected from " + wsUrl);
-            //     };
-
-            //     ws.onerror = function (error) {
-            //         // 오류 발생 시 수행할 동작
-            //         console.log("WebSocket error: " + error);
-            //     };
-
-            //     // 사용자가 웹페이지를 떠날 때 웹소켓 연결 종료 
-            //     function closeWebSocket() {
-            //         if (ws) {
-            //             ws.close();
-            //         }
-            //     }
-            //     $(window).on('beforeunload', closeWebSocket);
-
-            // });
-
             // 채팅 메세지 입력
             $("#message-field").on('keyup', function () {
                 let text = $("#message-field").val();
@@ -124,9 +67,29 @@
                     return !val;
                 });
             });
-
-
         });
+
+        // 마지막 채팅 시간 계산 
+        function calculateTimeDifference() {
+            const input = document.getElementById('lastChat');
+            const lastChatDateStr = input.value;
+            const lastChatDate = new Date(lastChatDateStr.split('/').reverse().join('-'));
+
+            const now = new Date();
+            const diff = now - lastChatDate; // 밀리초 단위 차이
+
+            const minutesPassed = Math.floor(diff / 60000); // 밀리초를 분으로 변환
+
+            // 결과를 표시할 요소
+            document.getElementById('last-chat').innerHTML(`Last chat ${minutesPassed} minutes ago`);
+        }
+
+        // 1분(60000 밀리초)마다 함수 실행
+        setInterval(calculateTimeDifference, 60000);
+
+        // 페이지 로드 시 최초 1회 실행
+        calculateTimeDifference();
+
 
 
     </script>
@@ -151,22 +114,27 @@
 
     <!-- 본문 -->
     <input type="hidden" id="portId" value="SGSIN">
-    <input type="hidden" id="user" value="채팅유저">
+    <input type="hidden" id="user" value="노재은">
+    <input type="hidden" id="lastChat">
+    <!-- <input type="hidden" id="user" th:value="@{authentication.name}"> -->
     <!-- 채팅방 -->
     <div class="chat-window">
         <div class="chat-header">
-            <div class="chat-title">
-                <!-- portcd 받아서 동적으로 변경 -->
-                <span>🇭🇰 Hongkong Port</span>
+            <!-- portcd 받아서 동적으로 변경 -->
+            <div class="center-title">
+                <div class="port-name">🇭🇰 Hongkong Port</div>
+                <div class="last-chat" id="last-chat">Last chat 30 minutes ago</div>
             </div>
-            <div class="toggle">
-                <label class="switch">
-                    <input type="checkbox" id="toggle-switch">
-                    <span class="slider round"></span>
-                </label>
+            <div class="toggle-wrapper">
+                <div class="chatbot-label">AI Chatbot🤖</div>
+                <div class="toggle">
+                    <input type="checkbox" id="toggle-slider">
+                    <label for="toggle-slider">on/off</label>
+                </div>
             </div>
         </div>
         <div class="chat-message-window">
+
 
         </div>
         <div class="chat-input-bar">
@@ -184,6 +152,7 @@
             </div>
         </div>
     </div>
+
 
 
 </body>

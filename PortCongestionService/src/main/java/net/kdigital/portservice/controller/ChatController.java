@@ -13,17 +13,18 @@ import net.kdigital.portservice.dto.Message;
 @RequiredArgsConstructor
 public class ChatController {
 	
-	private final SimpMessageSendingOperations simpMessageSendingOperations;
+	private final SimpMessageSendingOperations operations;
 	
    /*
         /sub/channel/12345    - 구독(channelId:12345)
         /pub/hello            - 메세지 발행 
     */
 	
-	@MessageMapping("/sendMessage")  // 클라이언트에서 /pub/sendMessage로 메세지를 발행한다.   
+	@MessageMapping("/channel")
 	public void message(Message message) {
 		
 		// /sub/channel/채널아이디에 구독중인 클라이언트에게 메세지 보냄
-		simpMessageSendingOperations.convertAndSend("/sub/channel/" + message.getChannelId(), message);   
+		operations.convertAndSend("/sub/channel/"+message.getChannelId(), message);
+		log.info("메세지 전송 성공!");
 	}
 }

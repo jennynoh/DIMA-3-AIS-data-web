@@ -1,5 +1,7 @@
 package net.kdigital.portservice.dto;
 
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,6 +17,7 @@ public class Message {
 	private String sender;
 	private String channelId;
 	private Object data;
+	private LocalDateTime sendTime;
 	
 	public void setSender(String sender) {
 		this.sender = sender;
