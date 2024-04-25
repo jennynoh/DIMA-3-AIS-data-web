@@ -310,9 +310,9 @@ function testCheck(sendData) {
 
 			})
 
-			if (roh < 0.75) { portCogIcon.src = `image/${icon[2]}`; }
-			else if (roh >= 0.75 && roh < 1.25) { portCogIcon.src = `image/${icon[1]}`; }
-			else { portCogIcon.src = `image/${icon[0]}`; }
+			if (roh < 0.75) { portCogIcon.src = `img/${icon[2]}`; }
+			else if (roh >= 0.75 && roh < 1.25) { portCogIcon.src = `img/${icon[1]}`; }
+			else { portCogIcon.src = `img/${icon[0]}`; }
 
 			let portCog = "";
 

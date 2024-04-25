@@ -24,7 +24,7 @@ public class SecurityConfig {
 				"/user/login", "/user/join", "/user/joinNext", "/user/joinProc", "/marineNews", "/subscription", 
 				"/port", "/port_info", "/receive_data", "/img/**", "/css/**", "/script/**", "/weatherinfo", 
 				"/liveChatting", "/gptChatbot", "/chat", "/ws/**", "/ws",
-				"/terminalSchedule", "/get_terminalSchedule", "/liveChatting", "/gptChatbot").permitAll());
+				"/terminalSchedule", "/get_terminalSchedule", "/liveChatting", "/gptChatbot", "/fun/working", "/fun/portLatLng").permitAll());
 
 		http.formLogin((auth) -> auth.loginPage("/user/login")
 				.usernameParameter("userEmail")
