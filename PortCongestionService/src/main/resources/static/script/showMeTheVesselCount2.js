@@ -1,6 +1,5 @@
 const icon = ["icon1.png", "icon2.png", "icon3.png", "tooltip.png"];
 const portCogIcon = document.createElement("img"); // 확인 시점에서 항구의 혼잡도
-const chartCogIcon = document.createElement("img"); // 차트의 항구의 혼잡도 아이콘
 
 /*
 	지난 항구 혼잡도 통계
@@ -97,7 +96,7 @@ function testCheck(sendData) {
 
 			let portAvgCnt = resp.portAvgCnt;// 항구 평균 수용량 List<ChartEntity>으로 받음
 			console.log(portAvgCnt);
-			
+
 			let waitingShipList = {}; // 선박타입: 선박 대수 순으로 딕셔너리 저장
 			let waitingCntList = [];
 			let waitingTypeList = []; // 선박 타입이 들어감
@@ -290,9 +289,9 @@ function testCheck(sendData) {
 			let message = "";
 			if (compareAvg > 0) { message += `현재 평균보다 ${compareAvg.toFixed(0)}대 많은 선박이 작업중입니다.`; }
 			else if (compareAvg == 0) { message += `현재 평균 ${compareAvg.toFixed(0)}과 같은 선박이 작업중입니다.`; }
-			else if (compareAvg == -0){ message += `현제 평균 ${compareAvg.toFixed(0)}과 같은 선박이 작업중입니다.`;}
+			else if (compareAvg == -0) { message += `현제 평균 ${compareAvg.toFixed(0)}과 같은 선박이 작업중입니다.`; }
 			else { message += `현재 평균보다 ${Math.abs(compareAvg).toFixed(0)}대 적은 선박이 작업중입니다.`; }
-			
+
 			/*
 				항만 혼잡도 지표화
 			*/
@@ -306,6 +305,7 @@ function testCheck(sendData) {
 			setTimeout(() => {
 				const portIcon = document.querySelector('#portCogIconPlace');
 				portIcon.prepend(portCogIcon);
+				document.querySelector('#portCogIconPlace > img').style.width = "200px";
 
 
 			})

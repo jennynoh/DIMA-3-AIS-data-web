@@ -2,20 +2,20 @@
 <html lang="ko" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Port Congestion Service Home</title>
-    
-  	<link rel="stylesheet" th:href="@{/css/chart2.css}">
-  	<link rel="stylesheet" th:href="@{/css/googleMap.css}">
-    <!-- 페이지 css 추가 -->
-	<script async th:src="@{/script/test.js}"></script>
-	<script defer th:src="@{/script/showMeTheVesselCount2.js}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> <!-- 차트 구현 -->
-    
-    <link rel="stylesheet" th:href="@{/css/glv.css}" />
-    <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
-    <script async
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Port Congestion Service Home</title>
+
+  <link rel="stylesheet" th:href="@{/css/chart2.css}">
+  <link rel="stylesheet" th:href="@{/css/googleMap.css}">
+  <!-- 페이지 css 추가 -->
+  <script async th:src="@{/script/test.js}"></script>
+  <script defer th:src="@{/script/showMeTheVesselCount2.js}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> <!-- 차트 구현 -->
+
+  <link rel="stylesheet" th:href="@{/css/glv.css}" />
+  <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
+  <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCup0qVTnfr2x9IVuGjV1T95niuiMV4e9k&callback=initMap">
       (g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })({
         key: "AIzaSyCup0qVTnfr2x9IVuGjV1T95niuiMV4e9k",
@@ -23,63 +23,63 @@
         // Use the 'v' parameter to indicate the version to load (alpha, beta, weekly, etc.)
       });
     </script>
-    <script>
-        const nav = document.querySelector('.global-navigation-bar');
-        let lastScrollY = window.scrollY;
+  <script>
+    const nav = document.querySelector('.global-navigation-bar');
+    let lastScrollY = window.scrollY;
 
-        $(function () {
-            // 로그인/회원가입 액션
-            $(".log-in").on('click', function () {
-                window.location.href = "/user/login";
-            });
-            $(".sign-up").on('click', function () {
-                window.location.href = "/user/join";
-            });
-            $(".log-out").on('click', function () {
-                window.location.href = "/user/logout";
-            });
-            $(".my-page").on('click', function () {
-                // window.location.href = "/user/mypage";
-            })
-            // 스크롤 액션 
-            $(document).on('scroll', () => {
-                console.log(lastScrollY);
-                if (window.scrollY > lastScrollY) { // 아래로 스크롤
-                    console.log("아래로 스크롤");
-                    $('.global-navigation-bar').addClass('hide');
-                } else { // 위로 스크롤
-                    console.log("위로 스크롤");
-                    $('.global-navigation-bar').removeClass('hide');
-                }
-                lastScrollY = window.scrollY;
-            });
+    $(function () {
+      // 로그인/회원가입 액션
+      $(".log-in").on('click', function () {
+        window.location.href = "/user/login";
+      });
+      $(".sign-up").on('click', function () {
+        window.location.href = "/user/join";
+      });
+      $(".log-out").on('click', function () {
+        window.location.href = "/user/logout";
+      });
+      $(".my-page").on('click', function () {
+        // window.location.href = "/user/mypage";
+      })
+      // 스크롤 액션 
+      $(document).on('scroll', () => {
+        console.log(lastScrollY);
+        if (window.scrollY > lastScrollY) { // 아래로 스크롤
+          console.log("아래로 스크롤");
+          $('.global-navigation-bar').addClass('hide');
+        } else { // 위로 스크롤
+          console.log("위로 스크롤");
+          $('.global-navigation-bar').removeClass('hide');
+        }
+        lastScrollY = window.scrollY;
+      });
 
-        });
+    });
 
-        $(function () {
-            // 본문 동작 
+    $(function () {
+      // 본문 동작 
 
-        });
-    </script>
+    });
+  </script>
 </head>
 
 <body>
-    <div class="global-navigation-bar">
-        <div class="navigation-menu">
-            <div class="menu"><a th:href="@{/}">Home</a></div>
-            <div class="menu"><a th:href="@{/portStatus}">Port Status</a></div>
-            <div class="menu"><a th:href="@{/port}">Vessel Schedule</a></div>
-            <div class="menu"><a th:href="@{/marineNews}">Marine News</a></div>
-            <div class="menu"><a th:href="@{/subscription}">Subscription</a></div>
-        </div>
-        <div class="user-menu">
-            <button class="log-in" sec:authorize="isAnonymous()">Log in</button>
-            <button class="sign-up" sec:authorize="isAnonymous()">Sign up</button>
-            <button class="log-out" sec:authorize="isAuthenticated()">Log out</button>
-            <button class="my-page" sec:authorize="isAuthenticated()">My page</button>
-        </div>
+  <div class="global-navigation-bar">
+    <div class="navigation-menu">
+      <div class="menu"><a th:href="@{/}">Home</a></div>
+      <div class="menu"><a th:href="@{/portStatus}">Port Status</a></div>
+      <div class="menu"><a th:href="@{/port}">Vessel Schedule</a></div>
+      <div class="menu"><a th:href="@{/marineNews}">Marine News</a></div>
+      <div class="menu"><a th:href="@{/subscription}">Subscription</a></div>
     </div>
-    <div id="map"></div>
+    <div class="user-menu">
+      <button class="log-in" sec:authorize="isAnonymous()">Log in</button>
+      <button class="sign-up" sec:authorize="isAnonymous()">Sign up</button>
+      <button class="log-out" sec:authorize="isAuthenticated()">Log out</button>
+      <button class="my-page" sec:authorize="isAuthenticated()">My page</button>
+    </div>
+  </div>
+  <div id="map"></div>
   <!--모달 팝업-->
   <div id="portModal" class="modal">
     <div id="popup1" class="popup">
@@ -101,7 +101,7 @@
           <p id="portCog"></p>
           <div class="portCogTooltip-container">
             <p id="portCogTooltip-text">The tooltip text.</p>
-            <img th:src="@{img/tooltip.png}" alt="툴팁 이미지">
+            <img th:src="@{img/tooltip.png}" alt="툴팁 이미지" width="14px">
           </div>
         </div>
 
@@ -121,7 +121,7 @@
             <div class="shipChartToolTip">
               <div class="portCogTooltip-container">
                 <p id="portCogTooltip-text">The tooltip text.</p>
-                <img th:src="@{img/tooltip.png}" alt="툴팁 이미지">
+                <img th:src="@{img/tooltip.png}" alt="툴팁 이미지" width="14px">
               </div>
             </div>
 
@@ -142,7 +142,7 @@
             <div class="shipChartToolTip">
               <div class="portCogTooltip-container">
                 <p id="portCogTooltip-text">The tooltip text.</p>
-                <img th:src="@{img/tooltip.png}" alt="툴팁 이미지">
+                <img th:src="@{img/tooltip.png}" alt="툴팁 이미지" width="14px">
               </div>
             </div>
 
@@ -167,7 +167,7 @@
           <div class="shipChartToolTip">
             <div class="portCogTooltip-container">
               <p id="portCogTooltip-text">The tooltip text.</p>
-              <img th:src="@{img/tooltip.png}" alt="툴팁 이미지">
+              <img th:src="@{img/tooltip.png}" alt="툴팁 이미지" width="14px">
             </div>
           </div>
         </div>
@@ -180,20 +180,20 @@
       <div id="popup5" class="popup">
         <div class="titleAndtooltip">
           <h4 class="Title">대기 시간 & 혼잡도 통계</h4>
-          
-        	<select id="chartChoose">
-          		<option value="lastWeek">지난 7일</option>
-          		<option value="lastMonth">지난 한달</option>
-        	</select>
-          
+
+          <select id="chartChoose">
+            <option value="lastWeek">지난 7일</option>
+            <option value="lastMonth">지난 한달</option>
+          </select>
+
           <div class="shipChartToolTip">
             <div class="portCogTooltip-container">
               <p id="portCogTooltip-text">The tooltip text.</p>
-              <img th:src="@{img/tooltip.png}" alt="툴팁 이미지">
+              <img th:src="@{img/tooltip.png}" alt="툴팁 이미지" width="14px">
             </div>
           </div>
-        </div>      
-     
+        </div>
+
         <div id="lastWeekChart">
           <div id="lastWeekChartContent"></div>
         </div>

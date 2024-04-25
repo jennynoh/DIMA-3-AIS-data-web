@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Port Congestion Service Home</title>
+
+    <!-- 페이지 css 추가 -->
+    <link rel="stylesheet" th:href="@{/css/glv.css}" />
+    <link rel="stylesheet" th:href="@{/css/liveChat.css}" />
+    <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
+    <!-- 웹소켓 STOMP 프로토콜 script -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client/dist/sockjs.min.js"></script>
+    <script th:src="@{/script/stomp.min.js}"></script>
+    <script th:src="@{/script/liveChat.js}" defer></script>
+    <script>
+        const nav = document.querySelector('.global-navigation-bar');
+        let lastScrollY = window.scrollY;
+
+        $(function () {
+            // 로그인/회원가입 액션
+            $(".log-in").on('click', function () {
+                window.location.href = "/user/login";
+            });
+            $(".sign-up").on('click', function () {
+                window.location.href = "/user/join";
+            });
+            $(".log-out").on('click', function () {
+                window.location.href = "/user/logout";
+            });
+            $(".my-page").on('click', function () {
+                // window.location.href = "/user/mypage";
+            })
+            // 스크롤 액션 
+            $(document).on('scroll', () => {
+                console.log(lastScrollY);
+                if (window.scrollY > lastScrollY) { // 아래로 스크롤
+                    console.log("아래로 스크롤");
+                    $('.global-navigation-bar').addClass('hide');
+                } else { // 위로 스크롤
+                    console.log("위로 스크롤");
+                    $('.global-navigation-bar').removeClass('hide');
+                }
+                lastScrollY = window.scrollY;
+            });
+
+        });
+
+        // 본문 동작
+        $(function () {
+            // 채팅 메세지 입력
+            $("#message-field").on('keyup', function () {
+                let text = $("#message-field").val();
+                if (text.length != 0) {
+                    $("#img-change-to").attr('src', '/img/paper_airplane_white.svg');
+                    $("#send-button").prop('disabled', false);
+                } else {
+                    $("#img-change-to").attr('src', '/img/paper_airplane_gray.svg');
+                    $("#send-button").prop('disabled', true);
+                }
+            });
+
+            // toggle 동작 - 안먹힘 
+            $(".slider").on('click', function () {
+                $(this).siblings("input:checkbox").prop('checked', function (i, val) {
+                    return !val;
+                });
+            });
+        });
+
+        // 마지막 채팅 시간 계산 
+        function calculateTimeDifference() {
+            const input = document.getElementById('lastChat');
+            const lastChatDateStr = input.value;
+            const lastChatDate = new Date(lastChatDateStr.split('/').reverse().join('-'));
+
+            const now = new Date();
+            const diff = now - lastChatDate; // 밀리초 단위 차이
+
+            const minutesPassed = Math.floor(diff / 60000); // 밀리초를 분으로 변환
+
+            // 결과를 표시할 요소
+            document.getElementById('last-chat').innerHTML(`Last chat ${minutesPassed} minutes ago`);
+        }
+
+        // 1분(60000 밀리초)마다 함수 실행
+        setInterval(calculateTimeDifference, 60000);
+
+        // 페이지 로드 시 최초 1회 실행
+        calculateTimeDifference();
+
+
+
+    </script>
+</head>
+
+<body>
+    <div class="global-navigation-bar">
+        <div class="navigation-menu">
+            <div class="menu"><a th:href="@{/}">Home</a></div>
+            <div class="menu"><a th:href="@{/portStatus}">Port Status</a></div>
+            <div class="menu"><a th:href="@{/port}">Vessel Schedule</a></div>
+            <div class="menu"><a th:href="@{/marineNews}">Marine News</a></div>
+            <div class="menu"><a th:href="@{/subscription}">Subscription</a></div>
+        </div>
+        <div class="user-menu">
+            <button class="log-in" sec:authorize="isAnonymous()">Log in</button>
+            <button class="sign-up" sec:authorize="isAnonymous()">Sign up</button>
+            <button class="log-out" sec:authorize="isAuthenticated()">Log out</button>
+            <button class="my-page" sec:authorize="isAuthenticated()">My page</button>
+        </div>
+    </div>
+
+    <!-- 본문 -->
+    <input type="hidden" id="portId" value="SGSIN">
+    <input type="hidden" id="user" value="노재은">
+    <input type="hidden" id="lastChat">
+    <!-- <input type="hidden" id="user" th:value="@{authentication.name}"> -->
+    <!-- 채팅방 -->
+    <div class="chat-window">
+        <div class="chat-header">
+            <!-- portcd 받아서 동적으로 변경 -->
+            <div class="center-title">
+                <div class="port-name">🇭🇰 Hongkong Port</div>
+                <div class="last-chat" id="last-chat">Last chat 30 minutes ago</div>
+            </div>
+            <div class="toggle-wrapper">
+                <div class="chatbot-label">AI Chatbot🤖</div>
+                <div class="toggle">
+                    <input type="checkbox" id="toggle-slider">
+                    <label for="toggle-slider">on/off</label>
+                </div>
+            </div>
+        </div>
+        <div class="chat-message-window">
+
+
+        </div>
+        <div class="chat-input-bar">
+            <div class="emoji"><img th:src="@{/img/emoji.svg}" alt=""></div>
+            <div class="text-field">
+                <input type="text" id="message-field" name="message" placeholder="Start typing...">
+            </div>
+            <div class="send-box">
+                <div class="mention"><img th:src="@{/img/mention.svg}" alt=""></div>
+                <div class="send-button-container">
+                    <button id="send-button" disabled>
+                        <img id="img-change-to" th:src="@{/img/paper_airplane_gray.svg}" alt="">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

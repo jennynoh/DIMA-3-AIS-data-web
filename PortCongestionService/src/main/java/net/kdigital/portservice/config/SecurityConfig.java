@@ -30,7 +30,7 @@ public class SecurityConfig {
 				.usernameParameter("userEmail")
 				.passwordParameter("userPwd")
 				.loginProcessingUrl("/user/loginProc")
-				.defaultSuccessUrl("/").permitAll()
+//				.defaultSuccessUrl("/", true).permitAll()
 				.failureHandler(failureHandler));
 
 		http.logout((auth) -> auth.logoutUrl("/user/logout")
