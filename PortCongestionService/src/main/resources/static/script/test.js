@@ -39,13 +39,11 @@ async function initMap() {
   var input = document.createElement('input');
   input.setAttribute('type', 'text');
   input.setAttribute('placeholder', '장소를 검색하세요');
-  input.style.marginTop = '10px';
   input.style.width = '300px';
 
   var searchBtn = document.createElement('button');
   searchBtn.setAttribute('type', 'sumit');
   searchBtn.textContent = '검색';
-  searchBtn.style.marginTop = '10px';
 
   map = new Map(document.getElementById("map"), { // 좌표로 포커스를 맞춘다 
     zoom: 4,
@@ -55,42 +53,16 @@ async function initMap() {
   });
 
 
-/*
-	검색창 이동 관련 부분
-*/
-  let isSearchContainerMoved = false; // 검색창이 이미 이동했는지 여부를 나타내는 변수(true는 이동했음, false는 원래 위치)
 
   // 검색창 변화를 위해서 div 컨테이너에 넣음
   var searchContainer = document.createElement('div');
   searchContainer.appendChild(input);
   searchContainer.appendChild(searchBtn);
 
-  // 구글맵 상단에 검색창을 표시
-  map.controls[google.maps.ControlPosition.TOP_CENTER].push(searchContainer);
-  searchContainer.style.marginTop = '4%';
-
-	// 검색창이 왼쪽으로 이동
-  function moveSearchContainer() {
-    if (!isSearchContainerMoved) { // 검색창이 이동하지 않은 경우에만 실행
-      map.controls[google.maps.ControlPosition.TOP_CENTER].removeAt(0); // 이전에 추가된 검색창 제거
-      map.controls[google.maps.ControlPosition.LEFT_TOP].push(searchContainer); // 검색창을 왼쪽 상단에 추가
-      searchContainer.style.marginTop = '4%'; // 검색창의 marginTop 속성 설정
-      searchContainer.style.marginLeft = '15%';
-      isSearchContainerMoved = true; // 검색창을 이동했음을 표시
-    }
-  }
-  
-  // 검색창을 원래 위치로 이동
-  function resetSearchContainerPosition() {
-    if (isSearchContainerMoved) { // 검색창이 이동한 경우(true)에만 실행
-      map.controls[google.maps.ControlPosition.LEFT_TOP].removeAt(0); // 이전에 추가된 검색창 제거
-      map.controls[google.maps.ControlPosition.TOP_CENTER].push(searchContainer); // 검색창을 상단 중앙에 추가
-      searchContainer.style.marginTop = '4%'; // 검색창의 marginTop 속성 설정
-      searchContainer.style.marginLeft = '0%';
-      isSearchContainerMoved = false; // 검색창을 원래 위치로 되돌림
-    }
-  }
-
+  // 구글맵 상단 왼쪽에 검색창을 표시
+  map.controls[google.maps.ControlPosition.LEFT_TOP].push(searchContainer);
+  searchContainer.style.marginTop = '5%';
+  searchContainer.style.marginLeft = '15%';
 
   /*
     지도 상에서 마커를 표시 
@@ -178,8 +150,6 @@ async function initMap() {
   // 구글 맵의 마커가 클릭 시 해당 항구의 port 선박 수용량 차트를 가져옴
   function sendAjaxRequest(port_code) {
 
-    moveSearchContainer() // 검색창이 이동
-
     // 현재 시간을 구하고 ISO 형식으로 변환
     let now = new Date();
     // 년, 월, 일, 시간, 분, 초 추출
@@ -228,8 +198,6 @@ async function initMap() {
     // 팝업창 닫기 버튼을 누르면 chartChoose의 value를 다시 지난 7일로 바꾼다.
     document.getElementById('chartChoose').value = 'lastWeek';
 
-    // 검색창 변환: 기존에 있던 위치를 지우고 새로운 위치로
-    resetSearchContainerPosition()
 	map.setCenter(focus_map); // 원래 형태로 이동
 	map.setZoom(4); // 원래 줌으로 변경
 
