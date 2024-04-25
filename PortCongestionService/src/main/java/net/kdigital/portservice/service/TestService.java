@@ -6,12 +6,10 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
@@ -30,8 +28,6 @@ import net.kdigital.portservice.repository.TestRepository;
 public class TestService {
 	
 	private final TestRepository testRepository; 
-	
-	//private final ChartRepository chartRepository; // 지울 것
 	
 	private final PortLatLanRepository portInfoRepository;
 
@@ -146,16 +142,17 @@ public class TestService {
 			long hours = roundTotalSecToString / 3600;
 			roundTotalSecToString %= 3600;
 			long minutes = roundTotalSecToString / 60;
-			roundTotalSecToString %= 60;
-			long seconds = roundTotalSecToString;
 
-
+			String formattedDuration;
+			
 			// 일, 시, 분, 초 단위로 분할한 결과를 문자열로 포맷팅합니다.
-			String formattedDuration = String.format(days +"일 "+ hours+"시간 " + minutes +"분 "+ seconds+"초 ");
-			/* 어떤게 나은지 생각하기
-			String formattedDuration = String.format("%d days, %d hours, %d minutes, %d seconds",
-			                                         days, hours, minutes, seconds);
-			*/
+			if(days != 0) {
+				formattedDuration = String.format(days +"일 "+ hours+"시간 " + minutes +"분");
+			}
+			else {
+				formattedDuration = String.format(hours+"시간 " + minutes +"분");
+			}
+
 			
 			List portAvg = new ArrayList<>();
 			portAvg.add(formattedDuration);
@@ -247,12 +244,15 @@ public class TestService {
 			long hours = roundTotalSecToString / 3600;
 			roundTotalSecToString %= 3600;
 			long minutes = roundTotalSecToString / 60;
-			roundTotalSecToString %= 60;
-			long seconds = roundTotalSecToString;
 
-
+			String formattedDuration;
 			// 일, 시, 분, 초 단위로 분할한 결과를 문자열로 포맷팅합니다.
-			String formattedDuration = String.format(days +"일 "+ hours+"시간 " + minutes +"분 "+ seconds+"초 ");
+			if(days != 0) {
+				formattedDuration = String.format(days +"일 "+ hours+"시간 " + minutes +"분");
+			}
+			else {
+				formattedDuration = String.format(hours+"시간 " + minutes +"분");
+			}
 			
 			// 구해진 평균 대기시간과 작업효율을 저장
 			Map<String, Object> calcChart = new HashMap<>();
@@ -367,12 +367,7 @@ public class TestService {
 			String StartDay = weekStartDay.format(formatter);
 			String EndDay = weekEndDay.format(formatter);
 			String weeks = EndDay + " - " + StartDay;
-			/*
-			List<String> weeks = new ArrayList<>();
-			weeks.add(EndDay);
-			weeks.add("-");
-			weeks.add(StartDay);
-			*/
+
 			// 구해진 평균대기 시간을 문자열로 변환
 			long roundTotalSecToString  = TOTALSECAVG;
 			
@@ -381,16 +376,19 @@ public class TestService {
 			long hours = roundTotalSecToString / 3600;
 			roundTotalSecToString %= 3600;
 			long minutes = roundTotalSecToString / 60;
-			roundTotalSecToString %= 60;
-			long seconds = roundTotalSecToString;
 
+			String formattedDuration;
 
 			// 일, 시, 분, 초 단위로 분할한 결과를 문자열로 포맷팅합니다.
-			String formattedDuration = String.format(days +"일 "+ hours+"시간 " + minutes +"분 "+ seconds+"초 ");
+			if(days != 0) {
+				formattedDuration = String.format(days +"일 "+ hours+"시간 " + minutes +"분");
+			}
+			else {
+				formattedDuration = String.format(hours+"시간 " + minutes +"분");
+			}
+			
 			
 			// 구해진 평균 대기시간과 작업효율을 저장
-			
-			
 			
 			calcMonChart.put("weeks", weeks);
 			calcMonChart.put("avgWaitingTime", TOTALSECAVG);
@@ -400,7 +398,6 @@ public class TestService {
 			fourWeeks.add(calcMonChart);
 			
 		}
-		log.info("{}", fourWeeks);
 		
 		return fourWeeks;
 	}
@@ -451,18 +448,24 @@ public class TestService {
 		long hours = roundTotalSec / 3600;
 		roundTotalSec %= 3600;
 		long minutes = roundTotalSec / 60;
-		roundTotalSec %= 60;
-		long seconds = roundTotalSec;
+		
 
-
-		// 일, 시, 분, 초 단위로 분할한 결과를 문자열로 포맷팅합니다.
-		String formattedDuration = String.format(days +"일 "+ hours+"시간 " + minutes +"분 "+ seconds+"초 ");
+		String formattedDuration; // 시간을 문자열로
+		
+		// 일, 시, 분 단위로 분할한 결과를 문자열로 포맷팅합니다.
+		if(days != 0) { 
+			formattedDuration = String.format(days +"일 "+ hours+"시간 " + minutes +"분");
+		}
+		else { // days가 0이면 일은 제외
+			formattedDuration = String.format(hours+"시간 " + minutes +"분");
+		}
+		
 		
 		Map<String, String> calcRoh = new HashMap<>();
 		
 		calcRoh.put("avgWorkingTime", formattedDuration);
 		calcRoh.put("roh", Double.toString(roh));
-		
+
 		
 		return calcRoh;
 	}
