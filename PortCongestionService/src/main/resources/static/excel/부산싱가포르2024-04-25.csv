@@ -1,0 +1,21 @@
+logo_img,company_name,vessel_name,origin,destination,dep_time,arr_time,duration,trans,of20,of40
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,KMTC CHENNAI 2404S,Busan,Singapore,2024.04.25 (Thu),2024.05.03 (Fri),8 days,Direct,$410.00,$720.00
+https://www.tradlinx.com/images/carrier/shipping_com_SKR.gif,Sinokor,KMTC CHENNAI 2404S,Busan,Singapore,2024.04.25 (Thu),2024.05.03 (Fri),8 days,Direct,$310.00,$620.00
+https://www.tradlinx.com/images/carrier/shipping_com_HAS.gif,HEUNG-A,KMTC QINGDAO 2404S,Busan,Singapore,2024.04.25 (Thu),2024.05.04 (Sat),9 days,Direct,"$1,500.00","$2,200.00"
+https://www.tradlinx.com/images/carrier/shipping_com_COA.gif,COSCO,KMTC COLOMBO 2403W,Busan,Singapore,2024.04.25 (Thu),2024.05.07 (Tue),12 days,Direct,$55.00,$110.00
+https://www.tradlinx.com/images/carrier/shipping_com_TSL.gif,TS Line,KMTC COLOMBO 2403W,Busan,Singapore,2024.04.25 (Thu),2024.04.30 (Tue),5 days,Direct,"$1,050.00",$700.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,KMTC QINGDAO 2404S,Busan,Singapore,2024.04.26 (Fri),2024.05.04 (Sat),8 days,Direct,$410.00,$720.00
+https://www.tradlinx.com/images/carrier/shipping_com_COA.gif,COSCO,CMA CGM LISBON 0BYGXS1NC,Busan,Singapore,2024.04.26 (Fri),2024.05.17 (Fri),21 days,Direct,$55.00,$110.00
+https://www.tradlinx.com/images/carrier/shipping_com_ONE.gif,ONE,ONE TREASURE 022W,Busan,Singapore,2024.04.26 (Fri),2024.05.08 (Wed),12 days,Direct,$107.00,$214.00
+https://www.tradlinx.com/images/carrier/shipping_com_ONE.gif,ONE,X-PRESS PHOENIX 24016W,Busan,Singapore,2024.04.26 (Fri),2024.05.30 (Thu),34 days,Direct,$107.00,$214.00
+https://www.tradlinx.com/images/carrier/shipping_com_HMM.gif,HMM,HYUNDAI INTEGRAL 0138W,Busan,Singapore,2024.04.26 (Fri),2024.05.04 (Sat),8 days,Direct,$140.00,$280.00
+https://www.tradlinx.com/images/carrier/shipping_com_HMM.gif,HMM,ONE TREASURE 0022W,Busan,Singapore,2024.04.26 (Fri),2024.05.08 (Wed),12 days,Direct,$140.00,$280.00
+https://www.tradlinx.com/images/carrier/shipping_com_ONE.gif,ONE,YM WIDTH 033W,Busan,Singapore,2024.04.27 (Sat),2024.05.10 (Fri),13 days,Direct,$107.00,$214.00
+https://www.tradlinx.com/images/carrier/shipping_com_TSL.gif,TS Line,KOTA NAGA 2239S,Busan,Singapore,2024.04.27 (Sat),2024.05.07 (Tue),10 days,Direct,"$1,050.00",$700.00
+https://www.tradlinx.com/images/carrier/shipping_com_HAS.gif,HEUNG-A,AS COLUMBIA 2401S,Busan,Singapore,2024.04.28 (Sun),2024.05.06 (Mon),8 days,Direct,"$1,500.00","$2,200.00"
+https://www.tradlinx.com/images/carrier/shipping_com_HAS.gif,HEUNG-A,CUL QINGDAO 2405S,Busan,Singapore,2024.04.28 (Sun),2024.05.12 (Sun),14 days,Direct,"$1,500.00","$2,200.00"
+https://www.tradlinx.com/images/carrier/shipping_com_SIT.gif,SITC,SITC LICHENG 2405S,Busan,Singapore,2024.04.28 (Sun),2024.05.08 (Wed),10 days,Direct,,
+https://www.tradlinx.com/images/carrier/shipping_com_HAS.gif,HEUNG-A,AS COLUMBIA 2401S,Busan,Singapore,2024.04.29 (Mon),2024.05.06 (Mon),7 days,Direct,"$1,500.00","$2,200.00"
+https://www.tradlinx.com/images/carrier/shipping_com_COA.gif,COSCO,TORRANCE 27W,Busan,Singapore,2024.04.29 (Mon),2024.05.10 (Fri),11 days,Direct,$55.00,$110.00
+https://www.tradlinx.com/images/carrier/shipping_com_ONE.gif,ONE,ONE HANGZHOU BAY 054W,Busan,Singapore,2024.04.29 (Mon),2024.05.09 (Thu),10 days,Direct,$107.00,$214.00
+https://www.tradlinx.com/images/carrier/shipping_com_EMC.gif,Evergreen,CMA CGM NIAGARA BEX20BEHXW1MA,Busan,Singapore,2024.04.29 (Mon),2024.05.06 (Mon),7 days,Direct,$184.00,$284.00
