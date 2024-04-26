@@ -168,6 +168,26 @@ h2{
     z-index: 1; /* z-index를 높게 설정하여 다른 요소 위에 위치하도록 합니다. */
 }
 
+/* 검색창 */
+input#searchInput{
+	height: 30px;
+	width: 300px;
+	border-radius: 25px;
+	border: 1px solid gray;
+	background-color: rgba(255, 255, 255, 0.8);
+	font-weight: bolder;
+	padding-left: 15px; /* 텍스트 입력하는 곳 위치 조절 */
+}
+
+img#searchIcon{
+	height: 24px;
+	width: 24px;
+	cursor: pointer;
+    float: right;
+	position: absolute;
+	transform: translate(-30px, 6px);
+}
+
 /*
 	툴팁
 */

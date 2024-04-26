@@ -35,14 +35,14 @@ async function initMap() {
 
 
   // 검색창을 생성합니다.
-  var input = document.createElement('input');
+  let input = document.createElement('input');
+  input.id = "searchInput"; 
   input.setAttribute('type', 'text');
-  input.setAttribute('placeholder', '장소를 검색하세요');
-  input.style.width = '300px';
+  input.setAttribute('placeholder', 'Search');
 
-  var searchBtn = document.createElement('button');
-  searchBtn.setAttribute('type', 'sumit');
-  searchBtn.textContent = '검색';
+  let searchIcon = document.createElement('img');
+  searchIcon.src = `img/search_icon.png`;
+  searchIcon.id = "searchIcon"
 
   map = new Map(document.getElementById("map"), { // 좌표로 포커스를 맞춘다 
     zoom: 4,
@@ -56,7 +56,7 @@ async function initMap() {
   // 검색창 변화를 위해서 div 컨테이너에 넣음
   var searchContainer = document.createElement('div');
   searchContainer.appendChild(input);
-  searchContainer.appendChild(searchBtn);
+  searchContainer.appendChild(searchIcon);
 
   // 구글맵 상단 왼쪽에 검색창을 표시
   map.controls[google.maps.ControlPosition.LEFT_TOP].push(searchContainer);
@@ -126,7 +126,7 @@ async function initMap() {
     // 검색 이벤트
     let searchPort;
 
-    searchBtn.addEventListener('click', handleSearch);
+    searchIcon.addEventListener('click', handleSearch);
 
     function handleSearch() {
       searchPort = input.value;
