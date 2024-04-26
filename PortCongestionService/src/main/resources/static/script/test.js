@@ -10,7 +10,6 @@ async function initMap() {
 			url:"/fun/portLatLng"
 			, method: "GET"
 			, success:function(resp){
-				console.log(resp);
 				for(let i= 0; i< resp.length; ++i){
 					let portCd = resp[i].portCd;
 					let portNameKo = resp[i].portNameKo;
@@ -70,7 +69,6 @@ async function initMap() {
   ports.forEach((port, index) => {
     var lat = port[3]; // 위도 : 1증가 위로 이동, 1 하락 시 아래로 이동
     var lng = port[4]; // 경도 : 1증가 오른쪽으로 이동, 1 하락 시 왼쪽으로 이동
-    console.log(lat);
 
     var focus_lng = lng + 0.1; // 경도 값이 변하는 것 확인 //
 
@@ -119,6 +117,8 @@ async function initMap() {
 
       document.querySelector('#portTitle').textContent = port[1];
       document.querySelector('#portCode').textContent = "("+ port[0] + ")";
+      
+      input.value = ''; // 검색 후 팝업창이 띄워지면 입력한 검색어 초기화
     };
 
 
@@ -173,11 +173,6 @@ async function initMap() {
     seconds = String(now.getSeconds()).padStart(2, '0');
 
     let before24clickTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-
-
-    console.log(port_code);
-    console.log(clickTime);
-    console.log(before24clickTime);
 
     let sendData = { "searchPort": port_code, "clickTime": clickTime, 'before24clickTime': before24clickTime }
     testCheck(sendData);

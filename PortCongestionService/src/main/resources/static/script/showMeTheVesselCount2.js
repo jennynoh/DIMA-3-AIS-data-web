@@ -73,9 +73,6 @@ $(function () {
 
 		let sendData = { "searchPort": searchPort, "clickTime": clickTime, 'before24clickTime': before24clickTime }
 
-		console.info("확인 항구: " + searchPort);
-		console.info("확인 시간: " + clickTime);
-		console.info("확인 시간 24시간 전: " + before24clickTime);
 
 		testCheck(sendData);
 		// 대기선박, 작업선박, 평균 수용량 가져오기
@@ -95,7 +92,6 @@ function testCheck(sendData) {
 			let workingVessels = resp.workingVessels; // 확인 시점에서 작업중인 선박들
 
 			let portAvgCnt = resp.portAvgCnt;// 항구 평균 수용량 List<ChartEntity>으로 받음
-			console.log(portAvgCnt);
 
 			let waitingShipList = {}; // 선박타입: 선박 대수 순으로 딕셔너리 저장
 			let waitingCntList = [];
@@ -217,7 +213,7 @@ function testCheck(sendData) {
 				작업선박 도넛 차트
 			*/
 			let workingShipListChart;
-			console.log(workingTypeList);
+
 			if (workingCntList.length == 0) { // 작업 선박이 없을 때 나오는 차트
 				workingShipListChart = {
 					chart: {
@@ -285,12 +281,11 @@ function testCheck(sendData) {
 				평균과 비교
 			*/
 			let compareAvg = workingVessels.length - portAvgCnt;
-			console.log(compareAvg);
+
 			let message = "";
-			if (compareAvg > 0) { message += `현재 평균보다 ${compareAvg.toFixed(0)}대 많은 선박이 작업중입니다.`; }
-			else if (compareAvg == 0) { message += `현재 평균 ${compareAvg.toFixed(0)}과 같은 선박이 작업중입니다.`; }
-			else if (compareAvg == -0) { message += `현제 평균 ${compareAvg.toFixed(0)}과 같은 선박이 작업중입니다.`; }
-			else { message += `현재 평균보다 ${Math.abs(compareAvg).toFixed(0)}대 적은 선박이 작업중입니다.`; }
+			if (compareAvg >= 1) { message += `현재 평균보다 <span style="color: #E16A93;, font-size: 1.5em; font-weight: bold;">${compareAvg.toFixed(0)}대</span> 많은 선박이 작업중입니다.`; }
+			else if ((compareAvg >= 0 && compareAvg < 1 ) || compareAvg == -0 || (-0 > compareAvg && compareAvg > -1 ) ) { message += `현재 <span style="color: #FFD232;, font-size: 1.5em; font-weight: bold;">평균 대수</span>의 선박이 작업중입니다.`; }
+			else { message += `현재 평균보다 <span style="color: #5EC75E;, font-size: 1.5em; font-weight: bold;">${Math.abs(compareAvg).toFixed(0)}대</span> 적은 선박이 작업중입니다.`; }
 
 			/*
 				항만 혼잡도 지표화
@@ -299,7 +294,7 @@ function testCheck(sendData) {
 			let avgWorkingTime = resp.calcRoh.avgWorkingTime; // 선박 1대 평균 작업시간
 
 
-			let effMessage = `지난 24시간 동안 선박 1대당 평균 작업 시간은 ${avgWorkingTime} 입니다.`
+			let effMessage = `지난 24시간 동안 선박 1대당 평균 작업 시간은 <span style="color: #8C8CF5;, font-size: 1.5em; font-weight: bold;">${avgWorkingTime}</span> 입니다.`
 			// 항구 혼잡도 아이콘이 들어가는 곳
 
 			setTimeout(() => {
@@ -316,11 +311,11 @@ function testCheck(sendData) {
 
 			let portCog = "";
 
-			if (roh < 0.25) { portCog += `매우 여유` }
-			else if (roh >= 0.25 && roh < 0.75) { portCog += `여유` }
-			else if (roh >= 0.75 && roh < 1.25) { portCog += `보통` }
-			else if (roh >= 1.25 && roh < 1.75) { portCog += `혼잡` }
-			else { portCog += `매우 혼잡` }
+			if (roh < 0.25) { portCog += `<span style="color: #5EC75E;">매우 여유</span>` }
+			else if (roh >= 0.25 && roh < 0.75) { portCog += `<span style="color: #5EC75E;">여유</span>` }
+			else if (roh >= 0.75 && roh < 1.25) { portCog += `<span style="color: #FFD232;">보통</span>` }
+			else if (roh >= 1.25 && roh < 1.75) { portCog += `<span style="color: #E16A93;">혼잡</span>` }
+			else { portCog += `<span style="color: #E16A93;">매우 혼잡</span>` }
 
 
 			// 선박별 평균대기 시간 구하기
@@ -381,9 +376,6 @@ function testCheck(sendData) {
 			*/
 			let selectOption = document.getElementById('chartChoose');
 			let chooseOption;
-
-
-			console.log(resp.fourWeeks[0].weeks);
 
 			let lastWeekChart
 
@@ -628,8 +620,6 @@ function testCheck(sendData) {
 
 
 			// 웹으로 구현
-			console.log(roh);
-
 			document.getElementById("waitingShipTotal").innerHTML = waitingHtml;
 			document.getElementById("workingShipTotal").innerHTML = workingHtml;
 			$('#portCog').prepend(portCog);

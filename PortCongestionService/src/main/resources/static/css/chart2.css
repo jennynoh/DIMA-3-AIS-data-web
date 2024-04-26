@@ -157,18 +157,14 @@ h2{
 	margin: 0px;
 	padding: 0px;	
 }
-
+/* 삭제 */
 .modal .close_btn {
     position: absolute; /* 위치를 고정합니다. */
-    top: 10px; /* 모달 콘텐츠의 상단에서 20px 아래 */
-    right: 10px; /* 모달 콘텐츠의 왼쪽에서 20px 오른쪽 */
-    padding: 10px 20px;
-    background-color: rgb(116, 0, 0);
-    border: none;
-    border-radius: 5px;
-    color: #fff;
+    top: 5px; 
+    right: 5px; 
     cursor: pointer;
-    transition: box-shadow 0.2s;
+    width: 14px;
+    background: red;
     z-index: 1; /* z-index를 높게 설정하여 다른 요소 위에 위치하도록 합니다. */
 }
 
