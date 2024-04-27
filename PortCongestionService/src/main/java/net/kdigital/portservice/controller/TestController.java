@@ -71,6 +71,7 @@ public class TestController {
 		
 		// 결과를 HashMap에 저장
         Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("portCD", searchPort);
         resultMap.put("workingVessels", workingVessels);
         resultMap.put("waitingVessels", waitingVessels);
         resultMap.put("portAvgCnt", portAvgCnt);

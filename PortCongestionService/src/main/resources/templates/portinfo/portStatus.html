@@ -8,9 +8,14 @@
 
   <link rel="stylesheet" th:href="@{/css/chart2.css}">
   <link rel="stylesheet" th:href="@{/css/googleMap.css}">
+  <link rel="stylesheet" th:href="@{/css/liveChat.css}" />
   <!-- 페이지 css 추가 -->
+  <!-- 웹소켓 STOMP 프로토콜 script -->
+  <script src="https://cdn.jsdelivr.net/npm/sockjs-client/dist/sockjs.min.js"></script>
+  <script th:src="@{/script/stomp.min.js}"></script>
+  <script th:src="@{/script/liveChat.js}" defer></script>
+
   <script async th:src="@{/script/test.js}"></script>
-  <script defer th:src="@{/script/showMeTheVesselCount2.js}"></script>
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> <!-- 차트 구현 -->
 
   <link rel="stylesheet" th:href="@{/css/glv.css}" />
@@ -57,8 +62,27 @@
     });
 
     $(function () {
-      // 본문 동작 
+      // 본문 동작
+      // 1) 채팅 메세지 입력
+      $("#message-field").on('keyup', function () {
+        let text = $("#message-field").val();
+        if (text.length != 0) {
+          $("#img-change-to").attr('src', '/img/paper_airplane_white.svg');
+          $("#send-button").prop('disabled', false);
+        } else {
+          $("#img-change-to").attr('src', '/img/paper_airplane_gray.svg');
+          $("#send-button").prop('disabled', true);
+        }
+      });
 
+      // 2) 채팅방 display:none 처리
+      hideChatWindow(); // document load 시
+      $(".close_btn").on('click', hideChatWindow); // 항구정보 닫기버튼 클릭 시
+
+      // 채팅방 숨기기 함수
+      function hideChatWindow() {
+        $("body>.chat-window").css("display", "none");
+      }
     });
   </script>
 </head>
@@ -80,7 +104,47 @@
     </div>
   </div>
   <div id="map"></div>
-  <!--모달 팝업-->
+
+  <!-- 채팅창 설정 속성 -->
+  <input type="hidden" id="portId">
+  <input type="hidden" id="lastChat">
+  <!-- <input type="hidden" id="user" th:value="@{authentication.name}"> -->
+  <input type="hidden" id="user" value="">
+
+  <!-- 채팅창 -->
+  <div class="chat-window">
+    <div class="chat-header">
+      <div class="center-title">
+        <div class="port-name">🇭🇰 Hongkong Port</div>
+        <div class="last-chat" id="last-chat">Last chat 30 minutes ago</div>
+      </div>
+      <div class="toggle-wrapper">
+        <div class="chatbot-label">AI Chatbot🤖</div>
+        <div class="toggle">
+          <input type="checkbox" id="toggle-slider">
+          <label for="toggle-slider">on/off</label>
+        </div>
+      </div>
+    </div>
+    <div class="chat-message-window">
+      <!-- 채팅 메세지 is shown here -->
+    </div>
+    <div class="chat-input-bar">
+      <div class="emoji"><img th:src="@{/img/emoji.svg}" alt=""></div>
+      <div class="text-field">
+        <input type="text" id="message-field" name="message" placeholder="Start typing...">
+      </div>
+      <div class="send-box">
+        <div class="mention"><img th:src="@{/img/mention.svg}" alt=""></div>
+        <div class="send-button-container">
+          <button id="send-button" disabled>
+            <img id="img-change-to" th:src="@{/img/paper_airplane_gray.svg}" alt="">
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--모달 팝업: 차트 부분-->
   <div id="portModal" class="modal">
     <div id="popup1" class="popup">
       <h2 id="portTitle">항구명</h2>
@@ -88,8 +152,8 @@
     </div>
 
     <div class="flex-container">
-    <img th:src="@{img/close_icon.png}" class="close_btn" alt="닫기 아이콘">
-		
+      <img th:src="@{img/close_icon.png}" class="close_btn" alt="닫기 아이콘">
+
 
       <div id="popup2" class="popup">
         <h4 class="Title">항만 혼잡도</h4>

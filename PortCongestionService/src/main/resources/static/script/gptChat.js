@@ -1,23 +1,16 @@
-// document.addEventListener("DOMContentLoaded", function () {
-/**
- * 웹소켓 연결 
- */
-function connectWebSocket() {
-    var socket = new SockJS('/ws');
-    var stompClient = Stomp.over(socket);
-    var portId = document.querySelector("#portId").value;
+document.addEventListener("DOMContentLoaded", function () {
 
-    // 웹소켓 연결 & channel(port) subscribe
+
     stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
         stompClient.subscribe('/sub/channel/' + portId, function (message) {
+            // showMessage(JSON, parse(message.body).content);
             const obj = JSON.parse(message.body);
             showMessage(obj);
             console.log(obj.data);
         });
     });
 
-    // 메세지 보내기
     document.querySelector("#send-button").addEventListener('click', function () {
         var messageContent = document.querySelector('#message-field').value.trim();
         if (messageContent && stompClient) {
@@ -30,28 +23,12 @@ function connectWebSocket() {
                 , data: messageContent
             };
 
-            // 메세지 뿌리기 
             stompClient.send("/pub/channel", {}, JSON.stringify(chatMessage));
             document.querySelector('#message-field').value = null;
         }
     });
+});
 
-    // channelId unsubscribe
-    // document.querySelector('.close_btn').addEventListener('click', function () {
-    //     stompClient.unsubscribe(portId);
-    //     console.log("unsubscribed from channel: " + portId);
-    // });
-
-    // disconnect WebSocket
-    document.querySelector('.close_btn').addEventListener('click', function () {
-        stompClient.disconnect();
-    });
-};
-
-/**
- * 메세지창에 메세지 출력 
- * @param {} message 
- */
 function showMessage(message) {
     var messageElement = document.createElement('div');
     let date = new Date(message.sendTime);
