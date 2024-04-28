@@ -108,8 +108,10 @@
   <!-- 채팅창 설정 속성 -->
   <input type="hidden" id="portId">
   <input type="hidden" id="lastChat">
-  <!-- <input type="hidden" id="user" th:value="@{authentication.name}"> -->
-  <input type="hidden" id="user" value="">
+  <!-- 로그인 사용자일 때, -->
+  <input type="hidden" id="user" sec:authentication="name">
+  <!-- 비로그인 사용자일 때, -->
+  <!-- <input type="hidden" id="user" value=""> -->
 
   <!-- 채팅창 -->
   <div class="chat-window">
@@ -149,6 +151,16 @@
     <div id="popup1" class="popup">
       <h2 id="portTitle">항구명</h2>
       <h4 id="portCode"></h4>
+      <!-- 날씨정보 -->
+      <div class="box">
+        <ul>
+          <li>Temperature: <span class="temperature"></span>°C</li>
+          <li>Min Temp: <span class="temp_min"></span>°C</li>
+          <li>Max Temp: <span class="temp_max"></span>°C</li>
+          <li>Weather: <span class="weather"></span></li>
+          <li>Icon: <span class="icon"></span></li>
+        </ul>
+      </div>
     </div>
 
     <div class="flex-container">

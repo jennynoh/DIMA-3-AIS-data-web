@@ -840,7 +840,7 @@ function testCheck(sendData) {
       $('#efficiencyMessage').append(effMessage);
       $('#avgWaiting').append(shipAvgWaitingHtml);
 
-      /* 채팅창 생성 */
+      /****** 채팅창 생성 ******/
       let chattingPortName = "";
       switch (resp.portCD) {
         case "HKHKG": chattingPortName = "🇭🇰 Hongkong Port"; break;
@@ -863,7 +863,72 @@ function testCheck(sendData) {
       connectWebSocket();
 
 
+      /***** 날씨 *****/
+      getWeather(resp.portCD);
+
+
     }
 
   });
+}
+
+/**
+ * 위도, 경도 받아서 날씨 정보 api로 불러오기
+ * @param {*} lat 
+ * @param {*} lon 
+ */
+async function getWeather(portCD) {
+  const API_KEY = '344247e109b01440aa280a21472fcf98';
+  // const lat = '35.1028';
+  // const lon = '129.0403';
+  let lat;
+  let lon;
+  switch (portCD) {
+    case "HKHKG":
+      lat = 22.3453; lon = 114.1372; break;
+    case "SGSIN":
+      lat = 1.264; lon = 103.84; break;
+    case "KRINC":
+      lat = 37.4595069; lon = 126.6256103; break;
+    case "KRPUS":
+      lat = 35.1036224; lon = 129.0423278; break;
+    case "JPTYO":
+      lat = 35.616944; lon = 139.795556; break;
+    case "JPOSA":
+      lat = 34.641944; lon = 135.422778; break;
+    case "CNSHA":
+      lat = 30.626389; lon = 122.064722; break;
+  }
+
+
+  try {
+    let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=kr`);
+    let data = await response.json();
+    weatherOutput(data);
+  } catch (error) {
+    console.error("Weather API error:", error);
+    alert("날씨 정보를 불러오는데 실패했습니다.");
+  }
+}
+
+/**
+ * 받아온 날씨 정보 화면에 출력
+ * @param {} resp 
+ */
+function weatherOutput(resp) {
+  console.log("getWeather 결과: ", resp);
+  let temperature = resp.main.temp;
+  let temp_min = resp.main.temp_min;
+  let temp_max = resp.main.temp_max;
+  let weather = resp.weather[0].main;
+  let icon = resp.weather[0].icon;
+
+  console.log(temperature, temp_min, temp_max); // 로그로 값 확인
+  console.log(typeof temperature); // 타입 확인
+
+  $(".temperature").text(temperature.toFixed(1));
+  $(".temp_min").text(temp_min.toFixed(1));
+  $(".temp_max").text(temp_max.toFixed(1));
+  $(".weather").text(weather);
+  $(".icon").html(`<img src="http://openweathermap.org/img/w/${icon}.png" alt="Weather icon">`);
 }

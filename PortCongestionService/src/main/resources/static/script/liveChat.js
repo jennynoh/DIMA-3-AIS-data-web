@@ -23,6 +23,7 @@ function connectWebSocket() {
         if (messageContent && stompClient) {
             // MessageDTO와 형식..
             var chatMessage = {
+                // sec:authentication=name 받아오기!!!
                 sender: document.getElementById("user").value.trim()
                 , channelId: document.getElementById("portId").value.trim()
                 , type: 'CHAT'
@@ -63,8 +64,10 @@ function showMessage(message) {
     });
     let sendTime = timeFormatter.format(date);
 
-    // let userName = document.querySelector('#user').val();
-    let userName = "홍길동";
+    // 유저이름
+    let userName = document.querySelector('#user').value;
+    console.log(userName)
+    // let userName = "홍길동";
     // 내가 보낸 메세지이면..
     if (userName == message.sender) {
         // right bubble로 출력
