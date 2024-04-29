@@ -117,9 +117,10 @@
   <input type="hidden" id="portId">
   <input type="hidden" id="lastChat">
   <!-- 로그인 사용자일 때, -->
-  <input type="hidden" id="user" th:value="${#authentication.principal.nickname}">
+  <input th:unless="${#authorization.expression('isAnonymous()')}" type="hidden" id="user"
+    th:value="${#authentication.principal.nickname}">
   <!-- 비로그인 사용자일 때, -->
-  <!-- <input type="hidden" id="user" value=""> -->
+  <input th:if="${#authorization.expression('isAnonymous()')}" type="hidden" id="user" value="">
 
   <!-- 채팅창 -->
   <div class="chat-window">

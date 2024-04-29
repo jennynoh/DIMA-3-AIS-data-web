@@ -1488,6 +1488,13 @@
     font-family: var(--font-rubik);
 }
 
+
+/*  */
+.payment-container {
+    display: flex;
+    margin: 10px auto;
+}
+
 .payment {
     width: 207px;
     height: 48px;
