@@ -178,7 +178,11 @@
         <div id="portCogToolTip">
           <p id="portCog"></p>
           <div class="portCogTooltip-container">
-            <p id="portCogTooltip-text">The tooltip text.</p>
+            <p class="portCogTooltip-text" id="firstTooltip">지난 24시간 동안의 작업 효율을<br>기준으로 산출한 항만의 혼잡도 입니다.<br><br>
+            *여유: 대기줄이 줄어드는 상태<br>
+            *보통: 대기줄이 유지되는 상태<br>
+            *혼잡: 대기줄이 늘어나는 상태
+            </p>
             <img th:src="@{img/tooltip.png}" alt="툴팁 이미지" width="14px">
           </div>
         </div>
@@ -198,7 +202,7 @@
             <h4 class="Title">대기중인 선박 대수</h4>
             <div class="shipChartToolTip">
               <div class="portCogTooltip-container">
-                <p id="portCogTooltip-text">The tooltip text.</p>
+                <p class="portCogTooltip-text">현재 접안을 기다리고 있는 선박 대수입니다.</p>
                 <img th:src="@{img/tooltip.png}" alt="툴팁 이미지" width="14px">
               </div>
             </div>
@@ -219,7 +223,7 @@
             <h4 class="Title">작업중인 선박 대수</h4>
             <div class="shipChartToolTip">
               <div class="portCogTooltip-container">
-                <p id="portCogTooltip-text">The tooltip text.</p>
+                <p class="portCogTooltip-text">현재 접안해서 작업중인<br>선박 대수입니다.</p>
                 <img th:src="@{img/tooltip.png}" alt="툴팁 이미지" width="14px">
               </div>
             </div>
@@ -244,7 +248,7 @@
           <h4 class="Title">선박별 평균 대기시간</h4>
           <div class="shipChartToolTip">
             <div class="portCogTooltip-container">
-              <p id="portCogTooltip-text">The tooltip text.</p>
+              <p class="portCogTooltip-text">선박의 종류별<br>평균 대기시간입니다.</p>
               <img th:src="@{img/tooltip.png}" alt="툴팁 이미지" width="14px">
             </div>
           </div>
@@ -266,7 +270,7 @@
 
           <div class="shipChartToolTip">
             <div class="portCogTooltip-container">
-              <p id="portCogTooltip-text">The tooltip text.</p>
+              <p class="portCogTooltip-text">지난 7일/ 한달 간 평균<br>대기시간과 혼잡도 입니다.</p>
               <img th:src="@{img/tooltip.png}" alt="툴팁 이미지" width="14px">
             </div>
           </div>
