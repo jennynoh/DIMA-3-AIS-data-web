@@ -1,31 +1,21 @@
 document.addEventListener("DOMContentLoaded", function () {
-
-
-    stompClient.connect({}, function (frame) {
-        console.log('Connected: ' + frame);
-        stompClient.subscribe('/sub/channel/' + portId, function (message) {
-            // showMessage(JSON, parse(message.body).content);
-            const obj = JSON.parse(message.body);
-            showMessage(obj);
-            console.log(obj.data);
-        });
-    });
-
     document.querySelector("#send-button").addEventListener('click', function () {
-        var messageContent = document.querySelector('#message-field').value.trim();
-        if (messageContent && stompClient) {
-            // MessageDTO와 형식..
-            var chatMessage = {
-                sender: document.getElementById("user").value.trim()
-                , channelId: document.getElementById("portId").value.trim()
-                , type: 'CHAT'
-                , sendTime: new Date(Date.now())
-                , data: messageContent
-            };
+        var prompt = document.querySelector('#message-field').value.trim();
 
-            stompClient.send("/pub/channel", {}, JSON.stringify(chatMessage));
-            document.querySelector('#message-field').value = null;
-        }
+        $.ajax({
+            url: "/hitOpenaiApi"
+            , type: "post"
+            , data: { "prompt": prompt }
+            , success: function (resp) {
+                // gpt 응답 메세지 출력
+                console.log(resp);
+            }
+            , error: function () {
+                // 에러 메세지  출력
+                console.log("에러");
+            }
+        });
+
     });
 });
 

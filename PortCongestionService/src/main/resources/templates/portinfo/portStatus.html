@@ -8,12 +8,17 @@
 
   <link rel="stylesheet" th:href="@{/css/chart2.css}">
   <link rel="stylesheet" th:href="@{/css/googleMap.css}">
-  <link rel="stylesheet" th:href="@{/css/liveChat.css}" />
+
   <!-- 페이지 css 추가 -->
   <!-- 웹소켓 STOMP 프로토콜 script -->
   <script src="https://cdn.jsdelivr.net/npm/sockjs-client/dist/sockjs.min.js"></script>
   <script th:src="@{/script/stomp.min.js}"></script>
+  <!-- live chat -->
   <script th:src="@{/script/liveChat.js}" defer></script>
+  <link rel="stylesheet" th:href="@{/css/liveChat.css}" />
+  <!-- gpt chat -->
+  <script th:src="@{/script/gptChatbot.js}" defer></script>
+  <link rel="stylesheet" th:href="@{/css/gptChatbot.css}" />
 
   <script async th:src="@{/script/portStatus.js}"></script>
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> <!-- 차트 구현 -->
@@ -82,6 +87,7 @@
       // 채팅방 숨기기 함수
       function hideChatWindow() {
         $("body>.chat-window").css("display", "none");
+        $("body>.gpt-chat-window").css("display", "none");
       }
     });
   </script>
@@ -111,7 +117,7 @@
   <input type="hidden" id="portId">
   <input type="hidden" id="lastChat">
   <!-- 로그인 사용자일 때, -->
-  <input type="hidden" id="user" sec:authentication="name">
+  <input type="hidden" id="user" th:value="${#authentication.principal.nickname}">
   <!-- 비로그인 사용자일 때, -->
   <!-- <input type="hidden" id="user" value=""> -->
 
@@ -120,11 +126,11 @@
     <div class="chat-header">
       <div class="center-title">
         <div class="port-name">🇭🇰 Hongkong Port</div>
-        <div class="last-chat" id="last-chat">Last chat 30 minutes ago</div>
+        <!-- <div class="last-chat" id="last-chat">Last chat 30 minutes ago</div> -->
       </div>
       <div class="toggle-wrapper">
         <div class="chatbot-label">AI Chatbot🤖</div>
-        <div class="toggle">
+        <div class="toggle" id="toggle-click">
           <input type="checkbox" id="toggle-slider">
           <label for="toggle-slider">on/off</label>
         </div>
@@ -148,144 +154,166 @@
       </div>
     </div>
   </div>
+
+  <!-- gpt 채팅 -->
+  <div class="gpt-chat-window">
+    <div class="gpt-chat-header" style="display: none;"></div>
+    <div class="gpt-chat-message-window">
+      <!-- 채팅 메세지 is shown here -->
+    </div>
+    <div class="gpt-chat-input-bar">
+      <div class="ai"><img th:src="@{/img/ai.svg}" alt=""></div>
+      <div class="gpt-text-field">
+        <input type="text" id="gpt-message-field" name="message" placeholder="Start typing...">
+      </div>
+      <div class="gpt-send-box">
+        <div class="gpt-send-button-container">
+          <button id="gpt-send-button" disabled>
+            <img id="gpt-img-change-to" th:src="@{/img/paper_airplane_gray.svg}" alt="">
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <!--모달 팝업: 차트 부분-->
   <div id="portModal" class="modal">
-    <div id="popup1" class="popup">
-      <h2 id="portTitle">항구명</h2>
-      <h4 id="portCode"></h4>
+    <div id="popup1">
+      <div class="port-name-title">
+        <div class="port-name-ko" id="portTitle">항구명</div>
+        <div class="port-name-cd" id="portCode"></div>
+      </div>
+      <!-- <h2 id="portTitle">항구명</h2>
+      <h4 id="portCode"></h4> -->
       <!-- 날씨정보 -->
       <div class="box">
-        <ul>
-          <li>Temperature: <span class="temperature"></span>°C</li>
-          <li>Min Temp: <span class="temp_min"></span>°C</li>
-          <li>Max Temp: <span class="temp_max"></span>°C</li>
-          <li>Weather: <span class="weather"></span></li>
-          <li>Icon: <span class="icon"></span></li>
-        </ul>
+        <span class="icon"></span>
       </div>
     </div>
 
     <div class="flex-container">
-      <img th:src="@{img/close_icon.png}" class="close_btn" alt="닫기 아이콘">
+      <img th:src="@{img/close_icon.svg}" class="close_btn" alt="닫기 아이콘">
 
-
-      <div id="popup2" class="popup">
-        <h4 class="Title">항만 혼잡도</h4>
-        <div id="portCogIconPlace">
-          <!-- 항만 혼잡도 지표가 들어가는 곳 -->
-        </div>
-
-        <div id="portCogToolTip">
-          <p id="portCog"></p>
-          <div class="portCogTooltip-container">
-            <p class="portCogTooltip-text" id="firstTooltip">지난 24시간 동안의 작업 효율을<br>기준으로 산출한 항만의 혼잡도 입니다.<br><br>
-            *여유: 대기줄이 줄어드는 상태<br>
-            *보통: 대기줄이 유지되는 상태<br>
-            *혼잡: 대기줄이 늘어나는 상태
-            </p>
-            <img th:src="@{img/tooltip.png}" alt="툴팁 이미지" width="14px">
+      <!-- 항만혼잡도 & 대기.작업 선박 -->
+      <div class="first-row-wrapper">
+        <!-- 1) 항만 혼잡도 -->
+        <div id="popup2" class="popup">
+          <div class="Title">항만 혼잡도</div>
+          <div id="portCogIconPlace">
+            <!-- 항만 혼잡도 지표가 들어가는 곳 -->
           </div>
-        </div>
-
-
-        <p id="vesselMessage"></p>
-
-        <p id="efficiencyMessage"></p>
-      </div>
-
-      <!-- popup3 -->
-      <div id="popup3" class="popup">
-
-        <div class="waitingChartDiv">
-          <div class="TotalCount">
-
-            <h4 class="Title">대기중인 선박 대수</h4>
-            <div class="shipChartToolTip">
-              <div class="portCogTooltip-container">
-                <p class="portCogTooltip-text">현재 접안을 기다리고 있는 선박 대수입니다.</p>
-                <img th:src="@{img/tooltip.png}" alt="툴팁 이미지" width="14px">
-              </div>
-            </div>
-
-          </div>
-
-          <h2 id="waitingShipTotal"></h2>
-
-          <div id="waitingShipListChart">
-            <div id="waitingShipListChartContent1"></div>
-            <div id="waitingShipListChartContent2"></div>
-          </div>
-        </div>
-
-        <div class="workingChartDiv">
-
-          <div class="TotalCount">
-            <h4 class="Title">작업중인 선박 대수</h4>
-            <div class="shipChartToolTip">
-              <div class="portCogTooltip-container">
-                <p class="portCogTooltip-text">현재 접안해서 작업중인<br>선박 대수입니다.</p>
-                <img th:src="@{img/tooltip.png}" alt="툴팁 이미지" width="14px">
-              </div>
-            </div>
-
-          </div>
-
-          <h2 id="workingShipTotal"></h2>
-
-          <div id="workingShipListChart">
-            <div id="workingShipListChartContent1"></div>
-            <div id="workingShipListChartContent2"></div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- popup4 -->
-
-      <div id="popup4" class="popup">
-
-        <div class="titleAndtooltip">
-          <h4 class="Title">선박별 평균 대기시간</h4>
-          <div class="shipChartToolTip">
+          <!-- 툴팁 -->
+          <div id="portCogToolTip">
+            <!-- 혼잡도 지표 text -->
+            <p id="portCog"></p>
             <div class="portCogTooltip-container">
-              <p class="portCogTooltip-text">선박의 종류별<br>평균 대기시간입니다.</p>
+              <p class="portCogTooltip-text" id="firstTooltip">지난 24시간 동안의 작업 효율을<br>기준으로 산출한 항만의 혼잡도 입니다.<br><br>
+                *여유: 대기줄이 줄어드는 상태<br>
+                *보통: 대기줄이 유지되는 상태<br>
+                *혼잡: 대기줄이 늘어나는 상태
+              </p>
               <img th:src="@{img/tooltip.png}" alt="툴팁 이미지" width="14px">
             </div>
           </div>
-        </div>
-
-        <div id="avgWaitingChart">
-          <div id="avgWaitingChartContent"></div>
-        </div>
-      </div>
-
-      <div id="popup5" class="popup">
-        <div class="titleAndtooltip">
-          <h4 class="Title">대기 시간 & 혼잡도 통계</h4>
-
-          <select id="chartChoose">
-            <option value="lastWeek">지난 7일</option>
-            <option value="lastMonth">지난 한달</option>
-          </select>
-
-          <div class="shipChartToolTip">
-            <div class="portCogTooltip-container">
-              <p class="portCogTooltip-text">지난 7일/ 한달 간 평균<br>대기시간과 혼잡도 입니다.</p>
-              <img th:src="@{img/tooltip.png}" alt="툴팁 이미지" width="14px">
-            </div>
+          <!-- 혼잡도 설명 text -->
+          <div class="congestion-text">
+            <div id="vesselMessage"></div>
+            <div id="efficiencyMessage"></div>
           </div>
         </div>
 
-        <div id="lastWeekChart">
-          <div id="lastWeekChartContent"></div>
+        <!-- 대기.작업 선박 -->
+        <!-- 유료 회원일 때: ROLE_PRO -->
+        <div id="popup3" class="paid-member-view">
+          <div class="waitingChartDiv popup">
+            <div class="TotalCount">
+              <div class="Title">대기중인 선박 대수</div>
+              <div class="shipChartToolTip">
+                <div class="portCogTooltip-container">
+                  <p class="portCogTooltip-text">현재 접안을 기다리고 있는 선박 대수입니다.</p>
+                  <img th:src="@{img/tooltip.png}" alt="툴팁 이미지" width="14px">
+                </div>
+              </div>
+            </div>
+
+            <h2 id="waitingShipTotal"></h2>
+            <div id="waitingShipListChart">
+              <div id="waitingShipListChartContent1"></div>
+              <div id="waitingShipListChartContent2"></div>
+            </div>
+          </div>
+
+          <div class="workingChartDiv popup">
+
+            <div class="TotalCount">
+              <div class="Title">작업중인 선박 대수</div>
+              <div class="shipChartToolTip">
+                <div class="portCogTooltip-container">
+                  <p class="portCogTooltip-text">현재 접안해서 작업중인<br>선박 대수입니다.</p>
+                  <img th:src="@{img/tooltip.png}" alt="툴팁 이미지" width="14px">
+                </div>
+              </div>
+
+            </div>
+
+            <h2 id="workingShipTotal"></h2>
+
+            <div id="workingShipListChart">
+              <div id="workingShipListChartContent1"></div>
+              <div id="workingShipListChartContent2"></div>
+            </div>
+          </div>
+        </div>
+        <!-- 비로그인 & 무료회원일 때, -->
+      </div>
+
+      <!-- 선박별 대기시간 & 대기시간.혼잡도 통계 -->
+      <div class="second-row-wrapper">
+        <!-- 선박별 대기시간 -->
+        <div id="popup4" class="popup">
+
+          <div class="titleAndtooltip">
+            <div class="Title">선박별 평균 대기시간</div>
+            <div class="shipChartToolTip">
+              <div class="portCogTooltip-container">
+                <p class="portCogTooltip-text">선박의 종류별<br>평균 대기시간입니다.</p>
+                <img th:src="@{img/tooltip.png}" alt="툴팁 이미지" width="14px">
+              </div>
+            </div>
+          </div>
+
+          <div id="avgWaitingChart">
+            <div id="avgWaitingChartContent"></div>
+          </div>
+        </div>
+
+        <!-- 통계 -->
+        <div id="popup5" class="popup">
+          <div class="titleAndtooltip">
+            <div class="Title">대기 시간 & 혼잡도 통계</div>
+
+            <select id="chartChoose">
+              <option value="lastWeek">지난 7일</option>
+              <option value="lastMonth">지난 한달</option>
+            </select>
+
+            <div class="shipChartToolTip">
+              <div class="portCogTooltip-container">
+                <p class="portCogTooltip-text">지난 7일/ 한달 간 평균<br>대기시간과 혼잡도 입니다.</p>
+                <img th:src="@{img/tooltip.png}" alt="툴팁 이미지" width="14px">
+              </div>
+            </div>
+          </div>
+
+          <div id="lastWeekChart">
+            <div id="lastWeekChartContent"></div>
+          </div>
         </div>
       </div>
 
-
-
-    </div>
-  </div>
-  <!--end 모달 팝업-->
+    </div> <!-- flex-container end-->
+  </div> <!--end 모달 팝업-->
 
 </body>
 

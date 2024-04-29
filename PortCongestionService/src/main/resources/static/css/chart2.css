@@ -35,16 +35,11 @@ body {
     display: none;
     position: absolute;
     top: 10%;
-    right: 5%;
-    width: 50%;
-    height: 80%;
-    /* 내용이 넘칠 경우 스크롤을 허용 */
-    /*툴팁으로 가로 스크롤 발생  없애면 툴팁이 팝업 위로 나온다.*/
-    /* overflow: auto; */
+    right: 5px;
+    width: 55%;
+    height: 88%;
     background: #fff;
-    padding: 0px;
-    /* 원래는 20px */
-    border-radius: 10px;
+    padding-bottom: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     z-index: 9999;
 }
@@ -52,10 +47,8 @@ body {
 .modal .flex-container {
     display: flex;
     /* 플렉스 컨테이너로 설정 */
-    flex-direction: row;
-    /* 요소들을 가로로 정렬 */
-    flex-wrap: wrap;
-
+    flex-direction: column;
+    /* flex-wrap: wrap; */
 }
 
 .popup {
@@ -63,7 +56,7 @@ body {
     display: block;
     border: none;
     box-shadow: 10px 5px 5px #e8e8e8;
-    border-radius: 20px;
+    border-radius: 5px;
     /* 높이를 자동으로 설정 */
     /* 4/24: height:auto를 지움 */
     margin: 5px;
@@ -72,22 +65,56 @@ body {
     box-sizing: border-box;
 }
 
-/*
-	popup1 부분
-*/
+.first-row-wrapper,
+.second-row-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+/* 항구 명 */
 #popup1 {
     width: 90%;
     display: flex;
+    flex-direction: row;
     justify-content: flex-start;
+    align-items: center;
+    padding: 8px;
+    gap: 15px;
     /* 왼쪽으로 정렬 */
 }
 
+.port-name-title {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
 
-/*
-	popup2 파트
-*/
+.port-name-ko {
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.port-name-cd {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
+/* 항만 혼잡도 */
 #popup2 {
-    width: 90%;
+    width: 150px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.Title {
+    font-size: 15px;
+    color: #828282;
+    font-weight: 600;
 }
 
 #efficiencyMessage {
@@ -104,9 +131,10 @@ body {
 	popup3 파트
 */
 #popup3 {
-    width: 90%;
+    width: 350px;
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 
 .TotalCount {
@@ -126,12 +154,14 @@ div.shipChartToolTip {
 #popup4,
 #popup5 {
     width: 90%;
+    padding: 20px;
 
 }
 
 div.titleAndtooltip {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
 }
 
 div#avgWaitingChart {
@@ -163,9 +193,9 @@ div#lastWeekChartContent {
 
 .workingChartDiv,
 .waitingChartDiv {
-    border: 1px solid black;
     position: relative;
     display: inline-block;
+    padding: 20px;
 }
 
 
@@ -189,11 +219,11 @@ h2 {
 .modal .close_btn {
     position: absolute;
     /* 위치를 고정합니다. */
-    top: 5px;
-    right: 5px;
+    top: 7px;
+    right: 7px;
     cursor: pointer;
-    width: 14px;
-    background: red;
+    width: 18px;
+    background: #FC5753;
     z-index: 1;
     /* z-index를 높게 설정하여 다른 요소 위에 위치하도록 합니다. */
 }

@@ -27,5 +27,10 @@ public class MenuController {
 	public String chat() {
 		return "portinfo/chatTest";
 	}
+	
+	@GetMapping("/gptChatbot")
+	public String gptChat() {
+		return "/portinfo/gptChatbot";
+	}
 
 }

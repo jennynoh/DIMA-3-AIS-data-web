@@ -65,7 +65,7 @@ function showMessage(message) {
     let sendTime = timeFormatter.format(date);
 
     // 유저이름
-    let userName = document.querySelector('#user').value;
+    let userName = document.getElementById('user').value;
     console.log(userName)
     // let userName = "홍길동";
     // 내가 보낸 메세지이면..
@@ -95,5 +95,4 @@ function showMessage(message) {
     }
 
     document.querySelector('.chat-message-window').appendChild(messageElement);
-    document.querySelector('#lastChat').value = date.toLocaleDateString();
 }
