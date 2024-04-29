@@ -50,6 +50,10 @@
                 }
                 lastScrollY = window.scrollY;
             });
+            // Hero-banner Register 버튼
+            $("#register-btn").on('click', function () {
+                window.location.href = "/user/join";
+            });
 
         });
 
@@ -101,7 +105,7 @@
                     디지텅 전환 시대 협업을 통한 상생을 추구하는 플랫폼 서비스
                 </p>
             </div>
-            <button class="button">
+            <button class="button" id="register-btn">
                 <img class="background-icon" th:src="@{/img/banner_btn.svg}" />
                 <div class="register">Register</div>
             </button>
