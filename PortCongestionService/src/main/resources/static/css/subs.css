@@ -2226,6 +2226,11 @@
     font-family: var(--body-small);
 }
 
+.function-list {
+    font-size: 17px;
+    font-family: Inter;
+}
+
 /* @media screen and (max-width: 1025px) {
     .plan-comparison-table {
         flex-wrap: wrap;

@@ -61,7 +61,20 @@ async function initMap() {
   // 구글맵 상단 왼쪽에 검색창을 표시
   map.controls[google.maps.ControlPosition.LEFT_TOP].push(searchContainer);
   searchContainer.style.marginTop = '5%';
-  searchContainer.style.marginLeft = '15%';
+  searchContainer.style.marginLeft = '10%';
+  searchContainer.style.display = "flex";
+  searchContainer.style.flexDirection = "row";
+  searchContainer.style.justifyContent = "flex-end";
+  searchContainer.style.alignItems = "center";
+  input.style.border = '0px';
+  input.style.height = '40px';
+  input.style.margin = '10px';
+  input.style.fontFamily = 'Inter';
+  input.style.boxShadow = 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px';
+  searchIcon.style.height = '18px';
+  searchIcon.style.width = '18px';
+  searchIcon.style.top = '18px';
+
 
   /*
     지도 상에서 마커를 표시 

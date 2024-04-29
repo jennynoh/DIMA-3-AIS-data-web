@@ -16,16 +16,6 @@ public class MenuController {
 		return "subscription";
 	}
 	
-	@GetMapping("/vesselSchedule")
-	public String vesselSchedule() {
-		return null;
-	}
-	
-	@GetMapping("/portSchedule")
-	public String portSchedule() {
-		return null;
-	}
-	
 	
     // 날씨 api test
 	@GetMapping("/weatherinfo")
