@@ -33,7 +33,7 @@ public class UserEntity {
 	private String userPwd;
 	
 	@Column(name="user_name", nullable=false)
-	private String Nickname;
+	private String nickName;
 	
 	@Column(name="user_phone", nullable=false)
 	private String userPhone;
@@ -55,7 +55,7 @@ public class UserEntity {
 		return UserEntity.builder()
 				.userEmail(userDTO.getUserEmail())
 				.userPwd(userDTO.getUserPwd())
-				.Nickname(userDTO.getNickname())
+				.nickName(userDTO.getNickName())
 				.userPhone(userDTO.getUserPhone())
 				.company(userDTO.getCompany())
 				.joinDate(userDTO.getJoinDate())

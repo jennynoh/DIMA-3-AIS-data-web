@@ -19,7 +19,7 @@ import net.kdigital.portservice.entity.UserEntity;
 public class UserDTO {
 	private String userEmail;
 	private String userPwd;
-	private String Nickname;
+	private String nickName;
 	private String userPhone;
 	private String company;
 	private LocalDateTime joinDate;
@@ -31,7 +31,7 @@ public class UserDTO {
 		return UserDTO.builder()
 				.userEmail(userEntity.getUserEmail())
 				.userPwd(userEntity.getUserPwd())
-				.Nickname(userEntity.getNickname())
+				.nickName(userEntity.getNickName())
 				.userPhone(userEntity.getUserPhone())
 				.company(userEntity.getCompany())
 				.joinDate(userEntity.getJoinDate())
