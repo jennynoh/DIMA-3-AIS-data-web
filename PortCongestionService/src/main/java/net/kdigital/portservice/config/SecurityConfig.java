@@ -25,7 +25,7 @@ public class SecurityConfig {
 				"/port", "/port_info", "/receive_data", "/img/**", "/css/**", "/script/**", "/weatherinfo", 
 				"/liveChatting", "/gptChatbot", "/chat", "/ws/**", "/ws",
 				"/terminalSchedule", "/get_terminalSchedule", "/liveChatting", "/gptChatbot", "/fun/working", "/fun/portLatLng"
-				, "/hitOpenaiApi").permitAll());
+				, "/hitOpenaiApi", "/port", "/port_info").permitAll());
 
 		http.formLogin((auth) -> auth.loginPage("/user/login")
 				.usernameParameter("userEmail")
