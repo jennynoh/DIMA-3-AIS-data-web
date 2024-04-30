@@ -1,0 +1,21 @@
+logo_img,company_name,vessel_name,origin,destination,dep_time,arr_time,duration,trans,of20,of40
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,SUNNY ROSE 2408S,Incheon,Hong Kong,2024.04.30 (Tue),2024.05.03 (Fri),3 days,Direct,"$1,001.00",$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCS.gif,DongYoung,SUNNY ROSE SURO2408S,Incheon,Hong Kong,2024.04.30 (Tue),2024.05.03 (Fri),3 days,Direct,$101.00,$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_NSS.gif,NamSung,SUNNY ROSE SURO2408S,Incheon,Hong Kong,2024.04.30 (Tue),2024.05.03 (Fri),3 days,Direct,$120.00,$240.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,STARSHIP AQUILA 2406S,Incheon,Hong Kong,2024.05.01 (Wed),2024.05.06 (Mon),5 days,Direct,"$1,001.00",$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,KMTC TIANJIN 2405S,Incheon,Hong Kong,2024.05.01 (Wed),2024.05.09 (Thu),8 days,Direct,"$1,001.00",$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_COA.gif,COSCO,XIN QING DAO 229N,Incheon,Hong Kong,2024.05.01 (Wed),2024.05.10 (Fri),9 days,Direct,,
+https://www.tradlinx.com/images/carrier/shipping_com_SIT.gif,SITC,SITC JIADE 2410S,Incheon,Hong Kong,2024.05.01 (Wed),2024.05.08 (Wed),7 days,Direct,$10.00,$20.00
+https://www.tradlinx.com/images/carrier/shipping_com_CKL.gif,CK Line,STARSHIP AQUILA 2406S,Incheon,Hong Kong,2024.05.01 (Wed),2024.05.06 (Mon),5 days,Direct,$260.00,$520.00
+https://www.tradlinx.com/images/carrier/shipping_com_NSS.gif,NamSung,STARSHIP AQUILA NSSO2406S,Incheon,Hong Kong,2024.05.01 (Wed),2024.05.06 (Mon),5 days,Direct,$120.00,$240.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,STARSHIP DRACO 2406S,Incheon,Hong Kong,2024.05.03 (Fri),2024.05.17 (Fri),14 days,Direct,"$1,001.00",$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCS.gif,DongYoung,STAR FRONTIER NSFR2408S,Incheon,Hong Kong,2024.05.03 (Fri),2024.05.06 (Mon),3 days,Direct,$101.00,$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_NSS.gif,NamSung,STAR FRONTIER NSFR2408S,Incheon,Hong Kong,2024.05.03 (Fri),2024.05.06 (Mon),3 days,Direct,$120.00,$240.00
+https://www.tradlinx.com/images/carrier/shipping_com_HMM.gif,HMM,HEUNG-A AKITA 2408S,Incheon,Hong Kong,2024.05.03 (Fri),2024.05.07 (Tue),4 days,Direct,$46.00,$92.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,STAR FRONTIER 2408S,Incheon,Hong Kong,2024.05.04 (Sat),2024.05.08 (Wed),4 days,Direct,"$1,001.00",$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_SKR.gif,Sinokor,HEUNG-A AKITA 2408S,Incheon,Hong Kong,2024.05.04 (Sat),2024.05.07 (Tue),3 days,Direct,$111.00,$222.00
+https://www.tradlinx.com/images/carrier/shipping_com_HAS.gif,HEUNG-A,HEUNG-A AKITA 2408S,Incheon,Hong Kong,2024.05.04 (Sat),2024.05.07 (Tue),3 days,Direct,$400.00,$700.00
+https://www.tradlinx.com/images/carrier/shipping_com_SIT.gif,SITC,KMTC PENANG 2405S,Incheon,Hong Kong,2024.05.05 (Sun),2024.05.08 (Wed),3 days,Direct,$10.00,$20.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,KMTC KEELUNG 2407S,Incheon,Hong Kong,2024.05.07 (Tue),2024.05.23 (Thu),16 days,Direct,"$1,001.00",$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_TSL.gif,TS Line,TS XIAMEN 24006S,Incheon,Hong Kong,2024.05.07 (Tue),2024.05.21 (Tue),14 days,Direct,$66.00,$132.00
+https://www.tradlinx.com/images/carrier/shipping_com_SIT.gif,SITC,SITC SHUNDE 2410S,Incheon,Hong Kong,2024.05.08 (Wed),2024.05.15 (Wed),7 days,Direct,$10.00,$20.00
