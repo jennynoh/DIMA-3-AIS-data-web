@@ -1,6 +1,7 @@
 "use strict";
 
 let map;
+var lockImages;
 
 async function initMap() {
 
@@ -100,6 +101,7 @@ async function initMap() {
       마커 클릭시 이벤트
     */
     function markerClickEvent() {
+
       map.setZoom(13);
       map.setCenter(click_focus_map);
 
@@ -108,6 +110,13 @@ async function initMap() {
 
       // 마커 클릭 시 팝업창이 보여짐
       modal.style.display = 'block';
+      lockImages = document.getElementsByClassName('lock-img');
+      console.log(lockImages);
+      const lockImagesArray = Array.from(lockImages);
+      lockImagesArray.forEach(function (element) {
+        element.addEventListener('click', getSubscriptionPage);
+      });
+
 
       // 항구 정보
       document.querySelector('#portTitle').textContent = port[1];
@@ -945,3 +954,17 @@ function weatherOutput(resp) {
   $(".weather").text(weather);
   $(".icon").html(`<img src="http://openweathermap.org/img/w/${icon}.png" alt="Weather icon">`);
 }
+
+
+/**
+ * 무료회원 lock 기능 클릭 액션
+ * 1) alert 창으로 '유료회원 전용 기능입니다. 구독신청 창으로 이동합니다.'
+ * 2) subscription page 요청
+ */
+
+function getSubscriptionPage() {
+  alert('유료회원 전용 기능입니다. 구독신청 창으로 이동합니다.');
+  console.log('subscription 페이지 요청');
+  window.location.replace('http://localhost:9999/subscription');
+}
+

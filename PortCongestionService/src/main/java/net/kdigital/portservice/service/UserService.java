@@ -45,4 +45,11 @@ public class UserService {
 		if(entity.isEmpty()) return true;
 		return false;
 	}
+
+	@Transactional
+	public void subscribe(String userEmail) {
+		Optional<UserEntity> entity = userRepository.findById(userEmail);
+		entity.get().setUserRole("ROLE_PRO");
+		
+	}
 }

@@ -81,4 +81,12 @@ public class UserController {
 		return "user/login";
 
 	}
+	
+	@PostMapping("/subscriptionProc")
+	public String subscriptionProc(
+			@RequestParam(name="userEmail") String userEmail) {
+		userService.subscribe(userEmail);
+		log.info("구독 요청!!"+userEmail);
+		return "redirect:/";
+	}
 }

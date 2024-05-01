@@ -69,6 +69,11 @@
             // subscription plan 
             $("#button-monthly").on('click', function () { generateOrder('monthly'); });
             $("#button-yearly").on('click', function () { generateOrder('yearly'); });
+
+            // payment button 활성화 (생략)
+
+            // 회원 role 바꾸기
+            $("#payContainer").on('click', paymentProc);
         });
 
         function scrollToOrder() {
@@ -93,6 +98,24 @@
             }
 
             scrollToOrder();
+        }
+
+        function paymentProc() {
+            let userEmail = $("#userEmail").val();
+            console.log(userEmail);
+            $.ajax({
+                url: '/subscriptionProc'
+                , method: 'POST'
+                // 나중에 어떤 plan으로 신청했는지 정보도 보내야함 
+                , data: { "userEmail": userEmail }
+            });
+
+            paymentSuccess();
+        }
+
+        function paymentSuccess() {
+            alert("구독완료!");
+            window.location.href = 'http://localhost:9999/';
         }
     </script>
 </head>
@@ -370,6 +393,8 @@
                 </div>
             </section>
 
+            <!-- 회원 정보 -->
+            <input type="hidden" id="userEmail" th:value="${#authentication.name}">
             <!-- Payment panel -->
             <div class="payment-container">
                 <div class="payment-form">

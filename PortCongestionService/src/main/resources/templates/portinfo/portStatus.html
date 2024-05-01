@@ -117,11 +117,10 @@
   <input type="hidden" id="portId">
   <input type="hidden" id="lastChat">
   <!-- 로그인 사용자일 때, -->
-  <input th:unless="${#authorization.expression('isAnonymous()')}" type="hidden" id="user"
-    th:value="${#authentication.principal.nickname}">
+  <input type="hidden" id="user" th:value="${userName}">
+  <!-- <input sec:authorize="!isAnonymous()" type="hidden" id="user" th:value="${#authentication.principal.nickName}"> -->
   <input type="hidden" th:value="${#authentication}">
   <!-- 비로그인 사용자일 때, -->
-  <input th:if="${#authorization.expression('isAnonymous()')}" type="hidden" id="user" value="">
 
   <!-- 채팅창 -->
   <div class="chat-window">
@@ -230,7 +229,8 @@
         <div id="popup3" class="vessel-status">
           <div class="waitingChartDiv popup">
             <!-- 유료회원이 아니면 -->
-            <div class="unpaid-user" sec:authorize="hasAnyRole('ROLE_USER') or isAnonymous()">
+            <div class="unpaid-user" sec:authorize="!hasRole('ROLE_PRO')">
+              <!-- <div class="unpaid-user" th:unless="${#authorization.expression('hasRole(''ROLE_PRO'')')}"> -->
               <img class="lock-img" th:src="@{img/lock_img.png}">
               <div class="lock-text">대기선박 현황</div>
             </div>
@@ -254,7 +254,8 @@
 
           <div class="workingChartDiv popup">
             <!-- 유료회원이 아니면, -->
-            <div class="unpaid-user" sec:authorize="hasAnyRole('ROLE_USER') or isAnonymous()">
+            <div class="unpaid-user" sec:authorize="!hasRole('ROLE_PRO')">
+              <!-- <div class="unpaid-user" th:unless="${#authorization.expression('hasRole(''ROLE_PRO'')')}"> -->
               <img class="lock-img" th:src="@{img/lock_img.png}">
               <div class="lock-text">작업선박 현황</div>
             </div>

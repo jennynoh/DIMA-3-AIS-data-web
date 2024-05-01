@@ -1,0 +1,21 @@
+logo_img,company_name,vessel_name,origin,destination,dep_time,arr_time,duration,trans,of20,of40
+https://www.tradlinx.com/images/carrier/shipping_com_SIT.gif,SITC,SITC JIADE 2410S,Incheon,Tokyo,2024.05.01 (Wed),2024.06.01 (Sat),31 days,Direct,,
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,TY INCHEON 2412E,Incheon,Tokyo,2024.05.03 (Fri),2024.05.07 (Tue),4 days,Direct,$435.00,$870.00
+https://www.tradlinx.com/images/carrier/shipping_com_CKL.gif,CK Line,TY INCHEON 2412E,Incheon,Tokyo,2024.05.03 (Fri),2024.05.07 (Tue),4 days,Direct,$436.00,$871.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCL.gif,Pancon,TY INCHEON 2412E,Incheon,Tokyo,2024.05.03 (Fri),2024.05.07 (Tue),4 days,Direct,$385.00,$770.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,VICTORY STAR 2416E,Incheon,Tokyo,2024.05.06 (Mon),2024.05.11 (Sat),5 days,Direct,$435.00,$870.00
+https://www.tradlinx.com/images/carrier/shipping_com_CKL.gif,CK Line,VICTORY STAR 2416E,Incheon,Tokyo,2024.05.06 (Mon),2024.05.10 (Fri),4 days,Direct,$436.00,$871.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCL.gif,Pancon,VICTORY STAR 2416E,Incheon,Tokyo,2024.05.06 (Mon),2024.05.10 (Fri),4 days,Direct,$385.00,$770.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,BAL STAR 2413E,Incheon,Tokyo,2024.05.08 (Wed),2024.05.12 (Sun),4 days,Direct,$435.00,$870.00
+https://www.tradlinx.com/images/carrier/shipping_com_SIT.gif,SITC,SITC SHUNDE 2410S,Incheon,Tokyo,2024.05.08 (Wed),2024.06.08 (Sat),31 days,Direct,,
+https://www.tradlinx.com/images/carrier/shipping_com_CKL.gif,CK Line,BAL STAR 2413E,Incheon,Tokyo,2024.05.08 (Wed),2024.05.13 (Mon),5 days,Direct,$436.00,$871.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCL.gif,Pancon,BAL STAR 2413E,Incheon,Tokyo,2024.05.08 (Wed),2024.05.13 (Mon),5 days,Direct,$385.00,$770.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,TY INCHEON 2413E,Incheon,Tokyo,2024.05.13 (Mon),2024.05.17 (Fri),4 days,Direct,$435.00,$870.00
+https://www.tradlinx.com/images/carrier/shipping_com_CKL.gif,CK Line,TY INCHEON 2413E,Incheon,Tokyo,2024.05.13 (Mon),2024.05.17 (Fri),4 days,Direct,$436.00,$871.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCL.gif,Pancon,TY INCHEON 2413E,Incheon,Tokyo,2024.05.13 (Mon),2024.05.17 (Fri),4 days,Direct,$385.00,$770.00
+https://www.tradlinx.com/images/carrier/shipping_com_SIT.gif,SITC,SITC RUNDE 2410S,Incheon,Tokyo,2024.05.15 (Wed),2024.06.15 (Sat),31 days,Direct,,
+https://www.tradlinx.com/images/carrier/shipping_com_CKL.gif,CK Line,VICTORY STAR 2417E,Incheon,Tokyo,2024.05.15 (Wed),2024.05.20 (Mon),5 days,Direct,$436.00,$871.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCL.gif,Pancon,VICTORY STAR 2417E,Incheon,Tokyo,2024.05.15 (Wed),2024.05.20 (Mon),5 days,Direct,$385.00,$770.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,VICTORY STAR 2417E,Incheon,Tokyo,2024.05.17 (Fri),2024.05.21 (Tue),4 days,Direct,$435.00,$870.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,BAL STAR 2414E,Incheon,Tokyo,2024.05.18 (Sat),2024.05.24 (Fri),6 days,Direct,$435.00,$870.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCL.gif,Pancon,BAL STAR 2414E,Incheon,Tokyo,2024.05.18 (Sat),2024.05.24 (Fri),6 days,Direct,$385.00,$770.00

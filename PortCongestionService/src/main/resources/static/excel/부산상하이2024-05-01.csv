@@ -1,0 +1,21 @@
+logo_img,company_name,vessel_name,origin,destination,dep_time,arr_time,duration,trans,of20,of40
+https://www.tradlinx.com/images/carrier/shipping_com_SKR.gif,Sinokor,YEOSU VOYAGER 2404S,Busan,Shanghai,2024.05.01 (Wed),2024.05.04 (Sat),3 days,Direct,$100.00,$199.00
+https://www.tradlinx.com/images/carrier/shipping_com_SKR.gif,Sinokor,SAWASDEE XIAMEN 2405S,Busan,Shanghai,2024.05.01 (Wed),2024.05.05 (Sun),4 days,Direct,$100.00,$199.00
+https://www.tradlinx.com/images/carrier/shipping_com_HSL.gif,HanSung,YEOSU VOYAGER 2404S,Busan,Shanghai,2024.05.01 (Wed),2024.05.04 (Sat),3 days,Direct,$100.00,$199.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCS.gif,DongYoung,EASLINE DALIAN ESDL2416W,Busan,Shanghai,2024.05.01 (Wed),2024.05.04 (Sat),3 days,Direct,$101.00,$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,KMTC OSAKA 2407S,Busan,Shanghai,2024.05.01 (Wed),2024.05.02 (Thu),1 days,Direct,$100.00,$199.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,SM JAKARTA 2406W,Busan,Shanghai,2024.05.01 (Wed),2024.05.03 (Fri),2 days,Direct,$100.00,$199.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,SAWASDEE XIAMEN 2405S,Busan,Shanghai,2024.05.01 (Wed),2024.05.04 (Sat),3 days,Direct,$100.00,$199.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,STAR CHASER 2405W,Busan,Shanghai,2024.05.01 (Wed),2024.05.05 (Sun),4 days,Direct,$100.00,$199.00
+https://www.tradlinx.com/images/carrier/shipping_com_HAS.gif,HEUNG-A,YEOSU VOYAGER 2404S,Busan,Shanghai,2024.05.01 (Wed),2024.05.04 (Sat),3 days,Direct,$101.00,$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_DJS.gif,DongJin,EASLINE DALIAN 2416W,Busan,Shanghai,2024.05.01 (Wed),2024.05.05 (Sun),4 days,Direct,$101.00,$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_DJS.gif,DongJin,QI YUN HE 0436W,Busan,Shanghai,2024.05.01 (Wed),2024.05.06 (Mon),5 days,Direct,$101.00,$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_COA.gif,COSCO,QIYUNHE 436W,Busan,Shanghai,2024.05.01 (Wed),2024.05.05 (Sun),4 days,Direct,$44.00,$88.00
+https://www.tradlinx.com/images/carrier/shipping_com_SIT.gif,SITC,SITC JIANGSU 2410S,Busan,Shanghai,2024.05.01 (Wed),2024.05.03 (Fri),2 days,Direct,$1.00,$2.00
+https://www.tradlinx.com/images/carrier/shipping_com_SIT.gif,SITC,SAWASDEE XIAMEN 2405S,Busan,Shanghai,2024.05.01 (Wed),2024.05.04 (Sat),3 days,Direct,$1.00,$2.00
+https://www.tradlinx.com/images/carrier/shipping_com_CKL.gif,CK Line,SKY TIARA 2409S,Busan,Shanghai,2024.05.01 (Wed),2024.05.03 (Fri),2 days,Direct,$247.00,$493.00
+https://www.tradlinx.com/images/carrier/shipping_com_CKL.gif,CK Line,YEOSU VOYAGER 2404S,Busan,Shanghai,2024.05.01 (Wed),2024.05.03 (Fri),2 days,Direct,$247.00,$493.00
+https://www.tradlinx.com/images/carrier/shipping_com_EAS.gif,EAS,EASLINE DALIAN 2417W,Busan,Shanghai,2024.05.01 (Wed),2024.05.04 (Sat),3 days,Direct,$101.00,$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_ONE.gif,ONE,KMTC OSAKA 2407S,Busan,Shanghai,2024.05.01 (Wed),2024.05.03 (Fri),2 days,Direct,$54.00,$108.00
+https://www.tradlinx.com/images/carrier/shipping_com_ONE.gif,ONE,KOTA NAGA 2239S,Busan,Shanghai,2024.05.01 (Wed),2024.05.04 (Sat),3 days,Direct,$54.00,$108.00
+https://www.tradlinx.com/images/carrier/shipping_com_ONE.gif,ONE,YM TRILLION 009W,Busan,Shanghai,2024.05.01 (Wed),2024.05.20 (Mon),19 days,Direct,$54.00,$108.00

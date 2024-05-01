@@ -1,5 +1,11 @@
 package net.kdigital.portservice.service;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -26,7 +32,14 @@ public class LoginUserDetailsService implements UserDetailsService {
 				});
 		
 		UserDTO userDTO = UserDTO.toDTO(userEntity);
-		return new LoginUserDetails(userDTO);
+		log.info("{}", userDTO);
+		
+		// userRole을 authority로 반환하는 코드 추가 
+		SimpleGrantedAuthority authority = new SimpleGrantedAuthority(userEntity.getUserRole());
+		List<SimpleGrantedAuthority> authorities = Collections.singletonList(authority);
+		log.info("{}", authorities.get(0));
+
+        return new LoginUserDetails(userDTO);
 	}
 
 }

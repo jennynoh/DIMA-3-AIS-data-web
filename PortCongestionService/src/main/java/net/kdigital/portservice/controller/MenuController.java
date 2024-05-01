@@ -1,13 +1,23 @@
 package net.kdigital.portservice.controller;
 
+import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import lombok.extern.slf4j.Slf4j;
+import net.kdigital.portservice.dto.LoginUserDetails;
+
 @Controller
+@Slf4j
 public class MenuController {
 	
 	@GetMapping("/portStatus")
-	public String portStatus() {
+	public String portStatus(@AuthenticationPrincipal LoginUserDetails loginUser
+			, Model model) {
+		log.info("{}", loginUser);
+		if(loginUser != null)
+			model.addAttribute("userName", loginUser.getNickName());
 		return "/portinfo/portStatus";
 	}
 	

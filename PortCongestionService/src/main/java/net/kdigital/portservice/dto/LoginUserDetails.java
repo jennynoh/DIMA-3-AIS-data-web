@@ -1,10 +1,11 @@
 package net.kdigital.portservice.dto;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.ToString;
@@ -29,16 +30,17 @@ public class LoginUserDetails implements UserDetails {
 	 */
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		Collection<GrantedAuthority> collection = new ArrayList<>();
-		collection.add(new GrantedAuthority() {
-			private static final long serialVersionUID = 1L;
-			
-			@Override
-			public String getAuthority() {
-				return null;
-			}
-		});
-		return collection;
+//		Collection<GrantedAuthority> collection = new ArrayList<>();
+//		collection.add(new GrantedAuthority() {
+//			private static final long serialVersionUID = 1L;
+//			
+//			@Override
+//			public String getAuthority() {
+//				return null;
+//			}
+//		});
+//		return collection;
+		return Collections.singletonList(new SimpleGrantedAuthority(userRole));
 	}
 
 	
@@ -53,7 +55,7 @@ public class LoginUserDetails implements UserDetails {
 	}
 	
 	// 사용자 이름 반환 
-	public String getNickname() {
+	public String getNickName() {
 		return this.nickName;
 	}
 
