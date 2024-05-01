@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Port Congestion Service Home</title>
 
-  <link rel="stylesheet" th:href="@{/css/chart2.css}">
+  <link rel="stylesheet" th:href="@{/css/portStatus.css}">
   <link rel="stylesheet" th:href="@{/css/googleMap.css}">
 
   <!-- 페이지 css 추가 -->
@@ -119,6 +119,7 @@
   <!-- 로그인 사용자일 때, -->
   <input th:unless="${#authorization.expression('isAnonymous()')}" type="hidden" id="user"
     th:value="${#authentication.principal.nickname}">
+  <input type="hidden" th:value="${#authentication}">
   <!-- 비로그인 사용자일 때, -->
   <input th:if="${#authorization.expression('isAnonymous()')}" type="hidden" id="user" value="">
 
@@ -225,9 +226,15 @@
         </div>
 
         <!-- 대기.작업 선박 -->
-        <!-- 유료 회원일 때: ROLE_PRO -->
-        <div id="popup3" class="paid-member-view">
+        <!-- 유료회원이면, -->
+        <div id="popup3" class="vessel-status">
           <div class="waitingChartDiv popup">
+            <!-- 유료회원이 아니면 -->
+            <div class="unpaid-user" sec:authorize="hasAnyRole('ROLE_USER') or isAnonymous()">
+              <img class="lock-img" th:src="@{img/lock_img.png}">
+              <div class="lock-text">대기선박 현황</div>
+            </div>
+            <!-- 유료회원이면, -->
             <div class="TotalCount">
               <div class="Title">대기중인 선박 대수</div>
               <div class="shipChartToolTip">
@@ -246,7 +253,12 @@
           </div>
 
           <div class="workingChartDiv popup">
-
+            <!-- 유료회원이 아니면, -->
+            <div class="unpaid-user" sec:authorize="hasAnyRole('ROLE_USER') or isAnonymous()">
+              <img class="lock-img" th:src="@{img/lock_img.png}">
+              <div class="lock-text">작업선박 현황</div>
+            </div>
+            <!-- 유료회원이면, -->
             <div class="TotalCount">
               <div class="Title">작업중인 선박 대수</div>
               <div class="shipChartToolTip">
@@ -255,18 +267,17 @@
                   <img th:src="@{img/tooltip.png}" alt="툴팁 이미지" width="14px">
                 </div>
               </div>
-
             </div>
-
             <h2 id="workingShipTotal"></h2>
-
             <div id="workingShipListChart">
               <div id="workingShipListChartContent1"></div>
               <div id="workingShipListChartContent2"></div>
             </div>
           </div>
         </div>
-        <!-- 비로그인 & 무료회원일 때, -->
+        <!-- 유료회원이 아니면 -->
+        <!-- <div class="workingChartDiv popup" sec:authorize="hasAnyRole('ROLE_USER') or isAnonymous()">
+        </div> -->
       </div>
 
       <!-- 선박별 대기시간 & 대기시간.혼잡도 통계 -->

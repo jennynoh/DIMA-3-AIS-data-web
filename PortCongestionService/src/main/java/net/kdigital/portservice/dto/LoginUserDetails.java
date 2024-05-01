@@ -14,7 +14,7 @@ public class LoginUserDetails implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	private String userEmail;
 	private String userPwd;
-	private String Nickname;
+	private String nickName;
 	private String userPhone;
 	private String company;
 	private LocalDateTime joinDate;
@@ -54,7 +54,7 @@ public class LoginUserDetails implements UserDetails {
 	
 	// 사용자 이름 반환 
 	public String getNickname() {
-		return this.Nickname;
+		return this.nickName;
 	}
 
 	@Override
@@ -78,12 +78,12 @@ public class LoginUserDetails implements UserDetails {
 		return this.enabled;
 	}
 
-	public LoginUserDetails(String userEmail, String userPwd, String Nickname, String userPhone, String company,
+	public LoginUserDetails(String userEmail, String userPwd, String nickName, String userPhone, String company,
 			LocalDateTime joinDate, String userRole, boolean notificationSetting, boolean enabled) {
 		super();
 		this.userEmail = userEmail;
 		this.userPwd = userPwd;
-		this.Nickname = Nickname;
+		this.nickName = nickName;
 		this.userPhone = userPhone;
 		this.company = company;
 		this.joinDate = joinDate;
@@ -96,7 +96,7 @@ public class LoginUserDetails implements UserDetails {
 		super();
 		this.userEmail = userDTO.getUserEmail();
 		this.userPwd = userDTO.getUserPwd();
-		this.Nickname = userDTO.getNickname();
+		this.nickName = userDTO.getNickName();
 		this.userPhone = userDTO.getUserPhone();
 		this.company = userDTO.getCompany();
 		this.joinDate = userDTO.getJoinDate();

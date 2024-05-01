@@ -39,7 +39,7 @@ public class UserController {
 	// 회원가입 두번째 화면 요청 
 	@PostMapping("/user/joinNext")
 	public String joinNext(
-			@RequestParam(name="userName") String userName
+			@RequestParam(name="nickName") String nickName
 			, @RequestParam(name="userEmail") String userEmail
 			, @RequestParam(name="company") String company
 			, @RequestParam(name="userPhone") String userPhone
@@ -47,7 +47,7 @@ public class UserController {
 		
 		String key = mailService.sendValidationCode(userEmail);
 		
-		model.addAttribute("userName", userName);
+		model.addAttribute("nickName", nickName);
 		model.addAttribute("userEmail", userEmail);
 		model.addAttribute("company", company);
 		model.addAttribute("userPhone", userPhone);
