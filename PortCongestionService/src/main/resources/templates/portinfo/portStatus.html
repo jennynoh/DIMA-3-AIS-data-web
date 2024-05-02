@@ -26,7 +26,7 @@
   <link rel="stylesheet" th:href="@{/css/glv.css}" />
   <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
   <script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCup0qVTnfr2x9IVuGjV1T95niuiMV4e9k&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCup0qVTnfr2x9IVuGjV1T95niuiMV4e9k&callback=initMap&loading=async">
       (g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })({
         key: "AIzaSyCup0qVTnfr2x9IVuGjV1T95niuiMV4e9k",
         // Add other bootstrap parameters as needed, using camel case.
@@ -311,7 +311,7 @@
               <option value="lastMonth">지난 한달</option>
             </select>
 
-            <div class="shipChartToolTip">
+            <div class="shipChartToolTip" id="ToolTipWidth">
               <div class="portCogTooltip-container">
                 <p class="portCogTooltip-text">지난 7일/ 한달 간 평균<br>대기시간과 혼잡도 입니다.</p>
                 <img th:src="@{img/tooltip.png}" alt="툴팁 이미지" width="14px">
