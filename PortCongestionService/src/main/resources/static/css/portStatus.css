@@ -176,12 +176,12 @@ body {
     flex-direction: row;
 }
 
-h4.Title,
-div.shipChartToolTip {
-    width: 50%;
+h4.Title, div.shipChartToolTip{
+    width: 50%; 
 }
-
-
+div#ToolTipWidth{ /* 대기시간&혼잡도 통계 제목 깨짐 해결 */
+	width: 30%; 
+}
 /*
 	popup4 파트
 */
