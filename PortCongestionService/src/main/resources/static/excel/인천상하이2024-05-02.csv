@@ -1,0 +1,21 @@
+logo_img,company_name,vessel_name,origin,destination,dep_time,arr_time,duration,trans,of20,of40
+https://www.tradlinx.com/images/carrier/shipping_com_SML.gif,SM Line,POS BANGKOK 1052S,Incheon,Shanghai,2024.05.02 (Thu),2024.05.05 (Sun),3 days,Direct,$111.00,$222.00
+https://www.tradlinx.com/images/carrier/shipping_com_COH.gif,COHEUNG,QIYUNHE 436W,Incheon,Shanghai,2024.05.03 (Fri),2024.05.06 (Mon),3 days,Direct,$101.00,$201.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCS.gif,DongYoung,PANCON GLORY JPCG2416W,Incheon,Shanghai,2024.05.03 (Fri),2024.05.06 (Mon),3 days,Direct,$101.00,$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,PANCON GLORY 2416W,Incheon,Shanghai,2024.05.03 (Fri),2024.05.06 (Mon),3 days,Direct,$109.00,$217.00
+https://www.tradlinx.com/images/carrier/shipping_com_HAS.gif,HEUNG-A,PANCON GLORY 2416W,Incheon,Shanghai,2024.05.03 (Fri),2024.05.06 (Mon),3 days,Direct,$101.00,$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_DJS.gif,DongJin,PANCON GLORY 2416W,Incheon,Shanghai,2024.05.03 (Fri),2024.05.06 (Mon),3 days,Direct,$130.00,$260.00
+https://www.tradlinx.com/images/carrier/shipping_com_COA.gif,COSCO,CONCERTO 480W,Incheon,Shanghai,2024.05.03 (Fri),2024.05.07 (Tue),4 days,Direct,$44.00,$88.00
+https://www.tradlinx.com/images/carrier/shipping_com_COA.gif,COSCO,CONSISTENCE 586W,Incheon,Shanghai,2024.05.03 (Fri),2024.05.10 (Fri),7 days,Direct,$44.00,$88.00
+https://www.tradlinx.com/images/carrier/shipping_com_CKL.gif,CK Line,PANCON GLORY 2416W,Incheon,Shanghai,2024.05.03 (Fri),2024.05.06 (Mon),3 days,Direct,$247.00,$493.00
+https://www.tradlinx.com/images/carrier/shipping_com_PAN.gif,Pan Ocean,PANCON GLORY 2416W,Incheon,Shanghai,2024.05.03 (Fri),2024.05.06 (Mon),3 days,Direct,$100.00,$199.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCL.gif,Pancon,PANCON GLORY 2416W,Incheon,Shanghai,2024.05.03 (Fri),2024.05.06 (Mon),3 days,Direct,$100.00,$199.00
+https://www.tradlinx.com/images/carrier/shipping_com_SKR.gif,Sinokor,PEGASUS GLORY 2402W,Incheon,Shanghai,2024.05.05 (Sun),2024.05.08 (Wed),3 days,Direct,$100.00,$199.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCS.gif,DongYoung,PEGASUS GLORY DPGL2402W,Incheon,Shanghai,2024.05.05 (Sun),2024.05.08 (Wed),3 days,Direct,$101.00,$202.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,PEGASUS GLORY 2402W,Incheon,Shanghai,2024.05.05 (Sun),2024.05.08 (Wed),3 days,Direct,$109.00,$217.00
+https://www.tradlinx.com/images/carrier/shipping_com_DJS.gif,DongJin,PEGASUS GLORY 2402W,Incheon,Shanghai,2024.05.05 (Sun),2024.05.08 (Wed),3 days,Direct,$130.00,$260.00
+https://www.tradlinx.com/images/carrier/shipping_com_COA.gif,COSCO,XIN MING ZHOU 20 2419W,Incheon,Shanghai,2024.05.05 (Sun),2024.05.09 (Thu),4 days,Direct,$44.00,$88.00
+https://www.tradlinx.com/images/carrier/shipping_com_SIT.gif,SITC,KMTC PENANG 2404N,Incheon,Shanghai,2024.05.05 (Sun),2024.05.07 (Tue),2 days,Direct,,
+https://www.tradlinx.com/images/carrier/shipping_com_SIT.gif,SITC,SITC HENGDE 2412S,Incheon,Shanghai,2024.05.05 (Sun),2024.05.09 (Thu),4 days,Direct,,
+https://www.tradlinx.com/images/carrier/shipping_com_PAN.gif,Pan Ocean,PEGASUS GLORY 2402W,Incheon,Shanghai,2024.05.05 (Sun),2024.05.08 (Wed),3 days,Direct,$100.00,$199.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCL.gif,Pancon,PEGASUS GLORY 2402W,Incheon,Shanghai,2024.05.05 (Sun),2024.05.08 (Wed),3 days,Direct,$100.00,$199.00

@@ -1,0 +1,14 @@
+logo_img,company_name,vessel_name,origin,destination,dep_time,arr_time,duration,trans,of20,of40
+https://www.tradlinx.com/images/carrier/shipping_com_MAE.gif,MAERSK,PORTO GERMENO 418S,Incheon,Singapore,2024.05.03 (Fri),2024.05.18 (Sat),15 days,Direct,$143.00,$286.00
+https://www.tradlinx.com/images/carrier/shipping_com_MAE.gif,MAERSK,ADAMS 419S,Incheon,Singapore,2024.05.12 (Sun),2024.05.26 (Sun),14 days,Direct,$143.00,$286.00
+https://www.tradlinx.com/images/carrier/shipping_com_WHL.gif,WanHai,WAN HAI 317 S219,Incheon,Singapore,2024.05.12 (Sun),2024.05.29 (Wed),17 days,Direct,,
+https://www.tradlinx.com/images/carrier/shipping_com_MSC.gif,MSC,MSC LYSE V HW418A,Incheon,Singapore,2024.05.14 (Tue),2024.05.28 (Tue),14 days,Direct,,
+https://www.tradlinx.com/images/carrier/shipping_com_MAE.gif,MAERSK,GSL VINIA 420S,Incheon,Singapore,2024.05.17 (Fri),2024.06.01 (Sat),15 days,Direct,$143.00,$286.00
+https://www.tradlinx.com/images/carrier/shipping_com_HMM.gif,HMM,PELICAN 0025S,Incheon,Singapore,2024.05.17 (Fri),2024.06.03 (Mon),17 days,Direct,$140.00,$280.00
+https://www.tradlinx.com/images/carrier/shipping_com_MSC.gif,MSC,MSC ANUSHA III HW419A,Incheon,Singapore,2024.05.19 (Sun),2024.06.03 (Mon),15 days,Direct,,
+https://www.tradlinx.com/images/carrier/shipping_com_MSC.gif,MSC,MSC OLIA HW420A,Incheon,Singapore,2024.05.25 (Sat),2024.06.09 (Sun),15 days,Direct,,
+https://www.tradlinx.com/images/carrier/shipping_com_MAE.gif,MAERSK,ALS KRONOS 421S,Incheon,Singapore,2024.05.25 (Sat),2024.06.08 (Sat),14 days,Direct,$143.00,$286.00
+https://www.tradlinx.com/images/carrier/shipping_com_MAE.gif,MAERSK,GSL DOROTHEA 422S,Incheon,Singapore,2024.05.29 (Wed),2024.06.15 (Sat),17 days,Direct,$143.00,$286.00
+https://www.tradlinx.com/images/carrier/shipping_com_MSC.gif,MSC,MSC REN V HW421A,Incheon,Singapore,2024.06.03 (Mon),2024.06.17 (Mon),14 days,Direct,,
+https://www.tradlinx.com/images/carrier/shipping_com_MSC.gif,MSC,MSC ANIELLO HW422A,Incheon,Singapore,2024.06.08 (Sat),2024.06.23 (Sun),15 days,Direct,,
+https://www.tradlinx.com/images/carrier/shipping_com_MSC.gif,MSC,MSC BREMERHAVEN V HW423A,Incheon,Singapore,2024.06.15 (Sat),2024.06.30 (Sun),15 days,Direct,,

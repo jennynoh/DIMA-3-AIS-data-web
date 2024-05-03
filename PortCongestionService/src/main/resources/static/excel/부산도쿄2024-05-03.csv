@@ -1,0 +1,21 @@
+logo_img,company_name,vessel_name,origin,destination,dep_time,arr_time,duration,trans,of20,of40
+https://www.tradlinx.com/images/carrier/shipping_com_SIT.gif,SITC,SITC ANHE 2412S,Busan,Tokyo,2024.05.04 (Sat),2024.05.21 (Tue),17 days,Direct,$225.00,$450.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCL.gif,Pancon,TY INCHEON 2412E,Busan,Tokyo,2024.05.04 (Sat),2024.05.07 (Tue),3 days,Direct,$285.00,$570.00
+https://www.tradlinx.com/images/carrier/shipping_com_HAS.gif,HEUNG-A,TOYAMA TRADER 2413E,Busan,Tokyo,2024.05.05 (Sun),2024.05.07 (Tue),2 days,Direct,$500.00,"$1,000.00"
+https://www.tradlinx.com/images/carrier/shipping_com_HAS.gif,HEUNG-A,HEUNG-A YOUNG 0353S,Busan,Tokyo,2024.05.05 (Sun),2024.05.07 (Tue),2 days,Direct,$500.00,"$1,000.00"
+https://www.tradlinx.com/images/carrier/shipping_com_HAS.gif,HEUNG-A,PEGASUS TERA 2410E,Busan,Tokyo,2024.05.05 (Sun),2024.05.07 (Tue),2 days,Direct,$500.00,"$1,000.00"
+https://www.tradlinx.com/images/carrier/shipping_com_DJS.gif,DongJin,HEUNG-A YOUNG 0353S,Busan,Tokyo,2024.05.05 (Sun),2024.05.07 (Tue),2 days,Direct,$335.00,$670.00
+https://www.tradlinx.com/images/carrier/shipping_com_DJS.gif,DongJin,PEGASUS TERA 2410E,Busan,Tokyo,2024.05.05 (Sun),2024.05.07 (Tue),2 days,Direct,$335.00,$670.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCS.gif,DongYoung,HEUNG-A YOUNG JHAY0353S,Busan,Tokyo,2024.05.05 (Sun),2024.05.07 (Tue),2 days,Direct,$255.00,$510.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCS.gif,DongYoung,PEGASUS TERA DPTR2410E,Busan,Tokyo,2024.05.05 (Sun),2024.05.07 (Tue),2 days,Direct,$255.00,$510.00
+https://www.tradlinx.com/images/carrier/shipping_com_KMD.gif,KMTC,TY INCHEON 2412E,Busan,Tokyo,2024.05.05 (Sun),2024.05.07 (Tue),2 days,Direct,$335.00,$670.00
+https://www.tradlinx.com/images/carrier/shipping_com_SKR.gif,Sinokor,TOYAMA TRADER 2413E,Busan,Tokyo,2024.05.05 (Sun),2024.05.07 (Tue),2 days,Direct,$255.00,$510.00
+https://www.tradlinx.com/images/carrier/shipping_com_SKR.gif,Sinokor,HEUNG-A YOUNG 0353S,Busan,Tokyo,2024.05.05 (Sun),2024.05.07 (Tue),2 days,Direct,$255.00,$510.00
+https://www.tradlinx.com/images/carrier/shipping_com_SKR.gif,Sinokor,POS YOKOHAMA 1481E,Busan,Tokyo,2024.05.05 (Sun),2024.05.07 (Tue),2 days,Direct,$255.00,$510.00
+https://www.tradlinx.com/images/carrier/shipping_com_CKL.gif,CK Line,TY INCHEON 2412E,Busan,Tokyo,2024.05.05 (Sun),2024.05.08 (Wed),3 days,Direct,$336.00,$671.00
+https://www.tradlinx.com/images/carrier/shipping_com_NSS.gif,NamSung,TOYAMA TRADER JTYT2413E,Busan,Tokyo,2024.05.05 (Sun),2024.05.07 (Tue),2 days,Direct,$305.00,$610.00
+https://www.tradlinx.com/images/carrier/shipping_com_NSS.gif,NamSung,PEGASUS TERA DPTR2410E,Busan,Tokyo,2024.05.05 (Sun),2024.05.07 (Tue),2 days,Direct,$305.00,$610.00
+https://www.tradlinx.com/images/carrier/shipping_com_NSS.gif,NamSung,POS YOKOHAMA PYOK1481E,Busan,Tokyo,2024.05.05 (Sun),2024.05.07 (Tue),2 days,Direct,$305.00,$610.00
+https://www.tradlinx.com/images/carrier/shipping_com_PAN.gif,Pan Ocean,TOYAMA TRADER 2413E,Busan,Tokyo,2024.05.05 (Sun),2024.05.07 (Tue),2 days,Direct,$285.00,$570.00
+https://www.tradlinx.com/images/carrier/shipping_com_PAN.gif,Pan Ocean,POS YOKOHAMA 1481E,Busan,Tokyo,2024.05.05 (Sun),2024.05.07 (Tue),2 days,Direct,$285.00,$570.00
+https://www.tradlinx.com/images/carrier/shipping_com_PCL.gif,Pancon,TOYAMA TRADER 2413E,Busan,Tokyo,2024.05.05 (Sun),2024.05.07 (Tue),2 days,Direct,$285.00,$570.00

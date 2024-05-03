@@ -43,8 +43,15 @@ function connectWebSocket() {
     //     console.log("unsubscribed from channel: " + portId);
     // });
 
-    // disconnect WebSocket
+
+    /**
+     * disconnect WebSocket
+     */
     document.querySelector('.close_btn').addEventListener('click', function () {
+        stompClient.disconnect();
+    });
+
+    document.querySelector('.lock-img').addEventListener('click', function () {
         stompClient.disconnect();
     });
 };
